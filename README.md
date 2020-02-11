@@ -1,2 +1,2 @@
 # HMS
-IIT Jodhpur Hodpital Management System
+IIT Jodhpur Hospital Management System
