@@ -48,3 +48,24 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Doctor(models.Model):
+    SPECIALIZATION_CHOICES = (
+        ('1', 'ENT'),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    gender = models.CharField(max_length=1, choices=UserProfile.GENDER_CHOICES)
+    specialization = models.CharField(max_length=1, choices=SPECIALIZATION_CHOICES)
+    shift_begin = models.TimeField(auto_now=False, auto_now_add=False)
+    shift_end = models.TimeField(auto_now=False, auto_now_add=False)
+    available = models.BooleanField(default=False)
+    # patient queue
+
+
+class Pharmacist(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Receptionist(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
