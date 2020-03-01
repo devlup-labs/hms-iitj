@@ -1,116 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% block body_block %}
 {% load static %}
 
-    <header class="site-header">
-        <div class="nav-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
-                        <div class="site-branding d-flex align-items-center">
-                           <a class="d-block" href="index.html" rel="home"><img class="d-block" src="../../static/images/logo.png" alt="logo"></a>
-                        </div><!-- .site-branding -->
-
-                        <nav class="site-navigation d-flex justify-content-end align-items-center">
-                            <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-items-center">
-                                <li class="current-menu-item"><a href="../main/index.html">Home</a></li>
-                                <!-- <li><a href="about.html">About us</a></li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="contact.html">Contact</a></li> -->
-                                <li><a href="../accounts/login.html">Login/Register</a></li>
-
-                                <li class="call-btn button gradient-bg mt-3 mt-md-0">
-                                    <a class="d-flex justify-content-center align-items-center" href="#"><img src="../../static/images/emergency-call.png"> +34 000 000 0000</a>
-                                </li>
-                            </ul>
-                        </nav><!-- .site-navigation -->
-
-                        <div class="hamburger-menu d-lg-none">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div><!-- .hamburger-menu -->
-                    </div><!-- .col -->
-                </div><!-- .row -->
-            </div><!-- .container -->
-        </div><!-- .nav-bar -->
-
-        <div class="swiper-container hero-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide hero-content-wrap" style="background-image: url('../../static/images/hero.jpg')">
-                    <div class="hero-content-overlay position-absolute w-100 h-100">
-                        <div class="container h-100">
-                            <div class="row h-100">
-                                <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">
-                                    <header class="entry-header">
-                                        <h1>IITJ <br>Health Center</h1>
-                                    </header><!-- .entry-header -->
-
-                                    <div class="entry-content mt-4">
-                                        <p>Welcomes you!!</p>
-                                    </div><!-- .entry-content -->
-
-                                    <footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
-                                        <a href="#" class="button gradient-bg">Read More</a>
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .col -->
-                            </div><!-- .row -->
-                        </div><!-- .container -->
-                    </div><!-- .hero-content-overlay -->
-                </div><!-- .hero-content-wrap -->
-
-                <div class="swiper-slide hero-content-wrap" style="background-image: url('../../static/images/hero.jpg')">
-                    <div class="hero-content-overlay position-absolute w-100 h-100">
-                        <div class="container h-100">
-                            <div class="row h-100">
-                                <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">
-                                    <header class="entry-header">
-                                        <h1>IITJ <br>Health Center</h1>
-                                    </header><!-- .entry-header -->
-
-                                    <div class="entry-content mt-4">
-                                        <p>Welcomes you!</p>
-                                    </div><!-- .entry-content -->
-
-                                    <footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
-                                        <a href="#" class="button gradient-bg">Read More</a>
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .col -->
-                            </div><!-- .row -->
-                        </div><!-- .container -->
-                    </div><!-- .hero-content-overlay -->
-                </div><!-- .hero-content-wrap -->
-
-                <div class="swiper-slide hero-content-wrap" style="background-image: url('images/hero.jpg')">
-                    <div class="hero-content-overlay position-absolute w-100 h-100">
-                        <div class="container h-100">
-                            <div class="row h-100">
-                                <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">
-                                    <header class="entry-header">
-                                        <h1>IITJ <br>Health Center</h1>
-                                    </header><!-- .entry-header -->
-
-                                    <div class="entry-content mt-4">
-                                        <p>Welcomes you!</p>
-                                    </div><!-- .entry-content -->
-
-                                    <footer class="entry-footer d-flex flex-wrap align-items-center mt-4">
-                                        <a href="#" class="button gradient-bg">Read More</a>
-                                    </footer><!-- .entry-footer -->
-                                </div><!-- .col -->
-                            </div><!-- .row -->
-                        </div><!-- .container -->
-                    </div><!-- .hero-content-overlay -->
-                </div><!-- .hero-content-wrap -->
-            </div><!-- .swiper-wrapper -->
-
-            <div class="pagination-wrap position-absolute w-100">
-                <div class="swiper-pagination d-flex flex-row flex-md-column"></div>
-            </div><!-- .pagination-wrap -->
-        </div><!-- .hero-slider -->
-    </header><!-- .site-header -->
+    
 
     <div class="homepage-boxes">
         <div class="container">
@@ -544,7 +436,7 @@
                         <div class="foot-about">
                             <h2><a href="#"><img src="../../static/images/logo.png" alt=""></a></h2>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p>
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p> -->
 
                             <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
