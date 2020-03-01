@@ -37,6 +37,7 @@ eggs/
 .eggs/ 
 lib/ 
 lib64/ 
+migrations.sh
 parts/ 
 sdist/ 
 var/ 
@@ -84,6 +85,7 @@ ENV/
 env.bak/ 
 venv.bak/ 
 
+
 # mkdocs documentation 
 /site 
 
@@ -116,4 +118,5 @@ GitHub.sublime-settings
 .history
 
 # my files
-website/init.bat
+init.bat
+git.py
