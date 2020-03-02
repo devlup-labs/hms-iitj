@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class UserProfile(models.Model):
+class Patient(models.Model):
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -44,7 +44,6 @@ class UserProfile(models.Model):
     other_diseases = models.CharField(max_length=20, null=True)
     allergies = models.CharField(max_length=20, null=True)
     emergency_contact = models.CharField(max_length=12)
-    # prescription
 
     def __str__(self):
         return self.user.username
@@ -55,7 +54,7 @@ class Doctor(models.Model):
         ('1', 'ENT'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gender = models.CharField(max_length=1, choices=UserProfile.GENDER_CHOICES)
+    gender = models.CharField(max_length=1, choices=Patient.GENDER_CHOICES)
     specialization = models.CharField(max_length=1, choices=SPECIALIZATION_CHOICES)
     shift_begin = models.TimeField(auto_now=False, auto_now_add=False)
     shift_end = models.TimeField(auto_now=False, auto_now_add=False)
