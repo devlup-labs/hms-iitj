@@ -26,8 +26,10 @@ class SignupFormforIIT(UserCreationForm):    # only for iitj students
     birthdate = forms.DateField(widget=forms.SelectDateWidget)
     phone = forms.CharField(max_length=13, widget=forms.TextInput(attrs={'placeholder': ' '}), required=True)
     emergency_phone = forms.CharField(max_length=13, widget=forms.TextInput(attrs={'placeholder': ' '}), required=True)
-    height = forms.IntegerField(blank=False, null=False)
-    weight = forms.IntegerField(blank=False, null=False)
+    # height = forms.IntegerField(blank=False, null=False)
+    height = forms.IntegerField()
+    # weight = forms.IntegerField(blank=False, null=False)
+    weight = forms.IntegerField()
     bloodgroup = forms.ChoiceField(choices=Patient.BLOODGROUP_CHOICES, required=True,
                                    widget=forms.Select(attrs={'class': 'mdb-select'}))
     past_diseases = forms.ChoiceField(choices=Patient.BLOODGROUP_CHOICES, required=True,
@@ -75,3 +77,5 @@ class SignupFormforIIT(UserCreationForm):    # only for iitj students
         self.fields['password1'].widget.attrs['icon_name'] = "fa fa-lock"
         self.fields['password2'].widget.attrs['icon_name'] = "fa fa-lock"
         self.fields['phone'].widget.attrs['icon_name'] = "fa fa-phone"
+        self.fields['height'].widget.attrs['icon_name'] = "fa fa-user"
+        self.fields['weight'].widget.attrs['icon_name'] = "fa fa-user"
