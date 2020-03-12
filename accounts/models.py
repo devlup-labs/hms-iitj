@@ -21,16 +21,23 @@ class Patient(models.Model):
     )
     DISEASE_CHOICES = (
         ('0', 'Nill'),
-        ('1', 'Arthritis'),
-        ('2', 'Asthma'),
-        ('3', 'Cancer'),
-        ('4', 'Kidney Disease'),
-        ('5', 'Cystic Fibrosis'),
-        ('6', 'Diabetes'),
-        ('7', 'Heart Disease'),
-        ('8', 'Osteoporosis'),
-        ('8', 'Blood Pressure'),
-        ('9', 'Others'),
+        ('1', 'Asthma'),
+        ('2', 'Kidney Disease'),
+        ('3', 'Tuberculosis'),
+        ('4', 'Irritable Bowel Syndrome'),
+        ('5', 'Psychiatric Diseases'),
+        ('6', 'Blood Diseases'),
+        ('7', 'Liver Diseases'),
+        ('8', 'Diabetes'),
+        ('9', 'Heart Disease'),
+        ('10', 'Osteoporosis'),
+        ('11', 'Hyper Tension'),
+        ('12', 'Cancer'),
+        ('13', 'Stroke and Ceribro Vascular diseases'),
+        ('14', 'Alzhemiers'),
+        ('15', 'Pnemonia and Influenza'),
+        ('16', 'Arthritis'),
+        ('17', 'Others'),
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -39,8 +46,8 @@ class Patient(models.Model):
     phone_number = models.CharField(max_length=12)
     height = models.IntegerField()
     weight = models.IntegerField()
-    blood_group = models.CharField(max_length=3, choices=BLOODGROUP_CHOICES)
-    past_diseases = models.CharField(max_length=1, choices=DISEASE_CHOICES)
+    blood_group = models.CharField(max_length=3, choices=BLOODGROUP_CHOICES, default='O+')
+    past_diseases = models.CharField(max_length=2, choices=DISEASE_CHOICES, default='0')
     other_diseases = models.CharField(max_length=20, null=True)
     allergies = models.CharField(max_length=20, null=True)
     emergency_contact = models.CharField(max_length=12)
@@ -51,7 +58,7 @@ class Patient(models.Model):
 
 class Doctor(models.Model):
     SPECIALIZATION_CHOICES = (
-        ('1', 'ENT'),
+        ('1', 'General Physician'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=Patient.GENDER_CHOICES)
