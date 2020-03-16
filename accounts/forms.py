@@ -7,9 +7,9 @@ from .models import Patient
 class SignupFormforIIT(UserCreationForm):    # only for iitj students
     username = forms.CharField(widget=forms.TextInput(
         attrs={'type': 'text', 'placeholder': ' ', 'icon': 'a'}), required=False)
-    last_name = forms.CharField(widget=forms.TextInput(
-        attrs={'type': 'text', 'placeholder': ' '}), required=True)
     first_name = forms.CharField(widget=forms.TextInput(
+        attrs={'type': 'text', 'placeholder': ' '}), required=True)
+    last_name = forms.CharField(widget=forms.TextInput(
         attrs={'type': 'text', 'placeholder': ' '}), required=True)
     email = forms.EmailField(
         widget=forms.TextInput(attrs={'type': 'email', 'maxlength': '254', 'placeholder': ' ', 'autocomplete': 'off'}))
@@ -27,19 +27,19 @@ class SignupFormforIIT(UserCreationForm):    # only for iitj students
     phone = forms.CharField(max_length=13, widget=forms.TextInput(attrs={'placeholder': ' '}), required=True)
     emergency_phone = forms.CharField(max_length=13, widget=forms.TextInput(attrs={'placeholder': ' '}), required=True)
     # height = forms.IntegerField(blank=False, null=False)
-    height = forms.IntegerField()
+    height = forms.IntegerField(required=False)
     # weight = forms.IntegerField(blank=False, null=False)
-    weight = forms.IntegerField()
+    weight = forms.IntegerField(required=False)
     bloodgroup = forms.ChoiceField(choices=Patient.BLOODGROUP_CHOICES, required=True,
                                    widget=forms.Select(attrs={'class': 'mdb-select'}))
-    past_diseases = forms.ChoiceField(choices=Patient.BLOODGROUP_CHOICES, required=True,
-                                      widget=forms.Select(attrs={'class': 'mdb-select'}))
-    other_diseases = forms.CharField(max_length=20)
-    allergies = forms.CharField(max_length=12)
+    past_diseases = forms.ChoiceField(choices=Patient.BLOODGROUP_CHOICES,
+                                      widget=forms.Select(attrs={'class': 'mdb-select'}), required=True)
+    other_diseases = forms.CharField(max_length=20, required=False)
+    allergies = forms.CharField(max_length=12, required=False)
 
     class Meta:
         model = User
-        fields = ['roll_no', 'password1', 'password2', 'phone', 'gender']
+        fields = ['email', 'first_name', 'last_name', 'roll_no', 'password1', 'password2', 'phone', 'gender']
 
     def clean_first_name(self):
         _dict = super(SignupFormforIIT, self).clean()

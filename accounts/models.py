@@ -41,7 +41,7 @@ class Patient(models.Model):
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
     birthday = models.DateField(auto_now=False, null=True, blank=True)
     phone_number = models.CharField(max_length=12)
     height = models.IntegerField()
