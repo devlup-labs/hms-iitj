@@ -24,7 +24,7 @@ class SignupFormforIIT(UserCreationForm):    # only for iitj students
     gender = forms.ChoiceField(choices=Patient.GENDER_CHOICES, required=True,
                                widget=forms.Select(attrs={'class': 'mdb-select'}))
     birthdate = forms.DateField(widget=forms.SelectDateWidget)
-    phone = forms.CharField(max_length=13, widget=forms.TextInput(attrs={'placeholder': ' '}), required=True)
+    phone_number = forms.CharField(max_length=13, widget=forms.TextInput(attrs={'placeholder': ' '}), required=True)
     emergency_phone = forms.CharField(max_length=13, widget=forms.TextInput(attrs={'placeholder': ' '}), required=True)
     # height = forms.IntegerField(blank=False, null=False)
     height = forms.IntegerField(required=False)
@@ -32,14 +32,14 @@ class SignupFormforIIT(UserCreationForm):    # only for iitj students
     weight = forms.IntegerField(required=False)
     bloodgroup = forms.ChoiceField(choices=Patient.BLOODGROUP_CHOICES, required=True,
                                    widget=forms.Select(attrs={'class': 'mdb-select'}))
-    past_diseases = forms.ChoiceField(choices=Patient.BLOODGROUP_CHOICES,
+    past_diseases = forms.ChoiceField(choices=Patient.DISEASE_CHOICES,
                                       widget=forms.Select(attrs={'class': 'mdb-select'}), required=True)
     other_diseases = forms.CharField(max_length=20, required=False)
     allergies = forms.CharField(max_length=12, required=False)
 
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'roll_no', 'password1', 'password2', 'phone', 'gender']
+        fields = ['email', 'first_name', 'last_name', 'roll_no', 'password1', 'password2', 'phone_number', 'gender']
 
     def clean_first_name(self):
         _dict = super(SignupFormforIIT, self).clean()
@@ -76,6 +76,6 @@ class SignupFormforIIT(UserCreationForm):    # only for iitj students
         self.fields['last_name'].widget.attrs['icon_name'] = "fa fa-user"
         self.fields['password1'].widget.attrs['icon_name'] = "fa fa-lock"
         self.fields['password2'].widget.attrs['icon_name'] = "fa fa-lock"
-        self.fields['phone'].widget.attrs['icon_name'] = "fa fa-phone"
+        self.fields['phone_number'].widget.attrs['icon_name'] = "fa fa-phone"
         self.fields['height'].widget.attrs['icon_name'] = "fa fa-user"
         self.fields['weight'].widget.attrs['icon_name'] = "fa fa-user"

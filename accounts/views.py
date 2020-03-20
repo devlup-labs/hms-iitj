@@ -15,6 +15,7 @@ class SignupView(CreateView):
         user = form.save()
         SignupView.create_profile(user, **form.cleaned_data)
         # messages.success(self.request, 'Hi %s,' % user.get_full_name())
+        print("hi")
         return super(SignupView, self).form_valid(form)
 
     def form_invalid(self, form, **kwargs):
@@ -27,8 +28,12 @@ class SignupView(CreateView):
         userprofile = Patient.objects.create(
             user=user,
             gender=kwargs['gender'],
-            phone=kwargs['phone'],
+            phone_number=kwargs['phone_number'],
             bloodgroup=kwargs['bloodgroup'],
             birthdate=kwargs['birthdate']
         )
         userprofile.save()
+
+# class CustomLoginView(LoginView):
+#     template_name = 'accounts/login.html'
+#     redirect_authenticated_user = True

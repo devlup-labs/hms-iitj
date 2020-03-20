@@ -28,41 +28,12 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-			{% if error %}
-				<p>{{ error }}</p>
-			{% else %}
-				<form class="login100-form validate-form" action="../../accounts/login" method="POST">
-					<span class="login100-form-title p-b-33">
-						Sign up
-					</span>
-					
-					{% csrf_token %}
-					{% for field in form %}
-					{# {{ field.label }} : {{field}} #}
-					<div class="wrap-input100 validate-input" data-validate = "Valid {{field.name}} is required">
-						<input class="input100" type="{{ field.field.widget.input_type }}" name="{{ field.name }}" 
-							placeholder="{% if field.field.required %}{{ field.label }}*{% else %}{{ field.label }} {% endif %}">
-						<span class="focus-input100-1"></span>
-						<span class="focus-input100-2"></span>
-					</div>
-					{% endfor %}
-
-					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">
-							Sign up 
-						</button>
-					</div> 
-				</form>
-				{% endif %}
-			</div>
-		</div>
-	</div>
-	
-
+	 <h2>Sign Up</h2>
+	 <form method="POST">
+		 {% csrf_token %}
+		 {{ form.as_p }}
+		 <button type="submit">Signup</button>
+	 </form>
 	
 <!--===============================================================================================-->
 	<script src="../../static/vendor/jquery/jquery-3.2.1.min.js"></script>
