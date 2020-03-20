@@ -6,7 +6,7 @@ from .models import Patient
 class SignupView(CreateView):
     form_class = SignupFormforIIT
     template_name = 'accounts/signup.html'
-    success_url = 'accounts/login/'
+    success_url = '/accounts/login/'
 
     def form_valid(self, form):
         data = self.request.POST.copy()
@@ -37,7 +37,7 @@ class SignupView(CreateView):
             past_diseases=kwargs['past_diseases'],
             other_diseases=kwargs['other_diseases'],
             allergies=kwargs['allergies'],
-            
+
         )
         userprofile.save()
 

@@ -28,7 +28,7 @@ class SignupFormforIIT(UserCreationForm):    # only for iitj students
 
     weight = forms.IntegerField(required=False)
     blood_group = forms.ChoiceField(choices=Patient.BLOODGROUP_CHOICES, required=True,
-                                   widget=forms.Select(attrs={'class': 'mdb-select'}))
+                                    widget=forms.Select(attrs={'class': 'mdb-select'}))
     past_diseases = forms.ChoiceField(choices=Patient.DISEASE_CHOICES,
                                       widget=forms.Select(attrs={'class': 'mdb-select'}), required=True)
     other_diseases = forms.CharField(max_length=20, required=False)
