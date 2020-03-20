@@ -6,7 +6,7 @@ from .models import Patient
 class SignupView(CreateView):
     form_class = SignupFormforIIT
     template_name = 'accounts/signup.html'
-    success_url = '/login/'
+    success_url = 'accounts/login/'
 
     def form_valid(self, form):
         data = self.request.POST.copy()

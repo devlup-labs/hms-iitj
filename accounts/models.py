@@ -45,7 +45,7 @@ class Patient(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
     birthday = models.DateField(auto_now=False, null=True, blank=True)
     phone_number = models.CharField(max_length=12)
-    emergency_contact = models.CharField(max_length=12)
+    emergency_phone = models.CharField(max_length=12)
     height = models.IntegerField()
     weight = models.IntegerField()
     blood_group = models.CharField(max_length=3, choices=BLOODGROUP_CHOICES, default='O+')
