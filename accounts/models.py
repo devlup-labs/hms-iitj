@@ -41,16 +41,18 @@ class Patient(models.Model):
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    roll_no = models.CharField(max_length=15, default="NULL")
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
     birthday = models.DateField(auto_now=False, null=True, blank=True)
     phone_number = models.CharField(max_length=12)
+    emergency_contact = models.CharField(max_length=12)
     height = models.IntegerField()
     weight = models.IntegerField()
     blood_group = models.CharField(max_length=3, choices=BLOODGROUP_CHOICES, default='O+')
     past_diseases = models.CharField(max_length=2, choices=DISEASE_CHOICES, default='0')
     other_diseases = models.CharField(max_length=20, null=True)
     allergies = models.CharField(max_length=20, null=True)
-    emergency_contact = models.CharField(max_length=12)
+    
 
     def __str__(self):
         return self.user.username

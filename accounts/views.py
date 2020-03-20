@@ -10,12 +10,11 @@ class SignupView(CreateView):
 
     def form_valid(self, form):
         data = self.request.POST.copy()
-        data['username'] = data['email']
         form = SignupFormforIIT(data)
         user = form.save()
+        user.username = data['email']
+        user.save()
         SignupView.create_profile(user, **form.cleaned_data)
-        # messages.success(self.request, 'Hi %s,' % user.get_full_name())
-        print("hi")
         return super(SignupView, self).form_valid(form)
 
     def form_invalid(self, form, **kwargs):
@@ -28,9 +27,17 @@ class SignupView(CreateView):
         userprofile = Patient.objects.create(
             user=user,
             gender=kwargs['gender'],
+            roll_no=kwargs['roll_no'],
             phone_number=kwargs['phone_number'],
-            bloodgroup=kwargs['bloodgroup'],
-            birthdate=kwargs['birthdate']
+            emergency_phone=kwargs['emergency_phone'],
+            blood_group=kwargs['blood_group'],
+            height=kwargs['height'],
+            weight=kwargs['weight'],
+            birthday=kwargs['birthday'],
+            past_diseases=kwargs['past_diseases'],
+            other_diseases=kwargs['other_diseases'],
+            allergies=kwargs['allergies'],
+            
         )
         userprofile.save()
 
