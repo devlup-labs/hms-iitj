@@ -1,6 +1,7 @@
 from django.views.generic import CreateView
 from .forms import SignupFormforIIT
 from .models import Patient
+# from django.views.generic import View
 
 
 class SignupView(CreateView):
@@ -40,7 +41,3 @@ class SignupView(CreateView):
 
         )
         userprofile.save()
-
-# class CustomLoginView(LoginView):
-#     template_name = 'accounts/login.html'
-#     redirect_authenticated_user = True
