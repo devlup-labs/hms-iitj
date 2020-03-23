@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'main',
     'hc',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 SITE_ID = 1
 
@@ -139,3 +141,16 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'main:home'
+
+
+# ck-editor config
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
