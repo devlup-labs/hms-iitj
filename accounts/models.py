@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from hc.models import Prescription
+from django.db.models.signals import pre_save  # , post_save
 
 
 class Patient(models.Model):
@@ -52,6 +54,7 @@ class Patient(models.Model):
     past_diseases = models.CharField(max_length=2, choices=DISEASE_CHOICES, default='0')
     other_diseases = models.CharField(max_length=20, null=True)
     allergies = models.CharField(max_length=20, null=True)
+    prescriptions = models.ManyToManyField(Prescription, related_name="history", blank=True)
 
     def __str__(self):
         return self.user.username
@@ -76,3 +79,17 @@ class Pharmacist(models.Model):
 
 class Receptionist(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Appointment(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="app_doctor")
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="app_patient")
+    prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE, related_name="app_prescription")
+
+
+def pre_save_appointment(sender, instance, **kwargs):
+    if instance._state.adding is True:
+        instance.prescription = Prescription.objects.create()
+
+
+pre_save.connect(pre_save_appointment, sender=Appointment)

@@ -1,5 +1,4 @@
 from django.db import models
-from accounts.models import Patient
 
 
 class Prescription(models.Model):
@@ -25,7 +24,6 @@ class Prescription(models.Model):
     )
     prescription_id = models.IntegerField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     remarks = models.TextField(max_length=240)
 
 
