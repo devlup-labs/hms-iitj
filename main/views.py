@@ -1,11 +1,14 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, View
+from .models import blog
 
 
-class IndexView(TemplateView):
+def IndexPage(request):
     template_name = 'main/index.html'
+    blogs = blog.objects.all()
+    return render(None, template_name, {'blogs': blogs})
 
 
-class AddBlog(View):
-    def AddBlog(self, request):
-        return render(request, 'main/addBlog.html', {})
+def blogDetails(request, pk):
+    blogs = blog.objects.get(pk=pk)
+    template_name = 'main/blogDetails.html'
+    return render(request, template_name, {'blog': blogs})

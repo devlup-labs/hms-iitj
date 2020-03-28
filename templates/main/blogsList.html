@@ -1,0 +1,39 @@
+<div class="the-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>The Blogs</h2>
+
+                <div class="row">
+
+                    {% for blog in blogs %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="the-news-wrap">
+                            <figure class="post-thumbnail">
+                                <a href="{% url 'main:blogDetails' blog.id %}"><img src="../../static/images/news-1.png" alt=""></a>
+                            </figure>
+
+                            <header class="entry-header">
+                                <h3>{{ blog.title}}</h3>
+
+                                <div class="post-metas d-flex flex-wrap align-items-center">
+                                    <div class="posted-date"><label>Date: </label><a href="#">{{ blog.published_date}}</a></div>
+
+                                    <div class="posted-by"><label>By: </label><a href="#">{{ blog.author }}</a></div>
+
+                                    <!-- <div class="post-comments"><a href="#">2 Comments</a></div> -->
+                                </div>
+                            </header>
+
+                            <div class="entry-content">
+                                <p>{{ blog.short_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

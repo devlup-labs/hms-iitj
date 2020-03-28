@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block body_block %}
+{% load static %}
+
+<div class="content">
+    <div class="section-inner clearfix">
+ 
+        <h1>{{ blog.title|capfirst }}</h1>
+        <p class="post-info">
+            <span>Author: {{ blog.author }} |</span>
+            <span>Created On: {{ blog.created_date }} |</span>
+            <span>Published On: {{ blog.published_date }} |</span>
+        </p>
+        <p>
+            {{ blog.content|safe }}
+        </p>
+ 
+    </div>
+</div>
+{% endblock %}
