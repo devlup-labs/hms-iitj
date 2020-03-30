@@ -92,7 +92,8 @@ class Receptionist(models.Model):
 class Appointment(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="app_doctor")
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="app_patient")
-    prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE, related_name="app_prescription")
+    prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE,
+                                     related_name="app_prescription", blank=True, null=True)
 
 
 def pre_save_appointment(sender, instance, **kwargs):

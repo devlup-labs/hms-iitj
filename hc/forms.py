@@ -6,4 +6,4 @@ class writePrescription(forms.ModelForm):
 
     class Meta:
         model = Prescription
-        fields = ['patient', 'remarks']
+        fields = ['remarks']
