@@ -2,3 +2,4 @@ Django~=3.0
 flake8
 django-ckeditor
 pillow
+django-bootstrap4

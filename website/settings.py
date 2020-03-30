@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'hc',
     'ckeditor',
     'ckeditor_uploader',
+    'bootstrap4',
 ]
 SITE_ID = 1
 

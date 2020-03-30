@@ -70,15 +70,23 @@ class Doctor(models.Model):
     shift_begin = models.TimeField(auto_now=False, auto_now_add=False)
     shift_end = models.TimeField(auto_now=False, auto_now_add=False)
     available = models.BooleanField(default=False)
-    # patient queue
+
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
 
 
 class Pharmacist(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
+
 
 class Receptionist(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
 
 
 class Appointment(models.Model):

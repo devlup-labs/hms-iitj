@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .models import blog
 from .forms import AddBlogForm
+from django.views.generic import CreateView
 
 
 def IndexPage(request):
@@ -15,13 +16,7 @@ def blogDetails(request, pk):
     return render(request, template_name, {'blog': blogs})
 
 
-def AddBlogView(request):
+class AddBlogView(CreateView):
     template_name = 'main/addBlog.html'
-    if request.method == "POST":
-        f = AddBlogForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return redirect('main:home')
-    else:
-        f = AddBlogForm()
-    return render(request, template_name, {'form': f})
+    form_class = AddBlogForm
+    success_url = '/'
