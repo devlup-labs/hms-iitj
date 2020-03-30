@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from hc.models import Prescription
-from django.db.models.signals import pre_save  # , post_save
+# from django.db.models.signals import pre_save  # , post_save
 
 
 class Patient(models.Model):
@@ -67,12 +67,12 @@ class Doctor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=Patient.GENDER_CHOICES)
     specialization = models.CharField(max_length=1, choices=SPECIALIZATION_CHOICES)
-    shift_begin = models.TimeField(auto_now=False, auto_now_add=False)
-    shift_end = models.TimeField(auto_now=False, auto_now_add=False)
+    # shift_begin = models.TimeField(auto_now=False, auto_now_add=False)
+    # shift_end = models.TimeField(auto_now=False, auto_now_add=False)
     available = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name
+        return self.user.username  # first_name + " " + self.user.last_name
 
 
 class Pharmacist(models.Model):
@@ -95,10 +95,5 @@ class Appointment(models.Model):
     prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE,
                                      related_name="app_prescription", blank=True, null=True)
 
-
-def pre_save_appointment(sender, instance, **kwargs):
-    if instance._state.adding is True:
-        instance.prescription = Prescription.objects.create()
-
-
-pre_save.connect(pre_save_appointment, sender=Appointment)
+    def __str__(self):
+        return self.doctor.user.first_name + ", " + self.patient.user.first_name

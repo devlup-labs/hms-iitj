@@ -18,7 +18,7 @@ def unique_random_code(instance, random_code=None):
 
     klass = instance.__class__
 
-    qs_exists = klass.objects.filter(obj_id=klass.random_code).exists()
+    qs_exists = klass.objects.filter(prescription_id=klass.random_code).exists()
     if qs_exists:
         new_random_code = get_random_code()
         return unique_random_code(instance, random_code=new_random_code)
