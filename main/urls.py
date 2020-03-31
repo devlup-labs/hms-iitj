@@ -5,7 +5,7 @@ from .views import IndexView, blogDetails, AddBlogView
 app_name = 'main'
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='home'),
+    path('', IndexView, name='home'),
     url(r'^(?P<pk>\d+)/$', blogDetails, name='blogDetails'),
     path('addblog/', AddBlogView.as_view(), name='addBlog')
 ]

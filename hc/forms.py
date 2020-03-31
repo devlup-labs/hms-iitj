@@ -1,6 +1,6 @@
 from django import forms
 from .models import Prescription
-from accounts.models import Appointment, Doctor
+from accounts.models import Doctor
 
 
 class TimeInput(forms.TimeInput):
@@ -16,11 +16,5 @@ class writePrescription(forms.ModelForm):
 
 class takeAppointmentForm(forms.Form):
 
-    specialization = forms.ChoiceField(choices=Doctor.SPECIALIZATION_CHOICES)
     time = forms.TimeField(widget=TimeInput(), required=True)
-    # class Meta:
-    #     model = Appointment
-    #     fields = ['time']
-    #     widgets = {
-    #         'time': TimeInput(),
-    #     }
+    specialization = forms.ChoiceField(choices=Doctor.SPECIALIZATION_CHOICES)

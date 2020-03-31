@@ -1,11 +1,13 @@
 {% extends 'main/base.html' %}
 {% block body_block %}
+{% load bootstrap4 %}
 {% load static %}
 
 
 <div class="swiper-container hero-slider">
     <div class="swiper-wrapper">
-        <div class="swiper-slide hero-content-wrap" style="background-image: url('{% static 'images/background1.jpg' %}')">
+        <div class="swiper-slide hero-content-wrap"
+            style="background-image: url('{% static 'images/background1.jpg' %}')">
             <div class="hero-content-overlay position-absolute w-100 h-100">
 
                 <div class="container h-100">
@@ -63,25 +65,13 @@
             <div class="col-12 col-md-6 col-lg-5 mt-5 mt-lg-0">
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">Make an Appointment</h2>
-
-                    <form class="d-flex flex-wrap justify-content-between">
-                        <select class="select-department">
-                            <option value="value1">Select Department</option>
-                            <option value="value2">Select Department 1</option>
-                            <option value="value3">Select Department 2</option>
-                        </select>
-
-                        <select class="select-doctor">
-                            <option>Select Doctor</option>
-                            <option>Select Doctor 1</option>
-                            <option>Select Doctor 2</option>
-                        </select>
-
-                        <input type="text" placeholder="Name">
-
-                        <input type="number" placeholder="Phone No">
-
-                        <input class="button gradient-bg" type="submit" value="Book Appoitnment">
+                    <!-- class="d-flex flex-wrap" -->
+                    <form  method="POST">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        
+                        <button class="button gradient-bg" type="submit">Book Appoitnment</button>
+                        <!-- <input class="button gradient-bg" type="submit" value="Book Appoitnment"> -->
                     </form>
                 </div>
 
@@ -284,7 +274,7 @@
         </div>
     </div>
 
-    
+
     <div class="testimonial-slider">
         <div class="container">
             <div class="row">
@@ -294,36 +284,36 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="entry-content">
-                                        A Primary Health Center (PHC) has been started at the Permanent Campus of 
-                                        IIT Jodhpur from 15 June 2017. This fully equipped and self-sufficient facility 
-                                        is run by M/s. Goyal Hospital & Research Center Private Limited, Jodhpur. 
-                                        The facility is available to the residents of the Permanent Campus in Karwar. 
+                                        A Primary Health Center (PHC) has been started at the Permanent Campus of
+                                        IIT Jodhpur from 15 June 2017. This fully equipped and self-sufficient facility
+                                        is run by M/s. Goyal Hospital & Research Center Private Limited, Jodhpur.
+                                        The facility is available to the residents of the Permanent Campus in Karwar.
                                         Presently, the following facilities available at the PHC:<br>
-                                            1.	Qualified Medical Doctors and Paramedical Staff,<br>
-                                            2.	Physiotherapy Unit,<br>
-                                            3.	Pharmacy,<br>
-                                            4.	24 Hours Emergency Room, and an ICU Ambulance.  
+                                        1. Qualified Medical Doctors and Paramedical Staff,<br>
+                                        2. Physiotherapy Unit,<br>
+                                        3. Pharmacy,<br>
+                                        4. 24 Hours Emergency Room, and an ICU Ambulance.
                                     </div>
                                 </div>
 
-                                
-                            <div class="swiper-pagination-wrap">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div
-                                                class="swiper-pagination position-relative flex justify-content-center align-items-center">
-                                            </div>
-                                        </div><!-- .col -->
-                                    </div><!-- .row -->
-                                </div><!-- .container -->
+
+                                <div class="swiper-pagination-wrap">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div
+                                                    class="swiper-pagination position-relative flex justify-content-center align-items-center">
+                                                </div>
+                                            </div><!-- .col -->
+                                        </div><!-- .row -->
+                                    </div><!-- .container -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 {% include 'main/blogsList.html' with blogs=blogs %}
