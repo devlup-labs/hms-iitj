@@ -5,5 +5,5 @@ from .views import takeAppointmentView
 app_name = 'hc'
 
 urlpatterns = [
-    url(r'appointment$', takeAppointmentView.as_view(), name='take_appointment'),
+    url(r'appointment$', takeAppointmentView, name='take_appointment'),
 ]

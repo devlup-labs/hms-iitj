@@ -14,13 +14,13 @@ class writePrescription(forms.ModelForm):
         fields = ['remarks']
 
 
-class takeAppointmentForm(forms.ModelForm):
+class takeAppointmentForm(forms.Form):
 
     specialization = forms.ChoiceField(choices=Doctor.SPECIALIZATION_CHOICES)
-
-    class Meta:
-        model = Appointment
-        fields = ['time']
-        widgets = {
-            'time': TimeInput(),
-        }
+    time = forms.TimeField(widget=TimeInput(), required=True)
+    # class Meta:
+    #     model = Appointment
+    #     fields = ['time']
+    #     widgets = {
+    #         'time': TimeInput(),
+    #     }
