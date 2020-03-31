@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from .models import blog
 from .forms import AddBlogForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 
 
-def IndexPage(request):
+class IndexView(TemplateView):
     template_name = 'main/index.html'
-    blogs = blog.objects.all()
-    return render(None, template_name, {'blogs': blogs})
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['blogs'] = blog.objects.all()
+        return context
 
 
 def blogDetails(request, pk):
