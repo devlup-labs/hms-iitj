@@ -90,8 +90,9 @@ class Receptionist(models.Model):
 
 
 class Appointment(models.Model):
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="app_doctor")
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="app_patient")
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="app_doctor", blank=True, null=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="app_patient", blank=True, null=True)
+    time = models.TimeField()
     prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE,
                                      related_name="app_prescription", blank=True, null=True)
 
