@@ -54,11 +54,12 @@
                     <h2 class="d-flex align-items-center">Emergency</h2>
 
                     <div class="call-btn button gradient-bg">
-                        <a class="d-flex justify-content-center align-items-center" href="#"><img
-                                src="../../static/images/emergency-call.png"> +91 291 280 1183</a>
+                        <a rel="" typography="LinkAlpha" data-ux="Link" href="tel:+912912801183"
+                            class="d-flex justify-content-center align-items-center"
+                            data-tccl="ux2.HEADER.header9.Section.Default.Link.Default.55282.click,click"><img
+                                src="../../static/images/emergency-call.png">+91 291 280 1183</a>
                     </div>
 
-                    <p>line 1</p>
                 </div>
             </div>
 
@@ -66,13 +67,13 @@
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">Make an Appointment</h2>
                     <!-- class="d-flex flex-wrap" -->
-                    <form  method="POST">
+                    <form method="POST">
                         {% csrf_token %}
                         {% bootstrap_form form %}
                         <!-- {% for field in form %}
                         {{field.label}}: {{field}}<br>
                         {% endfor %} -->
-                        
+
                         <button class="button gradient-bg" type="submit">Book Appoitnment</button>
                         <!-- <input class="button gradient-bg" type="submit" value="Book Appoitnment"> -->
                     </form>
