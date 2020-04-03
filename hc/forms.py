@@ -7,7 +7,7 @@ class TimeInput(forms.TimeInput):
     input_type = 'time'
 
 
-class writePrescription(forms.ModelForm):
+class writePrescriptionForm(forms.ModelForm):
 
     class Meta:
         model = Prescription

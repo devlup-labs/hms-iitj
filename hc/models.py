@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.signals import pre_save
-from .utils import unique_random_code
+from .utils import unique_prescription_id
 
 
 class Prescription(models.Model):
@@ -24,14 +24,17 @@ class Prescription(models.Model):
         # ('4', 'HIV I & II'),
         # ('4', 'X Rays'),
     )
-    prescription_id = models.IntegerField(unique=True)
+    prescription_id = models.CharField(unique=True, max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
     remarks = models.TextField(max_length=240)
+    
+    def __str__(self):
+        return self.prescription_id
 
 
 def pre_save_prescription(sender, instance, **kwargs):
     if instance._state.adding is True:
-        instance.prescription_id = unique_random_code(instance)
+        instance.prescription_id = unique_prescription_id(instance)
 
 
 pre_save.connect(pre_save_prescription, sender=Prescription)

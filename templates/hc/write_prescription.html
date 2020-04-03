@@ -33,6 +33,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 				<form class="login100-form validate-form" enctype="multipart/form-data" method="POST">
+					
 					{% csrf_token %}
 					
 					{% bootstrap_form form %}
@@ -41,7 +42,7 @@
 
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-							Take Appointment
+							Submit
 						</button>
 					</div>
 					
