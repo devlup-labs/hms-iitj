@@ -7,5 +7,6 @@ app_name = 'hc'
 
 urlpatterns = [
     url(r'appointment$', takeAppointmentView, name='take_appointment'),
-    path('writePrescription/', writePrescriptionView.as_view(template_name="hc/write_prescription.html"), name='prescription'),
+    path('writePrescription/', writePrescriptionView.as_view(template_name="hc/write_prescription.html"),
+         name='prescription'),
 ]

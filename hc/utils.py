@@ -17,7 +17,7 @@ def unique_prescription_id(instance, prescription_id=None):
         prescription_id = get_prescription_id()
 
     klass = instance.__class__
-    
+
     qs_exists = klass.objects.filter(prescription_id=klass.prescription_id).exists()
     if qs_exists:
         new_prescription_id = get_prescription_id()

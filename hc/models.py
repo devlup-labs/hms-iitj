@@ -27,7 +27,7 @@ class Prescription(models.Model):
     prescription_id = models.CharField(unique=True, max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
     remarks = models.TextField(max_length=240)
-    
+
     def __str__(self):
         return self.prescription_id
 

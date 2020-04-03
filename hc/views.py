@@ -2,7 +2,6 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
 # from .forms import writePrescription
 from accounts.models import Doctor, Patient, Appointment
-from .models import Prescription
 from .forms import takeAppointmentForm, writePrescriptionForm
 
 
@@ -21,14 +20,15 @@ def takeAppointmentView(request):
 
     return render(request, 'hc/create_appointment.html', {'form': form})
 
+
 class writePrescriptionView(CreateView):
     form_class = writePrescriptionForm
     template_name = 'hc/write_prescription.html'
-    success_url = '/hc/treatPatient/'
+    success_url = '/hc/writePrescription/'
 
     def form_valid(self, form):
         appointment = Appointment.objects.filter().order_by('time')[0]
         prescription = form.save()
-        appointment.prescription = prescription
         appointment.patient.prescriptions.add(prescription)
-        
+        appointment.delete()
+        return super(writePrescriptionView, self).form_valid(form)
