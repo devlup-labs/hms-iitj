@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404, render
+from django.views.generic import View, CreateView
+from django.http import HttpResponse
 from .models import blog
 from accounts.models import Doctor, Patient, Appointment
 from .forms import AddBlogForm
 from hc.forms import takeAppointmentForm
-from django.views.generic import CreateView
 
 
 def IndexView(request):
@@ -32,3 +33,8 @@ class AddBlogView(CreateView):
     template_name = 'main/addBlog.html'
     form_class = AddBlogForm
     success_url = '/'
+
+
+class DoctorsView(View):
+    def get(self, request):
+        return HttpResponse("Hello, Doctor!")

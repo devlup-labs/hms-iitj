@@ -1,4 +1,6 @@
 from django.views.generic import CreateView
+from django.contrib.auth.views import LoginView
+from django.shortcuts import reverse
 from .forms import SignupFormforIIT
 from .models import Patient
 # from django.views.generic import View
@@ -41,3 +43,18 @@ class SignupView(CreateView):
 
         )
         userprofile.save()
+
+
+class CustomLoginView(LoginView):
+    template_name = 'accounts/login.html'
+    redirect_authenticated_user = True
+
+    def get_redirect_url(self):
+        url = super(CustomLoginView, self).get_redirect_url()
+        if hasattr(self.request.user, 'patient'):
+            return reverse('main:home')
+            # return url or self.request.UserProfile.get_absolute_url()
+        elif hasattr(self.request.user, 'doctor'):
+            return url or reverse('main:doctor')
+        else:
+            return reverse('main:home')

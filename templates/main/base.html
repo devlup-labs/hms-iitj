@@ -41,8 +41,11 @@
                               <li><a href="services.html">Services</a></li>
                               <li><a href="news.html">News</a></li>
                               <li><a href="contact.html">Contact</a></li> -->
-                <li><a href="{% url 'accounts:login' %}">Login</a></li>
-
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                {% else %}
+                  <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                {% endif %}
                 <li class="call-btn button gradient-bg mt-3 mt-md-0">
                   <a rel="" typography="LinkAlpha" data-ux="Link" href="tel:+912912801183"
                     class="d-flex justify-content-center align-items-center"
