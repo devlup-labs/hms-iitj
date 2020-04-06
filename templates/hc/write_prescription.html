@@ -35,10 +35,15 @@
 				<form class="login100-form validate-form" enctype="multipart/form-data" method="POST">
 					
 					{% csrf_token %}
+
 					
 					{% bootstrap_form form %}
 					<!-- <input type="text" name=> -->
-
+					<!-- <p>
+						{{ appointment.prescription.prescription_id }}
+						<span>Patient: {{ appointment.patient.email }} </span><br>
+						<span>Prescribed by: {{ appointment.doctor.email }} </span>
+					</p> -->
 
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">

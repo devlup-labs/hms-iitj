@@ -28,7 +28,7 @@ class writePrescriptionView(CreateView):
 
     def form_valid(self, form):
         appointment = Appointment.objects.filter().order_by('time')[0]
-        prescription = form.save()
+        prescription = form.save({'appointment': appointment})
         appointment.patient.prescriptions.add(prescription)
         appointment.delete()
         return super(writePrescriptionView, self).form_valid(form)

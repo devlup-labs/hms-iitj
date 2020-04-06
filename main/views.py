@@ -1,6 +1,5 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import View, CreateView
-from django.http import HttpResponse
 from .models import blog
 from accounts.models import Doctor, Patient, Appointment
 from .forms import AddBlogForm
@@ -20,7 +19,7 @@ def IndexView(request):
             return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
     else:
         form = takeAppointmentForm()
-    return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
+        return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
 
 
 def blogDetails(request, pk):
@@ -37,4 +36,4 @@ class AddBlogView(CreateView):
 
 class DoctorsView(View):
     def get(self, request):
-        return HttpResponse("Hello, Doctor!")
+        return render(request, 'main/doctors_home_page.html')
