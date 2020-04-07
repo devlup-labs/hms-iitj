@@ -19,7 +19,8 @@ def IndexView(request):
                 available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
                 patient = get_object_or_404(Patient, user=request.user)
                 time = form['time'].value()
-                Appointment.objects.create(patient=patient, doctor=available_doctors, time=time)
+                date = form['date'].value()
+                Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
                 return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
         else:
             form = takeAppointmentForm()

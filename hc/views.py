@@ -14,7 +14,8 @@ def takeAppointmentView(request):
             available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
             patient = get_object_or_404(Patient, user=request.user)
             time = form['time'].value()
-            Appointment.objects.create(patient=patient, doctor=available_doctors, time=time)
+            date = form['date'].value()
+            Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
             return redirect('main:home')
     else:
         form = takeAppointmentForm()
@@ -29,6 +30,7 @@ class treatPatientView(CreateView):
 
     def form_valid(self, form):
         appointment = Appointment.objects.filter().order_by('time')[0]
+        # if(appointment)
         prescription = form.save({'appointment': appointment})
         prescription.doctor = appointment.doctor
         appointment.patient.prescriptions.add(prescription)

@@ -60,6 +60,7 @@ class Appointment(models.Model):
     patient = models.ForeignKey(to="accounts.Patient", on_delete=models.CASCADE,
                                 related_name="app_patient", blank=True, null=True)
     time = models.TimeField()
+    date = models.DateField()
     prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE,
                                      related_name="app_prescription", blank=True, null=True)
 

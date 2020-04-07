@@ -1,10 +1,15 @@
 from django import forms
 from .models import Prescription
 from accounts.models import Doctor
+import datetime
 
 
 class TimeInput(forms.TimeInput):
     input_type = 'time'
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 
 class treatPatientForm(forms.ModelForm):
@@ -16,5 +21,7 @@ class treatPatientForm(forms.ModelForm):
 
 class takeAppointmentForm(forms.Form):
 
-    time = forms.TimeField(widget=TimeInput(), required=True)
     specialization = forms.ChoiceField(choices=Doctor.SPECIALIZATION_CHOICES)
+    time = forms.TimeField(widget=TimeInput(), initial=(
+        datetime.datetime.now() + datetime.timedelta(minutes=5)).strftime('%H:%M'))
+    date = forms.DateField(widget=DateInput(), initial=datetime.date.today)
