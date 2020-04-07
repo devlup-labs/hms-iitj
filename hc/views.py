@@ -27,7 +27,8 @@ def takeAppointmentView(request):
 class treatPatientView(CreateView):
     form_class = treatPatientForm
     template_name = 'hc/treat_patient.html'
-    success_url = '/hc/treatPatient/'
+    # success_url = '/hc/treatPatient/'
+    success_url = '/'
 
     def get_context_data(self, *args, **kwargs):
         context = super(treatPatientView, self).get_context_data(*args, **kwargs)

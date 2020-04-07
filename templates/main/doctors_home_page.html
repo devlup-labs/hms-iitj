@@ -41,7 +41,11 @@
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">Patients</h2>
                     <p></p>
+                    {% if number is not 0 %}
                     <a href="{% url 'hc:prescription' %}"><button class="button gradient-bg" type="submit">Treat Patient</button></a>
+                    {% else %}
+                    <p>No Patients</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-5 mt-5 mt-lg-0">

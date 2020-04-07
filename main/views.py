@@ -10,7 +10,8 @@ from hc.forms import takeAppointmentForm
 def IndexView(request):
     blogs = blog.objects.all()
     if hasattr(request.user, 'doctor'):
-        return render(request, 'main/doctors_home_page.html')
+        number = Appointment.objects.all().count()
+        return render(request, 'main/doctors_home_page.html', {'number': number})
     else:
         if request.method == 'POST':
             if not request.user.is_authenticated:
