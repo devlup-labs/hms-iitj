@@ -51,10 +51,4 @@ class CustomLoginView(LoginView):
 
     def get_redirect_url(self):
         url = super(CustomLoginView, self).get_redirect_url()
-        if hasattr(self.request.user, 'patient'):
-            return reverse('main:home')
-            # return url or self.request.UserProfile.get_absolute_url()
-        elif hasattr(self.request.user, 'doctor'):
-            return url or reverse('main:doctor')
-        else:
-            return reverse('main:home')
+        return url or reverse('main:home')
