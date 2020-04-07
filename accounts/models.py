@@ -87,14 +87,3 @@ class Receptionist(models.Model):
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
-
-
-class Appointment(models.Model):
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="app_doctor", blank=True, null=True)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="app_patient", blank=True, null=True)
-    time = models.TimeField()
-    prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE,
-                                     related_name="app_prescription", blank=True, null=True)
-
-    def __str__(self):
-        return self.doctor.user.first_name + ", " + self.patient.user.first_name

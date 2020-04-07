@@ -1,8 +1,9 @@
+from accounts.models import Doctor, Patient
+from .forms import takeAppointmentForm, writePrescriptionForm
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
 # from .forms import writePrescription
-from accounts.models import Doctor, Patient, Appointment
-from .forms import takeAppointmentForm, writePrescriptionForm
+from.models import Appointment
 
 
 def takeAppointmentView(request):

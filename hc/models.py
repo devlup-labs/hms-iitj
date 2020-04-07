@@ -52,3 +52,16 @@ class PrescribedDrug(models.Model):
     prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE)
     drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+
+
+class Appointment(models.Model):
+    doctor = models.ForeignKey(to="accounts.Doctor", on_delete=models.CASCADE,
+                               related_name="app_doctor", blank=True, null=True)
+    patient = models.ForeignKey(to="accounts.Patient", on_delete=models.CASCADE,
+                                related_name="app_patient", blank=True, null=True)
+    time = models.TimeField()
+    prescription = models.ForeignKey(Prescription, on_delete=models.CASCADE,
+                                     related_name="app_prescription", blank=True, null=True)
+
+    def __str__(self):
+        return self.doctor.user.first_name + ", " + self.patient.user.first_name

@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import View, CreateView
 from .models import blog
-from accounts.models import Doctor, Patient, Appointment
+from accounts.models import Doctor, Patient
+from hc.models import Appointment
 from .forms import AddBlogForm
 from hc.forms import takeAppointmentForm
 
