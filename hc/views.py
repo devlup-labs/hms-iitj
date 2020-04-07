@@ -28,10 +28,15 @@ class treatPatientView(CreateView):
     template_name = 'hc/treat_patient.html'
     success_url = '/hc/treatPatient/'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(treatPatientView, self).get_context_data(*args, **kwargs)
+        appointment = Appointment.objects.filter().order_by('time')[0]
+        context['appointment'] = appointment
+        return context
+
     def form_valid(self, form):
         appointment = Appointment.objects.filter().order_by('time')[0]
-        # if(appointment)
-        prescription = form.save({'appointment': appointment})
+        prescription = form.save()
         prescription.doctor = appointment.doctor
         appointment.patient.prescriptions.add(prescription)
         appointment.delete()
