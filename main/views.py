@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
 from .models import blog
 from accounts.models import Doctor, Patient
@@ -13,6 +13,8 @@ def IndexView(request):
         return render(request, 'main/doctors_home_page.html')
     else:
         if request.method == 'POST':
+            if not request.user.is_authenticated:
+                return redirect('accounts:login')
             form = takeAppointmentForm(request.POST)
             if form.is_valid():
                 specialization = form['specialization'].value()
