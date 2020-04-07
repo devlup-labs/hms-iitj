@@ -3,7 +3,7 @@ from .forms import takeAppointmentForm, treatPatientForm
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
 # from .forms import treatPatient
-import datetime
+import datetime as dt
 from.models import Appointment
 
 
@@ -32,10 +32,10 @@ class treatPatientView(CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super(treatPatientView, self).get_context_data(*args, **kwargs)
         for appointment in Appointment.objects.filter().order_by('time'):
-            if(appointment.date < datetime.date.today()):
+            if(appointment.date < dt.date.today()):
                 appointment.delete()
-            elif(appointment.date == datetime.date.today()
-                 and appointment.time < (datetime.datetime.now()-datetime.timedelta(minutes=30)).time()):
+            elif(appointment.date == dt.date.today()
+                 and appointment.time < (dt.datetime.now()-dt.timedelta(minutes=30)).time()):
                 appointment.delete()
             else:
                 break
