@@ -42,7 +42,11 @@
                     <h2 class="d-flex align-items-center">Patients</h2>
                     <p></p>
                     {% if number is not 0 %}
-                    <a href="{% url 'hc:prescription' %}"><button class="button gradient-bg" type="submit">Treat Patient</button></a>
+                    <form method="POST" action="hc/treatPatient/">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <a href="{% url 'hc:prescription' %}"><button class="button gradient-bg" type="submit">Treat Patient</button></a>
+                    </form>
                     {% else %}
                     <p>No Patients</p>
                     {% endif %}

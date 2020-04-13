@@ -25,3 +25,8 @@ class takeAppointmentForm(forms.Form):
     time = forms.TimeField(widget=TimeInput(), initial=(
         datetime.datetime.now() + datetime.timedelta(minutes=5)).strftime('%H:%M'))
     date = forms.DateField(widget=DateInput(), initial=datetime.date.today)
+
+
+class SearchPatientForm(forms.Form):
+
+    email = forms.EmailField(max_length=100, help_text="enter email-id of patient here", required=False)

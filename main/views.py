@@ -4,14 +4,15 @@ from .models import blog
 from accounts.models import Doctor, Patient
 from hc.models import Appointment
 from .forms import AddBlogForm
-from hc.forms import takeAppointmentForm
+from hc.forms import takeAppointmentForm, SearchPatientForm
 
 
 def IndexView(request):
     blogs = blog.objects.all()
     if hasattr(request.user, 'doctor'):
         number = Appointment.objects.all().count()
-        return render(request, 'main/doctors_home_page.html', {'number': number})
+        form = SearchPatientForm
+        return render(request, 'main/doctors_home_page.html', {'number': number, 'form': form})
     else:
         if request.method == 'POST':
             if not request.user.is_authenticated:
