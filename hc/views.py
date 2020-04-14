@@ -33,7 +33,7 @@ class treatPatientView(CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(treatPatientView, self).get_context_data(*args, **kwargs)
-        for appointment in Appointment.objects.filter().order_by('time'):
+        for appointment in Appointment.objects.filter().order_by('date', 'time'):    # first sorted by date and then time
             if(appointment.date < dt.date.today()):
                 appointment.delete()
             elif(appointment.date == dt.date.today()
@@ -46,9 +46,12 @@ class treatPatientView(CreateView):
         if email:
             context['email'] = email
             self.super_context['email'] = email
-            appointment = get_object_or_404(Appointment, patient__user__username=email)
+            try:
+                appointment = Appointment.objects.filter(patient__user__username=email).order_by('date', 'time')[0]
+            except IndexError:
+                appointment = None
         else:
-            appointment = Appointment.objects.filter().order_by('time')[0]
+            appointment = Appointment.objects.filter().order_by('date', 'time')[0]
         context['appointment'] = appointment
         self.super_context['appointment'] = appointment
         return context
@@ -57,9 +60,12 @@ class treatPatientView(CreateView):
         context = self.super_context
         if context['email']:
             email = context['email']
-            appointment = get_object_or_404(Appointment, patient__user__username=email)
+            try:
+                appointment = Appointment.objects.filter(patient__user__username=email).order_by('date', 'time')[0]
+            except IndexError:
+                appointment = None
         else:
-            appointment = Appointment.objects.filter().order_by('time')[0]
+            appointment = Appointment.objects.filter().order_by('date', 'time')[0]
         prescription = form.save()
         prescription.doctor = appointment.doctor
         appointment.patient.prescriptions.add(prescription)
