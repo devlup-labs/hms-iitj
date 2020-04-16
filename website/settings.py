@@ -35,10 +35,10 @@ ALLOWED_HOSTS = ['hms.pythonanywhere.com', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'django.contrib.auth',
     'django.contrib.sites',
     'django.contrib.contenttypes',
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'bootstrap4',
 ]
-SITE_ID = 1
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -156,3 +156,20 @@ CKEDITOR_CONFIGS = {
         'toolbar': None,
     },
 }
+
+# AllAuth stuff
+
+SOCIALACCOUNT_PROVIDERS = {
+
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+ACCOUNT_FORMS = {'signup': 'accounts.forms.SignupFormforIIT'}
