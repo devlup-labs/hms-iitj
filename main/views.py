@@ -9,26 +9,31 @@ from hc.forms import takeAppointmentForm, SearchPatientForm
 
 def IndexView(request):
     blogs = blog.objects.all()
-    if hasattr(request.user, 'doctor'):
-        number = Appointment.objects.all().count()
-        form = SearchPatientForm
-        return render(request, 'main/doctors_home_page.html', {'number': number, 'form': form})
-    else:
-        if request.method == 'POST':
-            if not request.user.is_authenticated:
-                return redirect('accounts:login')
-            form = takeAppointmentForm(request.POST)
-            if form.is_valid():
-                specialization = form['specialization'].value()
-                available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
-                patient = get_object_or_404(Patient, user=request.user)
-                time = form['time'].value()
-                date = form['date'].value()
-                Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
-                return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
-        else:
-            form = takeAppointmentForm()
+
+    if request.user.is_authenticated:
+        if hasattr(request.user, 'doctor'):
+            number = Appointment.objects.all().count()
+            form = SearchPatientForm
+            return render(request, 'main/doctors_home_page.html', {'number': number, 'form': form})
+        # add pharmacist, receptionist fields here
+        if not hasattr(request.user, 'patient'):
+            return redirect('accounts:createProfile')
+
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('accounts:login')
+        form = takeAppointmentForm(request.POST)
+        if form.is_valid():
+            specialization = form['specialization'].value()
+            available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
+            patient = get_object_or_404(Patient, user=request.user)
+            time = form['time'].value()
+            date = form['date'].value()
+            Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
             return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
+    else:
+        form = takeAppointmentForm()
+        return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
 
 
 def blogDetails(request, pk):
