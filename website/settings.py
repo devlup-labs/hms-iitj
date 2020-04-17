@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'bootstrap4',
+    'rest_framework',
 ]
 SITE_ID = 2
 

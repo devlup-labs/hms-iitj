@@ -4,3 +4,4 @@ django-ckeditor
 pillow
 django-bootstrap4
 django-allauth
+djangorestframework

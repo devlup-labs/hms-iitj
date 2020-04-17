@@ -2,7 +2,7 @@ from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
 from django.shortcuts import reverse
 from .forms import SignUpOutsiderForm, CreateProfileIITForm
-from .models import PatientOutsider, Patient
+from .models import PatientOutsider
 # from django.views.generic import View
 
 
