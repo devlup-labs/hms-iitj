@@ -20,11 +20,7 @@ def IndexView(request):
             return redirect('accounts:createProfile')
 
     if request.method == 'POST':
-        if not request.user.is_authenticated:
-            return redirect('accounts:login')
-        form = takeAppointmentForm(request.POST)
-        makeAppointment(form, request.user.email)
-        return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
+        return makeAppointment(request)
     else:
         form = takeAppointmentForm()
         return render(request, 'main/index.html', {'form': form, 'blogs': blogs})

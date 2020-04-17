@@ -1,19 +1,29 @@
 from accounts.models import Doctor, Patient
-from .forms import treatPatientForm
-from django.shortcuts import get_object_or_404
+from main.models import blog
+from .forms import treatPatientForm, takeAppointmentForm
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
 import datetime as dt
 from.models import Appointment
 
 
-def makeAppointment(form, patient):
-    if form.is_valid():
-        specialization = form['specialization'].value()
-        available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
-        patient = get_object_or_404(Patient, user__email=patient)
-        time = form['time'].value()
-        date = form['date'].value()
-        Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
+def makeAppointment(request):
+    if not request.user.is_authenticated:
+        return redirect('accounts:login')
+    if request.method == "POST":
+        blogs = blog.objects.all()
+        form = takeAppointmentForm(request.POST)
+        if form.is_valid():
+            specialization = form['specialization'].value()
+            available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
+            patient = get_object_or_404(Patient, user__email=request.user.email)
+            time = form['time'].value()
+            date = form['date'].value()
+            Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
+        return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
+    else:
+        form = takeAppointmentForm()
+        return render(request, 'hc/create_appointment.html', {'form': form})
 
 
 class treatPatientView(CreateView):

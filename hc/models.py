@@ -64,4 +64,4 @@ class Appointment(models.Model):
     name_of_dep = models.CharField(max_length=16, null=True, blank=True)  # name of dependent (family of faculty)
 
     def __str__(self):
-        return self.doctor.user.first_name + ", " + self.patient.user.first_name
+        return self.doctor.user.first_name + ", " + self.patient
