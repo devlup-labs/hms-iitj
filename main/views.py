@@ -15,7 +15,9 @@ def IndexView(request):
             number = Appointment.objects.all().count()
             form = SearchPatientForm
             return render(request, 'main/doctors_home_page.html', {'number': number, 'form': form})
-        # add pharmacist, receptionist fields here
+        elif hasattr(request.user, 'receptionist'):
+            return render(request, 'main/receptionists_home.html')
+        # add pharmacist fields here
         if not hasattr(request.user, 'patient'):
             return redirect('accounts:createProfile')
 
