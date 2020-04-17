@@ -54,24 +54,7 @@ class CreateProfileView(CreateView):
         user = self.request.user
         user.username = user.email
         user.save()
-        CreateProfileView.create_profile(user=user, **form.cleaned_data)
-        return super(CreateProfileView, self).form_valid(form)
-
-    @staticmethod
-    def create_profile(user=None, **kwargs):
-        userprofile = Patient.objects.create(
-            user=user,
-            gender=kwargs['gender'],
-            roll_no=kwargs['roll_no'],
-            phone_number=kwargs['phone_number'],
-            emergency_phone=kwargs['emergency_phone'],
-            blood_group=kwargs['blood_group'],
-            height=kwargs['height'],
-            weight=kwargs['weight'],
-            birthday=kwargs['birthday'],
-            past_diseases=kwargs['past_diseases'],
-            other_diseases=kwargs['other_diseases'],
-            allergies=kwargs['allergies'],
-
-        )
+        userprofile = form.save()
+        userprofile.user = user
         userprofile.save()
+        return super(CreateProfileView, self).form_valid(form)
