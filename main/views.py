@@ -5,6 +5,7 @@ from accounts.models import Doctor, Patient
 from hc.models import Appointment
 from .forms import AddBlogForm
 from hc.forms import takeAppointmentForm, SearchPatientForm
+from hc.views import makeAppointment
 
 
 def IndexView(request):
@@ -23,14 +24,8 @@ def IndexView(request):
         if not request.user.is_authenticated:
             return redirect('accounts:login')
         form = takeAppointmentForm(request.POST)
-        if form.is_valid():
-            specialization = form['specialization'].value()
-            available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
-            patient = get_object_or_404(Patient, user=request.user)
-            time = form['time'].value()
-            date = form['date'].value()
-            Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
-            return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
+        makeAppointment(form, request.user.email)
+        return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
     else:
         form = takeAppointmentForm()
         return render(request, 'main/index.html', {'form': form, 'blogs': blogs})

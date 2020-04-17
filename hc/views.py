@@ -6,21 +6,14 @@ import datetime as dt
 from.models import Appointment
 
 
-def takeAppointmentView(request):
-    if request.method == 'POST':
-        form = takeAppointmentForm(request.POST)
-        if form.is_valid():
-            specialization = form['specialization'].value()
-            available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
-            patient = request.user.email
-            time = form['time'].value()
-            date = form['date'].value()
-            Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
-            return redirect('main:home')
-    else:
-        form = takeAppointmentForm()
-
-    return render(request, 'hc/create_appointment.html', {'form': form})
+def makeAppointment(form, patient):
+    if form.is_valid():
+        specialization = form['specialization'].value()
+        available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
+        patient = get_object_or_404(Patient, user__email=patient)
+        time = form['time'].value()
+        date = form['date'].value()
+        Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
 
 
 class treatPatientView(CreateView):
@@ -45,7 +38,9 @@ class treatPatientView(CreateView):
             try:
                 appointment = Appointment.objects.filter(patient=email).order_by('date', 'time')[0]
             except IndexError:
-                appointment = None
+                context['appointment'] = None
+                return context
+                
         else:
             appointment = Appointment.objects.filter().order_by('date', 'time')[0]
         patient = get_object_or_404(Patient, user__email=appointment.patient)
