@@ -61,6 +61,7 @@ class Appointment(models.Model):
     time = models.TimeField()  # time of appointment
     date = models.DateField()  # date of appointment
     temp = models.CharField(max_length=8, blank=True, null=True)   # temperature (to be put in by receptionist)
-    name_of_dep = models.CharField(max_length=16) # name of dependent (family of faculty)
+    name_of_dep = models.CharField(max_length=16, null=True, blank=True)  # name of dependent (family of faculty)
+
     def __str__(self):
         return self.doctor.user.first_name + ", " + self.patient.user.first_name

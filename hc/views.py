@@ -1,9 +1,7 @@
 from accounts.models import Doctor, Patient
-from .forms import takeAppointmentForm, treatPatientForm, SearchPatientForm
+from .forms import takeAppointmentForm, treatPatientForm
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
-from django.views.generic.base import View
-# from .forms import treatPatient
 import datetime as dt
 from.models import Appointment
 
@@ -34,7 +32,7 @@ class treatPatientView(CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super(treatPatientView, self).get_context_data(*args, **kwargs)
         min_dt = dt.datetime.now()-dt.timedelta(minutes=30)
-        
+
         for appointment in Appointment.objects.filter().order_by('date', 'time'):    # first sorted by date and then time
             if(appointment.date < min_dt.date()):
                 appointment.delete()
@@ -50,7 +48,7 @@ class treatPatientView(CreateView):
                 appointment = None
         else:
             appointment = Appointment.objects.filter().order_by('date', 'time')[0]
-        patient = get_object_or_404(Patient,user__email=appointment.patient)
+        patient = get_object_or_404(Patient, user__email=appointment.patient)
         context['appointment'] = appointment
         context['patient'] = patient
         self.super_context['email'] = appointment.patient
@@ -62,8 +60,7 @@ class treatPatientView(CreateView):
         appointment = Appointment.objects.filter(patient=email).order_by('date', 'time')[0]
         prescription = form.save()
         prescription.doctor = appointment.doctor
-        patient = get_object_or_404(Patient,user__email=appointment.patient)
+        patient = get_object_or_404(Patient, user__email=appointment.patient)
         patient.prescriptions.add(prescription)
         appointment.delete()
         return super(treatPatientView, self).form_valid(form)
-
