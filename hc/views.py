@@ -1,6 +1,6 @@
 from accounts.models import Doctor, Patient
-from .forms import takeAppointmentForm, treatPatientForm
-from django.shortcuts import get_object_or_404, render, redirect
+from .forms import treatPatientForm
+from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView
 import datetime as dt
 from.models import Appointment
@@ -40,7 +40,7 @@ class treatPatientView(CreateView):
             except IndexError:
                 context['appointment'] = None
                 return context
-                
+
         else:
             appointment = Appointment.objects.filter().order_by('date', 'time')[0]
         patient = get_object_or_404(Patient, user__email=appointment.patient)
