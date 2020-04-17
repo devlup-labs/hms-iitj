@@ -56,7 +56,7 @@
 					<form class="login100-form validate-form" enctype="multipart/form-data" method="POST">
 						
 							{% csrf_token %}
-							Patient: {{appointment.patient.user.first_name}} {{appointment.patient.user.last_name}} 
+							Patient: {{patient.user.first_name}} {{patient.user.last_name}} 
 							{% bootstrap_form form %}
 							<!-- <input type="text" name=> -->
 							<!-- <p>
