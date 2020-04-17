@@ -10,7 +10,7 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="the-news-wrap">
                             <figure class="post-thumbnail">
-                                <a href="{% url 'main:blogDetails' blog.id %}">
+                                <a href="{% url 'main:BlogDetails' blog.id %}">
                                     {% if blog.display_image %}
                                     <img src= "{{ blog.display_image.url }}" alt="">
                                     {% endif %}

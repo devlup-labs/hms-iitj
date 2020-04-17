@@ -3,7 +3,7 @@ from accounts.models import Doctor
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
-class blog(models.Model):
+class Blog(models.Model):
     title = models.CharField(max_length=250)
     author = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     short_description = models.TextField()   # to be displayed on home page

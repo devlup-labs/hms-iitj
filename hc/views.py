@@ -1,5 +1,5 @@
 from accounts.models import Doctor, Patient
-from main.models import blog
+from main.models import Blog
 from .forms import treatPatientForm, takeAppointmentForm
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
@@ -11,7 +11,7 @@ def makeAppointment(request):
     if not request.user.is_authenticated:
         return redirect('accounts:login')
     if request.method == "POST":
-        blogs = blog.objects.all()
+        blogs = Blog.objects.all()
         form = takeAppointmentForm(request.POST)
         if form.is_valid():
             specialization = form['specialization'].value()

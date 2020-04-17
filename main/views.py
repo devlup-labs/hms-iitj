@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
-from .models import blog
+from .models import Blog
 from hc.models import Appointment
 from .forms import AddBlogForm
 from hc.forms import takeAppointmentForm, SearchPatientForm
@@ -8,7 +8,7 @@ from hc.views import makeAppointment
 
 
 def IndexView(request):
-    blogs = blog.objects.all()
+    blogs = Blog.objects.all()
 
     if request.user.is_authenticated:
         if hasattr(request.user, 'doctor'):
@@ -28,13 +28,13 @@ def IndexView(request):
         return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
 
 
-def blogDetails(request, pk):
-    blogs = blog.objects.get(pk=pk)
-    template_name = 'main/blogDetails.html'
+def BlogDetails(request, pk):
+    blogs = Blog.objects.get(pk=pk)
+    template_name = 'main/blog_details.html'
     return render(request, template_name, {'blog': blogs})
 
 
 class AddBlogView(CreateView):
-    template_name = 'main/addBlog.html'
+    template_name = 'main/add_blog.html'
     form_class = AddBlogForm
     success_url = '/'
