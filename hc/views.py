@@ -1,8 +1,9 @@
 from accounts.models import Doctor, Patient
-from main.models import Blog
+# from main.models import Blog
 from .forms import treatPatientForm, takeAppointmentForm
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
+from django.contrib import messages
 import datetime as dt
 from.models import Appointment
 
@@ -11,7 +12,7 @@ def makeAppointment(request):
     if not request.user.is_authenticated:
         return redirect('accounts:login')
     if request.method == "POST":
-        blogs = Blog.objects.all()
+        # blogs = Blog.objects.all()
         form = takeAppointmentForm(request.POST)
         if form.is_valid():
             specialization = form['specialization'].value()
@@ -20,7 +21,9 @@ def makeAppointment(request):
             time = form['time'].value()
             date = form['date'].value()
             Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
-        return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
+            messages.success(request, "Appointment is successfully created.")
+        # return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
+        return redirect('main:home')
     else:
         form = takeAppointmentForm()
         return render(request, 'hc/create_appointment.html', {'form': form})
@@ -48,6 +51,7 @@ class treatPatientView(CreateView):
             try:
                 appointment = Appointment.objects.filter(patient=email).order_by('date', 'time')[0]
             except IndexError:
+                # messages.success(self.request, "Patient has not taken appointment.")
                 context['appointment'] = None
                 return context
 

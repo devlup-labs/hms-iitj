@@ -9,10 +9,21 @@
         <div class="swiper-slide hero-content-wrap"
             style="background-image: url('{% static 'images/background1.jpg' %}') ">
             <div class="hero-content-overlay position-absolute w-100 h-100">
-
+           
                 <div class="container h-100">
+            
+                    {% if messages %}
+                    <div  style="padding-top: 9%"></div>
+                        {% for meassage in messages %}
+                            <div class="col-12 col-lg-12 d-flex justify-content-center alert alert-dark alert-dismissible fade show" role="alert">
+                                {{ meassage }}
+                            </div>
+                            <div class="row h-101">
+                        {% endfor %}
+                    {% else %}
                     <div class="row h-100">
-                        <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">
+                    {% endif %}
+                  <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">            
                             <header class="entry-header">
                                 <h1>Health Center<br>IIT Jodhpur</h1>
                             </header>

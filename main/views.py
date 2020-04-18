@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import Blog
 from hc.models import Appointment
 from .forms import AddBlogForm
@@ -34,7 +35,8 @@ def BlogDetails(request, pk):
     return render(request, template_name, {'blog': blogs})
 
 
-class AddBlogView(CreateView):
+class AddBlogView(SuccessMessageMixin, CreateView):
     template_name = 'main/add_blog.html'
     form_class = AddBlogForm
     success_url = '/'
+    success_message = "Blog was successfully created."

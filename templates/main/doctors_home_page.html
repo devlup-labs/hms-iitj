@@ -31,9 +31,16 @@
         </ul>
     </div>
 </header>
-    
-
 <p style="padding-top:3%;"></p>
+
+{% if messages %}
+        {% for meassage in messages %}
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{ meassage }}
+            </div>
+        {% endfor %}
+{% endif %}
+
 <div class="homepage-boxes">
     <div class="container">
         <div class="row">
