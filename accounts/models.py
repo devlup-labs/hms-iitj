@@ -60,17 +60,6 @@ class Patient(models.Model):
         return self.user.username
 
 
-class PatientOutsider(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gender = models.CharField(max_length=1, choices=Patient.GENDER_CHOICES, default='M')
-    phone_number = models.CharField(max_length=12)
-    blood_group = models.CharField(max_length=3, choices=Patient.BLOODGROUP_CHOICES, default='O+')
-    prescriptions = models.ManyToManyField(Prescription, related_name="outsiderHistory", blank=True)
-
-    def __str__(self):
-        return self.user.username
-
-
 class Doctor(models.Model):
     SPECIALIZATION_CHOICES = (
         ('1', 'General Physician'),

@@ -20,14 +20,3 @@ class CreateProfileIITForm(forms.ModelForm):    # only for iitj students
         self.fields['phone_number'].widget.attrs['icon_name'] = "fa fa-phone"
         self.fields['height'].widget.attrs['icon_name'] = "fa fa-user"
         self.fields['weight'].widget.attrs['icon_name'] = "fa fa-user"
-
-
-class SignUpOutsiderForm(UserCreationForm):
-
-    gender = forms.ChoiceField(choices=Patient.GENDER_CHOICES)
-    phone_number = forms.IntegerField(max_value=9999999999, min_value=1000000000)
-    blood_group = forms.ChoiceField(choices=Patient.BLOODGROUP_CHOICES)
-
-    class Meta:
-        model = User
-        fields = ['email', 'first_name', 'last_name', 'password1', 'password2']
