@@ -21,7 +21,7 @@ def makeAppointment(request):
             time = form['time'].value()
             date = form['date'].value()
             Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
-            messages.success(request, "Appointment is successfully created.")
+            messages.success(request, "Appointment was successfully created.")
         # return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
         return redirect('main:home')
     else:
