@@ -48,14 +48,22 @@
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="opening-hours">
-                    <h2 class="d-flex align-items-center">Today's Schedule</h2>
-
+                    <h2 class="d-flex align-items-center">My Appointments</h2>
+                    {% if not user.is_authenticated %}
                     <ul class="p-0 m-0">
-                        <li>Monday - Thursday <span>8.00 - 19.00</span></li>
-                        <li>Friday <span>8.00 - 18.30</span></li>
-                        <li>Saturday <span>9.30 - 17.00</span></li>
-                        <li>Sunday <span>9.30 - 15.00</span></li>
+                        <li>Log in to view Appointments.</li>
                     </ul>
+                    {% elif appointments.count == 0 %}
+                    <ul class="p-0 m-0">
+                        <li>No Appointments!</li>
+                    </ul>
+                    {% else %}
+                    <ul class="p-0 m-0">
+                        {% for appointment in appointments %}
+                        <li>Dr. {{appointment.doctor.user.first_name}} <span>{{appointment.time}}</span></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div>
             </div>
 

@@ -10,10 +10,11 @@ from hc.views import makeAppointment
 
 def IndexView(request):
     blogs = Blog.objects.all()
-
+    appointments = Appointment.objects.all()
+    
     if request.user.is_authenticated:
         if hasattr(request.user, 'doctor'):
-            number = Appointment.objects.all().count()
+            number = appointments.count()
             form = SearchPatientForm
             return render(request, 'main/doctors_home_page.html', {'number': number, 'form': form})
         elif hasattr(request.user, 'receptionist'):
@@ -23,10 +24,10 @@ def IndexView(request):
             return redirect('accounts:createProfile')
 
     if request.method == 'POST':
-        return makeAppointment(request)
-    else:
-        form = takeAppointmentForm()
-        return render(request, 'main/index.html', {'form': form, 'blogs': blogs})
+        makeAppointment(request)
+        my_appointments = appointments.filter(patient=request.user.email).order_by('date', 'time')
+    form = takeAppointmentForm()
+    return render(request, 'main/index.html', {'form': form, 'blogs': blogs, 'user':request.user ,'appointments': appointments})
 
 
 def BlogDetails(request, pk):
