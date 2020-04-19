@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% block body_block %}
+
+{% load static %}
+
+
+{{patient.weight}}<br>
+{{patient.height}}<br>
+{{patient.blood_group}}<br>
+
+{% for prescription in history %}
+{{prescription.prescription_id}}
+{{prescription.remarks}}
+{{prescription.doctor}}<br>
+{% endfor %}
+
+
+{% endblock %}

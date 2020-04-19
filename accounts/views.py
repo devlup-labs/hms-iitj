@@ -1,7 +1,8 @@
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.views import LoginView
-from django.shortcuts import reverse
+from django.shortcuts import reverse, get_object_or_404
 from .forms import CreateProfileIITForm
+from .models import Patient
 # from django.views.generic import View
 
 
@@ -27,3 +28,14 @@ class CreateProfileView(CreateView):
         userprofile.user = user
         userprofile.save()
         return super(CreateProfileView, self).form_valid(form)
+
+
+class viewMedicalHistory(TemplateView):
+    template_name = "accounts/medical_history.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(viewMedicalHistory, self).get_context_data(**kwargs)
+        patient = get_object_or_404(Patient, user=self.request.user)
+        context['patient'] = patient
+        context['history'] = patient.prescriptions.all()
+        return context

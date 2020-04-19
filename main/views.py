@@ -20,12 +20,12 @@ def IndexView(request):
         elif hasattr(request.user, 'receptionist'):
             return render(request, 'main/receptionists_home.html')
         # add pharmacist fields here
+        appn = appn.filter(patient=request.user.email).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
             return redirect('accounts:createProfile')
 
     if request.method == 'POST':
         makeAppointment(request)
-        appn = appn.filter(patient=request.user.email).order_by('date', 'time')
     form = takeAppointmentForm()
     return render(request, 'main/index.html', {'form': form, 'blogs': blogs, 'user': request.user, 'appointments': appn})
 
