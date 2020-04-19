@@ -1,6 +1,7 @@
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.views import LoginView
 from django.shortcuts import reverse, get_object_or_404
+from django.contrib import messages
 from .forms import CreateProfileIITForm
 from .models import Patient
 # from django.views.generic import View
@@ -27,6 +28,7 @@ class CreateProfileView(CreateView):
         userprofile = form.save()
         userprofile.user = user
         userprofile.save()
+        messages.success(self.request, "Profile was successfully created.")
         return super(CreateProfileView, self).form_valid(form)
 
 

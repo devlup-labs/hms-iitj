@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from .models import Blog
 from hc.models import Appointment
 from .forms import AddBlogForm
@@ -26,6 +27,8 @@ def IndexView(request):
 
     if request.method == 'POST':
         makeAppointment(request)
+        return HttpResponseRedirect("/")
+
     form = takeAppointmentForm()
     return render(request, 'main/index.html', {'form': form, 'blogs': blogs, 'user': request.user, 'appointments': appn})
 

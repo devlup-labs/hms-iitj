@@ -3,6 +3,7 @@ from .forms import treatPatientForm, takeAppointmentForm
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 import datetime as dt
 from.models import Appointment
 
@@ -20,7 +21,7 @@ def makeAppointment(request):
             date = form['date'].value()
             Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
             messages.success(request, "Appointment was successfully created.")
-        return redirect('main:home')
+        return HttpResponseRedirect("/")
     else:
         form = takeAppointmentForm()
         return render(request, 'hc/create_appointment.html', {'form': form})
