@@ -26,8 +26,7 @@ def IndexView(request):
             return redirect('accounts:createProfile')
 
     if request.method == 'POST':
-        makeAppointment(request)
-        return HttpResponseRedirect("/")
+        return makeAppointment(request)
 
     form = takeAppointmentForm()
     return render(request, 'main/index.html', {'form': form, 'blogs': blogs, 'user': request.user, 'appointments': appn})

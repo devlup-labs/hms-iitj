@@ -19,7 +19,7 @@ def makeAppointment(request):
             patient = get_object_or_404(Patient, user__email=request.user.email)
             time = form['time'].value()
             date = form['date'].value()
-            Appointment.objects.create(patient=patient, doctor=available_doctors, time=time, date=date)
+            Appointment.objects.create(patient=patient.user.email, doctor=available_doctors, time=time, date=date)
             messages.success(request, "Appointment was successfully created.")
         return HttpResponseRedirect("/")
     else:
