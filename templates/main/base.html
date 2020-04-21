@@ -44,6 +44,14 @@
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
                 {% else %}
+                <div class="dropdown">
+                  <button class="dropbtn">Dropdown</button>
+                  <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                  </div>
+                </div>
                   <li><a href="/auth/google/login">Login</a></li>
                 {% endif %}
                 <li class="call-btn button gradient-bg mt-3 mt-md-0">
