@@ -63,7 +63,6 @@ a:hover, a:active {
     border: none;
     outline: none;
     color: #404040;
-    padding: 10px 10px;
     background-color: inherit;
     font-weight: 501;
     font-family: inherit; /* Important for vertical align on mobile phones */
@@ -89,7 +88,7 @@ a:hover, a:active {
   .dropdown-content a {
     float: none;
     color: black;
-    padding: 1px 1px;
+    padding: 3px 7px;
     text-decoration: none;
     display: block;
     text-align: center;
