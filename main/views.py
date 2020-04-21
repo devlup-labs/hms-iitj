@@ -14,12 +14,11 @@ def IndexView(request):
 
     if request.user.is_authenticated:
         if hasattr(request.user, 'doctor'):
-            number = appn.count()
             form = SearchPatientForm
-            return render(request, 'main/doctors_home_page.html', {'number': number, 'form': form})
+            return render(request, 'main/doctors_home_page.html', {'form': form})
         elif hasattr(request.user, 'receptionist'):
             return render(request, 'main/receptionists_home.html')
-        # add pharmacist fields here
+        # add pharmacist and admin fields here
         appn = appn.filter(patient=request.user.email).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
             return redirect('accounts:createProfile')

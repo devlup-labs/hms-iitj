@@ -33,10 +33,8 @@ class treatPatientView(CreateView):
     success_url = '/'
     super_context = {}
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(treatPatientView, self).get_context_data(*args, **kwargs)
+    def get(self, request, *args, **kwargs):
         min_dt = dt.datetime.now()-dt.timedelta(minutes=30)
-
         for appointment in Appointment.objects.filter().order_by('date', 'time'):    # first sorted by date and then time
             if(appointment.date < min_dt.date()):
                 appointment.delete()
@@ -44,12 +42,20 @@ class treatPatientView(CreateView):
                 appointment.delete()
             else:
                 break
+        if Appointment.objects.exists():
+            return super().get(request, *args, **kwargs)
+        else:
+            messages.error(self.request, "No Appointments.")
+            return HttpResponseRedirect('/')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(treatPatientView, self).get_context_data(*args, **kwargs)
         email = self.request.POST.get('email', False)
         if email:
             try:
                 appointment = Appointment.objects.filter(patient=email).order_by('date', 'time')[0]
             except IndexError:
-                # messages.success(self.request, "Patient has not taken appointment.")
+                messages.error(self.request, "Patient has not taken appointment.")
                 context['appointment'] = None
                 return context
 
