@@ -65,7 +65,8 @@ a:hover, a:active {
     color: #404040;
     padding: 10px 10px;
     background-color: inherit;
-    font-family: 'Raleway', sans-serif; /* Important for vertical align on mobile phones */
+    font-weight: 501;
+    font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
   }
   
