@@ -26,12 +26,11 @@
 
 <body>
     {% if messages %}
-    {% for meassage in messages %}
-    <div class="d-flex justify-content-center alert alert-success alert-dismissible fade show" role="alert">
-        {{ meassage }}
-    </div>
-    {% endfor %}
+        {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }} </div>
+        {% endfor %}
     {% endif %}
+
     <header class="site-header">
         <div class="nav-bar">
             <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-items-center">

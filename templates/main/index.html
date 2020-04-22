@@ -11,13 +11,13 @@
             
             <div class="hero-content-overlay position-absolute w-100 h-100">
                 {% if messages %}
-                    <!-- <div  style="padding-top: 9%"></div> -->
-                        {% for meassage in messages %}
-                            <div class="col-10 col-lg-12 d-flex justify-content-center alert alert-success alert-dismissible fade show" role="alert">
-                                {{ meassage }}
-                            </div>
-                        {% endfor %}                    
-                    {% endif %}
+                    <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+    
                 <div class="container h-100">
             
                     
