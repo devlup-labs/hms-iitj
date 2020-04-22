@@ -49,11 +49,11 @@
 <body>
 	<div class="limiter">
 		{% if messages %}
-		{% for meassage in messages %}
-		<div class="d-flex justify-content-center alert alert-success alert-dismissible fade show" role="alert">
-			{{ meassage }}
-		</div>
-		{% endfor %}
+			<ul class="messages">
+			{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+			</ul>
 		{% endif %}
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">

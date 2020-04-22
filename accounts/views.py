@@ -28,7 +28,10 @@ class CreateProfileView(CreateView):
         userprofile = form.save()
         userprofile.user = user
         userprofile.save()
-        messages.success(self.request, "Profile was successfully created.")
+        messages.success(
+            self.request,
+            "Profile was successfully created.",
+            extra_tags='col-10 col-lg-12 d-flex justify-content-center alert alert-success alert-dismissible fade show')
         return super(CreateProfileView, self).form_valid(form)
 
 

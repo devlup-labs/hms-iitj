@@ -20,7 +20,10 @@ def makeAppointment(request):
             time = form['time'].value()
             date = form['date'].value()
             Appointment.objects.create(patient=patient.user.email, doctor=available_doctors, time=time, date=date)
-            messages.success(request, "Appointment was successfully created.")
+            messages.success(
+                request,
+                "Appointment was successfully created.",
+                extra_tags='col-10 col-lg-12 d-flex justify-content-center alert alert-success alert-dismissible fade show')
         return HttpResponseRedirect("/")
     else:
         form = takeAppointmentForm()
@@ -45,7 +48,10 @@ class treatPatientView(CreateView):
         if Appointment.objects.exists():
             return super().get(request, *args, **kwargs)
         else:
-            messages.error(self.request, "No Appointments.")
+            messages.error(
+                self.request,
+                "No Appointments.",
+                extra_tags='d-flex justify-content-center alert alert-danger alert-dismissible fade show')
             return HttpResponseRedirect('/')
 
     def get_context_data(self, *args, **kwargs):
@@ -55,7 +61,10 @@ class treatPatientView(CreateView):
             try:
                 appointment = Appointment.objects.filter(patient=email).order_by('date', 'time')[0]
             except IndexError:
-                messages.error(self.request, "Patient has not taken appointment.")
+                messages.error(
+                    self.request,
+                    "Patient has not taken appointment.",
+                    extra_tags='d-flex justify-content-center alert alert-danger alert-dismissible fade show')
                 context['appointment'] = None
                 return context
 
