@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from .models import Blog
 from hc.models import Appointment
 from .forms import AddBlogForm
@@ -41,3 +42,11 @@ class AddBlogView(SuccessMessageMixin, CreateView):
     form_class = AddBlogForm
     success_url = '/'
     success_message = "Blog was successfully created."
+    extra_tags = 'd-flex justify-content-center alert alert-success alert-dismissible fade show'
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        success_message = self.get_success_message(form.cleaned_data)
+        if success_message:
+            messages.success(self.request, success_message, extra_tags=self.extra_tags)
+        return response
