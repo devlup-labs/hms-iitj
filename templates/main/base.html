@@ -23,7 +23,7 @@
   <script src="../../static/js/custom.js"></script>
 </head>
 
-<body>
+<body onload="resizeElementHeight()">
   <header class="site-header">
     <div class="nav-bar" style="padding-top: 3%;">
       <div class="container">
@@ -42,8 +42,19 @@
                               <li><a href="news.html">News</a></li>
                               <li><a href="contact.html">Contact</a></li> -->
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                
+                <li>
+                  <div class="dropdown">
+                    <button class="dropbtn">{{user.first_name}} <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                      <a href="#">Profile</a>
+                      <a href="#">History</a>
+                      <a href="{% url 'accounts:logout' %}">Logout</a>
+                    </div>
+                  </div>
+                  </li>
                 {% else %}
+                
                   <li><a href="/auth/google/login">Login</a></li>
                 {% endif %}
                 <li class="call-btn button gradient-bg mt-3 mt-md-0">
@@ -80,5 +91,10 @@
   <script type='text/javascript' src='../../static/js/custom.js'></script>
   <!-- </div> -->
 </body>
-
+<script>
+  function resizeElementHeight() {
+      console.log("a")
+      document.getElementsByClassName("hero-content-wrap")[0].style.minHeight = window.innerHeight.toString() + "px"
+  }
+</script>
 </html>
