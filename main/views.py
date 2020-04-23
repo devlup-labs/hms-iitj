@@ -41,7 +41,7 @@ class AddBlogView(SuccessMessageMixin, CreateView):
     template_name = 'main/add_blog.html'
     form_class = AddBlogForm
     success_url = '/'
-    success_message = "Blog was successfully created."
+    success_message = 'Blog was successfully created.'
     extra_tags = 'd-flex justify-content-center alert alert-success alert-dismissible fade show'
 
     def form_valid(self, form):

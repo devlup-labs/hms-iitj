@@ -11,11 +11,9 @@
             
             <div class="hero-content-overlay position-absolute w-100 h-100">
                 {% if messages %}
-                    <ul class="messages">
                     {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        <div {% if message.tags %} class="{{ message.tags }}" {% else %} class="d-flex justify-content-center alert alert-secondary" {% endif %}>{{ message }}</div>
                     {% endfor %}
-                    </ul>
                 {% endif %}
     
                 <div class="container h-100">
