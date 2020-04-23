@@ -1,7 +1,7 @@
 from django.contrib.auth import views as auth_views
-from .views import CustomLoginView, CreateProfileView, viewMedicalHistory
+from .views import CustomLoginView
+from hc.views_patient import viewMedicalHistory, CreateProfileView
 from django.urls import path, include
-# from
 
 app_name = 'accounts'
 

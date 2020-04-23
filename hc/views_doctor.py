@@ -1,33 +1,12 @@
-from accounts.models import Doctor, Patient
-from .forms import treatPatientForm, takeAppointmentForm
-from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.contrib.messages.views import SuccessMessageMixin
 import datetime as dt
-from.models import Appointment
-
-
-def makeAppointment(request):
-    if not request.user.is_authenticated:
-        return redirect('accounts:login')
-    if request.method == "POST":
-        form = takeAppointmentForm(request.POST)
-        if form.is_valid():
-            specialization = form['specialization'].value()
-            available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
-            patient = get_object_or_404(Patient, user__email=request.user.email)
-            time = form['time'].value()
-            date = form['date'].value()
-            Appointment.objects.create(patient=patient.user.email, doctor=available_doctors, time=time, date=date)
-            messages.success(
-                request,
-                "Appointment was successfully created.",
-                extra_tags='col-10 col-lg-12 d-flex justify-content-center alert alert-success alert-dismissible fade show')
-        return HttpResponseRedirect("/")
-    else:
-        form = takeAppointmentForm()
-        return render(request, 'hc/create_appointment.html', {'form': form})
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from accounts.models import Patient
+from .forms_doctor import treatPatientForm, AddBlogForm
+from .models import Appointment
 
 
 class treatPatientView(CreateView):
@@ -86,3 +65,18 @@ class treatPatientView(CreateView):
         patient.prescriptions.add(prescription)
         appointment.delete()
         return super(treatPatientView, self).form_valid(form)
+
+
+class AddBlogView(SuccessMessageMixin, CreateView):
+    template_name = 'main/add_blog.html'
+    form_class = AddBlogForm
+    success_url = '/'
+    success_message = 'Blog was successfully created.'
+    extra_tags = 'd-flex justify-content-center alert alert-success alert-dismissible fade show'
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        success_message = self.get_success_message(form.cleaned_data)
+        if success_message:
+            messages.success(self.request, success_message, extra_tags=self.extra_tags)
+        return response

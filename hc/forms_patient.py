@@ -1,9 +1,14 @@
 from django import forms
-from .models import Patient
+from accounts.models import Patient, Doctor
+import datetime
 
 
 class DateInput(forms.DateInput):
     input_type = 'date'
+
+
+class TimeInput(forms.TimeInput):
+    input_type = 'time'
 
 
 class CreateProfileIITForm(forms.ModelForm):    # only for iitj students
@@ -18,3 +23,11 @@ class CreateProfileIITForm(forms.ModelForm):    # only for iitj students
         self.fields['phone_number'].widget.attrs['icon_name'] = "fa fa-phone"
         self.fields['height'].widget.attrs['icon_name'] = "fa fa-user"
         self.fields['weight'].widget.attrs['icon_name'] = "fa fa-user"
+
+
+class takeAppointmentForm(forms.Form):
+
+    specialization = forms.ChoiceField(choices=Doctor.SPECIALIZATION_CHOICES)
+    time = forms.TimeField(widget=TimeInput(), initial=(
+        datetime.datetime.now() + datetime.timedelta(minutes=5)).strftime('%H:%M'))
+    date = forms.DateField(widget=DateInput(), initial=datetime.date.today)
