@@ -43,16 +43,12 @@
                               <li><a href="contact.html">Contact</a></li> -->
                 {% if user.is_authenticated %}
 
-                  {% if user is patient %}
-                  <p>hellooooo</p>
-                  {% endif %}
-
                 <li>
                   <div class="dropdown">
                     <button class="dropbtn">{{user.first_name}} <i class="fa fa-caret-down"></i></button>
                     <div class="dropdown-content">
                       <a href="#">Profile</a>
-                      <a href="{% url 'accounts:history' %}">History</a>
+                      <a href="{% url 'hc:history' %}">History</a>
                       <a href="{% url 'accounts:logout' %}">Logout</a>
                     </div>
                   </div>

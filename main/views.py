@@ -24,7 +24,7 @@ def IndexView(request):
         # add pharmacist and admin fields here
         appn = appn.filter(patient=request.user.email).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
-            return redirect('accounts:createProfile')
+            return redirect('hc:createProfile')
 
     if request.method == 'POST':
         return makeAppointment(request)
