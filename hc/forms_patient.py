@@ -23,6 +23,7 @@ class CreateProfileIITForm(forms.ModelForm):    # only for iitj students
         self.fields['phone_number'].widget.attrs['icon_name'] = "fa fa-phone"
         self.fields['height'].widget.attrs['icon_name'] = "fa fa-user"
         self.fields['weight'].widget.attrs['icon_name'] = "fa fa-user"
+        self.fields['num'].label = "Roll no. (or PF no.) "
 
 
 class takeAppointmentForm(forms.Form):
