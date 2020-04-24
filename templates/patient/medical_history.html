@@ -33,13 +33,18 @@
                                 
                                 <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" height="330px">
                                 <h4>{{user.first_name}} {{user.last_name}}</h4>
-                                <p>Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
-                                    scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus
-                                    faucibus finibus. Curabitur ut augue finibus, luctus tortor at, ornare erat.
-                                    Nulla facilisi. Sed est risus, laoreet et quam non, viverra accumsan leo.
-                                    Amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
-                                    scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus
-                                    faucibus finibus</p>
+                                <div class="row"><p>Height: {{patient.height}} feet</p><div style="padding-left: 50px;"></div><p>Weight: {{patient.weight}} Kgs</p></div>
+                                <p>Birthday: {{patient.birthday}}</p>
+                                
+                                <p>Blood Group: {{patient.blood_group}}</p>
+                                <p>Past Diseases: {{patient.get_past_diseases_display }}</p>
+                                <p>Other Diseases: {{patient.other_diseases}}</p>
+                                <p>Allergies: {{patient.allergies}}</p>
+                                <p>Roll no. / PF no. : {{patient.num}}</p>
+                                <p>Phone Number : {{patient.phone_number}}</p>
+                                <p>Emergency Number : {{patient.emergency_phone}}</p>
+                                <p>Gender : {{patient.get_gender_display}}</p>
+
                                 <div>
                                     <br>
                                     <h4 class="d-flex justify-content-between align-items-center mb-12">

@@ -43,7 +43,7 @@ class Patient(models.Model):
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    roll_no = models.CharField(max_length=15)
+    num = models.CharField(max_length=15)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
     birthday = models.DateField(auto_now=False)
     phone_number = models.CharField(max_length=12)
