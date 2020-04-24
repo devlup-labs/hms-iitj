@@ -32,7 +32,7 @@
                             <div id="tab_1" class="tab-content">
                                 
                                 <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" height="330px">
-                                <h4>{{user.first_name}} {{user.last_name}}</h4>
+                                <h4>{{user.first_name}} {{user.last_name}} ({{patient.gender}})</h4>
                                 <div class="row"><p>Height: {{patient.height}} feet</p><div style="padding-left: 50px;"></div><p>Weight: {{patient.weight}} Kgs</p></div>
                                 <p>Birthday: {{patient.birthday}}</p>
                                 
@@ -41,9 +41,8 @@
                                 <p>Other Diseases: {{patient.other_diseases}}</p>
                                 <p>Allergies: {{patient.allergies}}</p>
                                 <p>Roll no. / PF no. : {{patient.num}}</p>
-                                <p>Phone Number : {{patient.phone_number}}</p>
-                                <p>Emergency Number : {{patient.emergency_phone}}</p>
-                                <p>Gender : {{patient.get_gender_display}}</p>
+                                <div class="row"><p>Phone Number : {{patient.phone_number}}</p><div style="padding-left: 50px;"></div><p>Emergency Number : {{patient.emergency_phone}}</p></div>
+                                
 
                                 <div>
                                     <br>
