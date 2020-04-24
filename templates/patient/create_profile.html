@@ -1,0 +1,15 @@
+{% extends 'main/base_forms.html' %}
+{% block body_block %}
+{% load socialaccount %}
+{% load bootstrap4 %}
+
+<h2>Create Profile</h2><br>
+<div class="container">
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Create Profile</button>
+	</form>
+</div>
+
+{% endblock %}

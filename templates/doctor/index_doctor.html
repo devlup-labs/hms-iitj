@@ -1,48 +1,7 @@
+{% extends 'doctor/base_doctor.html' %}
+{% block body_block %}
 {% load bootstrap4 %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>IIT Jodhpur</title>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
-
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="../../static/css/swiper.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="../../static/css/style.css">
-    <script src="../../static/js/custom.js"></script>
-</head>
-
-<body>
-    {% if messages %}
-        {% for message in messages %}
-            <div {% if message.tags %} class="{{ message.tags }}" {% else %} class="d-flex justify-content-center alert alert-secondary" {% endif %}>{{ message }} </div>
-        {% endfor %}
-    {% endif %}
-
-    <header class="site-header">
-        <div class="nav-bar">
-            <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-items-center">
-                <a href="{% url 'main:home' %}" class="button gradient-bg">Home</a>
-                <a href="{% url 'accounts:logout' %}" class="button gradient-bg">Logout</a>
-            </ul>
-        </div>
-    </header>
-    <p style="padding-top:3%;"></p>
-
-
-
     <div class="homepage-boxes">
         <div class="container">
             <div class="row">
@@ -86,7 +45,4 @@
     </div>
 
     </div>
-
-</body>
-
-</html>
+{% endblock %}

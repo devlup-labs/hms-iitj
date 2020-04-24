@@ -1,8 +1,7 @@
 from django.urls import path
 from django.conf.urls import url
 from .views import IndexView
-from hc.views_patient import BlogDetails
-from hc.views_doctor import AddBlogView
+from main.views import BlogDetails, AddBlogView
 
 app_name = 'main'
 

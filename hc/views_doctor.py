@@ -1,17 +1,16 @@
 from django.views.generic import CreateView
 from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
 import datetime as dt
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from accounts.models import Patient
-from .forms_doctor import treatPatientForm, AddBlogForm
+from .forms_doctor import treatPatientForm
 from .models import Appointment
 
 
 class treatPatientView(CreateView):
     form_class = treatPatientForm
-    template_name = 'hc/treat_patient.html'
+    template_name = 'doctor/treat_patient.html'
     success_url = '/'
     super_context = {}
 
@@ -65,18 +64,3 @@ class treatPatientView(CreateView):
         patient.prescriptions.add(prescription)
         appointment.delete()
         return super(treatPatientView, self).form_valid(form)
-
-
-class AddBlogView(SuccessMessageMixin, CreateView):
-    template_name = 'main/add_blog.html'
-    form_class = AddBlogForm
-    success_url = '/'
-    success_message = 'Blog was successfully created.'
-    extra_tags = 'd-flex justify-content-center alert alert-success alert-dismissible fade show'
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        success_message = self.get_success_message(form.cleaned_data)
-        if success_message:
-            messages.success(self.request, success_message, extra_tags=self.extra_tags)
-        return response

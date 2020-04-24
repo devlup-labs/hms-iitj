@@ -43,6 +43,10 @@
                               <li><a href="contact.html">Contact</a></li> -->
                 {% if user.is_authenticated %}
 
+                  {% if user is patient %}
+                  <p>hellooooo</p>
+                  {% endif %}
+
                 <li>
                   <div class="dropdown">
                     <button class="dropbtn">{{user.first_name}} <i class="fa fa-caret-down"></i></button>

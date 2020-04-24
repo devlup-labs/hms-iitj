@@ -5,12 +5,11 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from accounts.models import Patient, Doctor
 from .models import Appointment
-from main.models import Blog
 from .forms_patient import CreateProfileIITForm, takeAppointmentForm
 
 
 class viewMedicalHistory(TemplateView):
-    template_name = "accounts/medical_history.html"
+    template_name = "patient/medical_history.html"
 
     def get_context_data(self, **kwargs):
         context = super(viewMedicalHistory, self).get_context_data(**kwargs)
@@ -22,7 +21,7 @@ class viewMedicalHistory(TemplateView):
 
 class CreateProfileView(CreateView):
     form_class = CreateProfileIITForm
-    template_name = 'accounts/create_profile.html'
+    template_name = 'patient/create_profile.html'
     success_url = '/'
 
     def form_valid(self, form):
@@ -37,12 +36,6 @@ class CreateProfileView(CreateView):
             "Profile was successfully created.",
             extra_tags='col-10 col-lg-12 d-flex justify-content-center alert alert-success alert-dismissible fade show')
         return super(CreateProfileView, self).form_valid(form)
-
-
-def BlogDetails(request, pk):
-    blogs = Blog.objects.get(pk=pk)
-    template_name = 'main/blog_details.html'
-    return render(request, template_name, {'blog': blogs})
 
 
 def makeAppointment(request):
@@ -64,4 +57,4 @@ def makeAppointment(request):
         return HttpResponseRedirect("/")
     else:
         form = takeAppointmentForm()
-        return render(request, 'hc/create_appointment.html', {'form': form})
+        return render(request, 'patient/create_appointment.html', {'form': form})
