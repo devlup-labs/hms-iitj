@@ -26,7 +26,7 @@ class CreateProfileView(CreateView):
 
     def form_valid(self, form):
         user = self.request.user
-        user.username = user.email
+        user.username = user.email.split("@")[0]
         user.save()
         userprofile = form.save()
         userprofile.user = user
