@@ -40,7 +40,7 @@ class CreateProfileView(CreateView):
 
 def makeAppointment(request):
     if not request.user.is_authenticated:
-        return redirect('accounts:login')
+        return redirect('/auth/google/login/')
     if request.method == "POST":
         form = takeAppointmentForm(request.POST)
         if form.is_valid():
