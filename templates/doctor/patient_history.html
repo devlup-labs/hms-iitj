@@ -10,19 +10,12 @@
             <div class="col-12">
                 <div class="services-tabs">
                     <div class="tabs">
-                        <!-- <ul class="tabs-nav d-flex flex-wrap">
-                        <li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_1">{{user.first_name}}</li>
-                        <li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_2">  Pellentesque lacinia </li>
-                        <li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_3">Consectetur diam</li>
-                        <li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_4">CMauris tortor</li>
-                        <li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_5">Phasellus sit amet</li>
-                    </ul> -->
 
                         <div class="tabs-container">
                             <div id="tab_1" class="tab-content">
 
-                                <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" height="330px">
-                                <h4>{{patient.first_name}} {{patient.last_name}} ({{patient.gender}})</h4>
+                                <img src="{{ patient.user.socialaccount_set.all.0.get_avatar_url }}" height="330px">
+                                <h4>{{patient.user.first_name}} {{patient.user.last_name}} ({{patient.gender}})</h4>
                                 <div class="row">
                                     <p>Height: {{patient.height}} feet</p>
                                     <div style="padding-left: 50px;"></div>
