@@ -18,7 +18,7 @@ def IndexView(request):
     if request.user.is_authenticated:
         if hasattr(request.user, 'doctor'):
             form = SearchPatientForm
-            return render(request, 'doctor/index_doctor.html', {'form': form})
+            return render(request, 'doctor/index.html', {'form': form})
         elif hasattr(request.user, 'receptionist'):
             return render(request, 'receptionist/index_receptionist.html')
         # add pharmacist and admin fields here

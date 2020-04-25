@@ -1,4 +1,4 @@
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.contrib import messages
 import datetime as dt
 from django.http import HttpResponseRedirect
@@ -6,6 +6,16 @@ from django.shortcuts import get_object_or_404
 from accounts.models import Patient
 from .forms_doctor import treatPatientForm
 from .models import Appointment
+
+
+class patientHistoryView(TemplateView):
+    template_name = 'doctor/patient_history.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(patientHistoryView, self).get_context_data(*args, **kwargs)
+        patient = get_object_or_404(Patient, user__username=kwargs['ldap'])
+        context['patient'] = patient
+        return context
 
 
 class treatPatientView(CreateView):
