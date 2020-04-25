@@ -11,6 +11,6 @@ urlpatterns = [
     path('makeAppointment/', makeAppointment, name='makeAppointment'),
     path('create_profile/', CreateProfileView.as_view(), name='createProfile'),
     path('history/', viewMedicalHistory.as_view(), name='history'),
-    path('<str:ldap>/history', patientHistoryView.as_view(), name='patient'),
+    path('<str:ldap>/history/', patientHistoryView.as_view(), name='patient'),
 
 ]
