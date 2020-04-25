@@ -30,7 +30,7 @@
     {% if messages %}
     {% for message in messages %}
     <div {% if message.tags %} class="{{ message.tags }}" {% else %}
-        class="d-flex justify-content-center alert alert-secondary" {% endif %}>{{ message }} </div>
+        class="d-flex justify-content-center alert alert-secondary" {% endif %} style="margin: 0;">{{ message }} </div>
     {% endfor %}
     {% endif %}
     <header class="site-header">

@@ -10,14 +10,8 @@
             style="background-image: url('{% static 'images/background1.jpg' %}') ">
             
             <div class="hero-content-overlay position-absolute w-100 h-100">
-                {% if messages %}
-                    {% for message in messages %}
-                        <div {% if message.tags %} class="{{ message.tags }}" {% else %} class="d-flex justify-content-center alert alert-secondary" {% endif %}>{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
-    
-                <div class="container h-100">
             
+                <div class="container h-100">
                     
                     <div class="row h-100">
                     <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">            
