@@ -1,10 +1,10 @@
 from django import forms
 from accounts.models import Patient, Doctor
 import datetime
+from django.forms.widgets import DateInput
 
 
-class DateInput(forms.DateInput):
-    input_type = 'date'
+YEARS = reversed([x for x in range(1940, datetime.date.today().year)])
 
 
 class TimeInput(forms.TimeInput):
@@ -16,7 +16,7 @@ class CreateProfileIITForm(forms.ModelForm):    # only for iitj students
     class Meta:
         model = Patient
         exclude = ['user', 'prescriptions']
-        widgets = {'birthday': DateInput}
+        widgets = {'birthday': forms.SelectDateWidget(years=YEARS)}
 
     def __init__(self, *args, **kwargs):
         super(CreateProfileIITForm, self).__init__(*args, **kwargs)
