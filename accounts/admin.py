@@ -20,5 +20,3 @@ class ReceptionistAdmin(admin.ModelAdmin):
 admin.site.register(Patient, PatientAdmin)
 admin.site.register(Doctor, DoctorAdmin)
 admin.site.register(Receptionist, ReceptionistAdmin)
-
-# admin.site.register(Patient)

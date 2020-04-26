@@ -3,6 +3,8 @@ from django.views.generic import CreateView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.decorators import login_required, user_passes_test
 from accounts.models import Patient, Doctor
 from .models import Appointment
 from .forms_patient import CreateProfileIITForm, takeAppointmentForm
@@ -19,10 +21,13 @@ class viewMedicalHistory(TemplateView):
         return context
 
 
-class CreateProfileView(CreateView):
+class CreateProfileView(UserPassesTestMixin, CreateView):
     form_class = CreateProfileIITForm
     template_name = 'patient/create_profile.html'
     success_url = '/'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name__in=['patient', 'receptionist']).exists()
 
     def form_valid(self, form):
         user = self.request.user
@@ -38,6 +43,8 @@ class CreateProfileView(CreateView):
         return super(CreateProfileView, self).form_valid(form)
 
 
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='patient').exists())  # give access to this view to receptionist too
 def makeAppointment(request):
     if not request.user.is_authenticated:
         return redirect('/auth/google/login/')

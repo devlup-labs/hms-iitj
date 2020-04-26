@@ -2,6 +2,7 @@ from django.views.generic import CreateView
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from .models import Blog
 from accounts.models import Doctor
 from hc.models import Appointment
@@ -20,7 +21,7 @@ def IndexView(request):
             form = SearchPatientForm
             return render(request, 'doctor/index.html', {'form': form})
         elif hasattr(request.user, 'receptionist'):
-            return render(request, 'receptionist/index_receptionist.html')
+            return render(request, 'receptionist/index.html')
         # add pharmacist and admin fields here
         appn = appn.filter(patient=request.user.email).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
@@ -39,11 +40,14 @@ def BlogDetails(request, pk):
     return render(request, template_name, {'blog': blogs})
 
 
-class AddBlogView(SuccessMessageMixin, CreateView):
+class AddBlogView(SuccessMessageMixin, UserPassesTestMixin, CreateView):
     template_name = 'main/add_blog.html'
     form_class = AddBlogForm
     success_url = '/'
     extra_tags = 'd-flex justify-content-center alert alert-success alert-dismissible fade show'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='doctor').exists()
 
     def form_valid(self, form):
         form = form.save(commit=False)

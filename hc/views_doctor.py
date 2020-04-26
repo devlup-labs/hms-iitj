@@ -1,4 +1,5 @@
 from django.views.generic import CreateView, TemplateView
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib import messages
 import datetime as dt
 from django.http import HttpResponseRedirect
@@ -8,8 +9,11 @@ from .forms_doctor import treatPatientForm
 from .models import Appointment
 
 
-class patientHistoryView(TemplateView):
+class patientHistoryView(UserPassesTestMixin, TemplateView):
     template_name = 'doctor/patient_history.html'
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='doctor').exists()
 
     def get_context_data(self, *args, **kwargs):
         context = super(patientHistoryView, self).get_context_data(*args, **kwargs)
@@ -18,11 +22,14 @@ class patientHistoryView(TemplateView):
         return context
 
 
-class treatPatientView(CreateView):
+class treatPatientView(UserPassesTestMixin, CreateView):
     form_class = treatPatientForm
     template_name = 'doctor/treat_patient.html'
     success_url = '/'
     super_context = {}
+
+    def test_func(self):
+        return self.request.user.groups.filter(name='doctor').exists()
 
     def get(self, request, *args, **kwargs):
         min_dt = dt.datetime.now()-dt.timedelta(minutes=30)
