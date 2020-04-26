@@ -1,0 +1,14 @@
+{% extends 'main/base_forms.html' %}
+{% block body_block %}
+<!-- {% load bootstrap4 %} -->
+
+<h2>Update Profile</h2><br>
+<div class="container">
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Update Profile</button>
+	</form>
+</div>
+
+{% endblock %}

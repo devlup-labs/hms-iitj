@@ -11,7 +11,7 @@ class TimeInput(forms.TimeInput):
     input_type = 'time'
 
 
-class CreateProfileIITForm(forms.ModelForm):    # only for iitj students
+class CreateProfileForm(forms.ModelForm):    # only for iitj students
 
     class Meta:
         model = Patient
@@ -19,7 +19,7 @@ class CreateProfileIITForm(forms.ModelForm):    # only for iitj students
         widgets = {'birthday': forms.SelectDateWidget(years=YEARS)}
 
     def __init__(self, *args, **kwargs):
-        super(CreateProfileIITForm, self).__init__(*args, **kwargs)
+        super(CreateProfileForm, self).__init__(*args, **kwargs)
         self.fields['phone_number'].widget.attrs['icon_name'] = "fa fa-phone"
         self.fields['height'].widget.attrs['icon_name'] = "fa fa-user"
         self.fields['weight'].widget.attrs['icon_name'] = "fa fa-user"

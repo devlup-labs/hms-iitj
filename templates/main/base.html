@@ -54,7 +54,7 @@
                   <div class="dropdown">
                     <button class="dropbtn">{{user.first_name}} <i class="fa fa-caret-down"></i></button>
                     <div class="dropdown-content">
-                      <a href="#">Profile</a>
+                      <a href="{% url 'hc:updateProfile' %}">Profile</a>
                       <a href="{% url 'hc:history' %}">History</a>
                       <a href="{% url 'accounts:logout' %}">Logout</a>
                     </div>

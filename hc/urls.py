@@ -1,6 +1,6 @@
 from django.urls import path
 from .views_doctor import treatPatientView, patientHistoryView
-from .views_patient import makeAppointment, viewMedicalHistory, CreateProfileView
+from .views_patient import makeAppointment, viewMedicalHistory, CreateProfileView, updateProfileView
 
 
 app_name = 'hc'
@@ -10,6 +10,7 @@ urlpatterns = [
          name='prescription'),
     path('makeAppointment/', makeAppointment, name='makeAppointment'),
     path('create_profile/', CreateProfileView.as_view(), name='createProfile'),
+    path('update_profile/', updateProfileView, name='updateProfile'),
     path('history/', viewMedicalHistory.as_view(), name='history'),
     path('<str:ldap>/history/', patientHistoryView.as_view(), name='patient'),
 

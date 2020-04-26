@@ -1,5 +1,4 @@
-from django.views.generic import TemplateView
-from django.views.generic import CreateView
+from django.views.generic import TemplateView, CreateView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -7,7 +6,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
 from accounts.models import Patient, Doctor
 from .models import Appointment
-from .forms_patient import CreateProfileIITForm, takeAppointmentForm
+from .forms_patient import CreateProfileForm, takeAppointmentForm
 
 
 class viewMedicalHistory(TemplateView):
@@ -22,7 +21,7 @@ class viewMedicalHistory(TemplateView):
 
 
 class CreateProfileView(CreateView):
-    form_class = CreateProfileIITForm
+    form_class = CreateProfileForm
     template_name = 'patient/create_profile.html'
     success_url = '/'
 
@@ -64,3 +63,11 @@ def makeAppointment(request):
     else:
         form = takeAppointmentForm()
         return render(request, 'patient/create_appointment.html', {'form': form})
+
+
+def updateProfileView(request):
+    patient = get_object_or_404(Patient, user__username=request.user.username)
+    form = CreateProfileForm(instance=patient)
+    if(request.method == "POST"):
+        form.save()
+    return render(request, "patient/update_profile.html", {'form': form})
