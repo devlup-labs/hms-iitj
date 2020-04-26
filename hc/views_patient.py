@@ -3,7 +3,7 @@ from django.views.generic import CreateView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
 from accounts.models import Patient, Doctor
 from .models import Appointment
@@ -21,17 +21,16 @@ class viewMedicalHistory(TemplateView):
         return context
 
 
-class CreateProfileView(UserPassesTestMixin, CreateView):
+class CreateProfileView(CreateView):
     form_class = CreateProfileIITForm
     template_name = 'patient/create_profile.html'
     success_url = '/'
 
-    def test_func(self):
-        return self.request.user.groups.filter(name__in=['patient', 'receptionist']).exists()
-
     def form_valid(self, form):
         user = self.request.user
         user.username = user.email.split("@")[0]
+        group = Group.objects.get(name="patient")
+        user.groups.add(group)
         user.save()
         userprofile = form.save()
         userprofile.user = user
