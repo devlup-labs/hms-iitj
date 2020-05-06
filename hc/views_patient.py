@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, CreateView
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import Group
@@ -41,25 +41,30 @@ class CreateProfileView(CreateView):
         return super(CreateProfileView, self).form_valid(form)
 
 
-@login_required
+@login_required(login_url="/auth/google/login/")
 @user_passes_test(lambda u: u.groups.filter(name='patient').exists())  # give access to this view to receptionist too
 def makeAppointment(request):
-    if not request.user.is_authenticated:
-        return redirect('/auth/google/login/')
+
     if request.method == "POST":
         form = takeAppointmentForm(request.POST)
         if form.is_valid():
             specialization = form['specialization'].value()
-            print(specialization)
-            available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
-            patient = get_object_or_404(Patient, user__email=request.user.email)
-            time = form['time'].value()
-            date = form['date'].value()
-            Appointment.objects.create(patient=patient.user.email, doctor=available_doctors, time=time, date=date)
-            messages.success(
-                request,
-                "Appointment was successfully created.",
-                extra_tags='col-10 col-lg-12 d-flex justify-content-center alert alert-success alert-dismissible fade show')
+            try:
+                available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
+                patient = get_object_or_404(Patient, user__email=request.user.email)
+                time = form['time'].value()
+                date = form['date'].value()
+                Appointment.objects.create(patient=patient.user.email, doctor=available_doctors, time=time, date=date)
+                messages.success(
+                    request,
+                    "Appointment was successfully created.",
+                    extra_tags='col-10 col-lg-12 d-flex justify-content-center alert\
+                                 alert-success alert-dismissible fade show')
+            except:
+                messages.error(
+                    request,
+                    "No Doctors Available.",
+                    extra_tags='d-flex justify-content-center alert alert-danger alert-dismissible fade show')
         return HttpResponseRedirect("/")
     else:
         form = takeAppointmentForm()
