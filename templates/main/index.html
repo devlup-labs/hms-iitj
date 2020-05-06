@@ -8,13 +8,13 @@
     <div class="swiper-wrapper">
         <div class="swiper-slide hero-content-wrap"
             style="background-image: url('{% static 'images/background1.jpg' %}') ">
-            
+
             <div class="hero-content-overlay position-absolute w-100 h-100">
-            
+
                 <div class="container h-100">
-                    
+
                     <div class="row h-100">
-                    <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">            
+                        <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-start">
                             <header class="entry-header">
                                 <h1>Health Center<br>IIT Jodhpur</h1>
                             </header>
@@ -79,7 +79,7 @@
                     <!-- class="d-flex flex-wrap" -->
                     <form method="POST">
                         {% csrf_token %}
-                        {{form}}    
+                        {{form}}
                         <!-- {#% bootstrap_form form %#} -->
                         <!-- {% for field in form %}
                         {{field.label}}: {{field}}<br>
@@ -95,189 +95,6 @@
     </div>
 </div>
 
-<div class="our-departments">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="our-departments-wrap">
-                    <h2>Our Departments</h2>
-
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="../../static/images/cardiogram.png" alt="">
-                                    <h3>Cardioology</h3>
-                                </header>
-
-                                <div class="entry-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem
-                                        maximus mauris.</p>
-                                </div>
-
-                                <footer class="entry-footer">
-                                    <a href="#">read more</a>
-                                </footer>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="../../static/images/stomach-2.png" alt="">
-
-                                    <h3>Gastroenterology</h3>
-                                </header>
-
-                                <div class="entry-content">
-                                    <p>Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac
-                                        ligula sapien.</p>
-                                </div>
-
-                                <footer class="entry-footer">
-                                    <a href="#">read more</a>
-                                </footer>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="../../static/images/blood-sample-2.png" alt="">
-
-                                    <h3>Medical Lab</h3>
-                                </header>
-
-                                <div class="entry-content">
-                                    <p>Lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-                                        Suspendisse cursus.</p>
-                                </div>
-
-                                <footer class="entry-footer">
-                                    <a href="#">read more</a>
-                                </footer>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="../../static/images/teeth.png" alt="">
-
-                                    <h3>Dental Care</h3>
-                                </header>
-
-                                <div class="entry-content">
-                                    <p>Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac
-                                        ligula sapien.</p>
-                                </div>
-
-                                <footer class="entry-footer">
-                                    <a href="#">read more</a>
-                                </footer>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="../../static/images/stretcher.png" alt="">
-
-                                    <h3>Surgery</h3>
-                                </header>
-
-                                <div class="entry-content">
-                                    <p>Lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-                                        Suspendisse cursus.</p>
-                                </div>
-
-                                <footer class="entry-footer">
-                                    <a href="#">read more</a>
-                                </footer>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="../../static/images/scanner.png" alt="">
-
-                                    <h3>Neurology</h3>
-                                </header>
-
-                                <div class="entry-content">
-                                    <p>Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac
-                                        ligula sapien.</p>
-                                </div>
-
-                                <footer class="entry-footer">
-                                    <a href="#">read more</a>
-                                </footer>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 mb-md-0">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="../../static/images/bones.png" alt="">
-
-                                    <h3>Orthopaedy</h3>
-                                </header>
-
-                                <div class="entry-content">
-                                    <p>Lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-                                        Suspendisse cursus.</p>
-                                </div>
-
-                                <footer class="entry-footer">
-                                    <a href="#">read more</a>
-                                </footer>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 mb-lg-0">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="../../static/images/blood-donation-2.png" alt="">
-
-                                    <h3>Pediatry</h3>
-                                </header>
-
-                                <div class="entry-content">
-                                    <p>Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac
-                                        ligula sapien.</p>
-                                </div>
-
-                                <footer class="entry-footer">
-                                    <a href="#">read more</a>
-                                </footer>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 mb-0">
-                            <div class="our-departments-cont">
-                                <header class="entry-header d-flex flex-wrap align-items-center">
-                                    <img src="../../static/images/glasses.png" alt="">
-
-                                    <h3>Ophthalmology</h3>
-                                </header>
-
-                                <div class="entry-content">
-                                    <p>Lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.
-                                        Suspendisse cursus.</p>
-                                </div>
-
-                                <footer class="entry-footer">
-                                    <a href="#">read more</a>
-                                </footer>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <section class="testimonial-section">
     <div class="container">
@@ -331,23 +148,6 @@
 </section>
 
 {% include 'main/blogs_list.html' with blogs=blogs %}
-
-
-<div class="subscribe-banner">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-8 offset-lg-2">
-                <h2>Subscribe to our newsletter</h2>
-
-                <form>
-                    <input type="email" placeholder="E-mail address">
-                    <input class="button gradient-bg" type="submit" value="Subscribe">
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 {% endblock %}

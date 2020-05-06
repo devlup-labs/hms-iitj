@@ -3,7 +3,7 @@ from accounts.models import Patient, Doctor
 import datetime
 
 
-YEARS = reversed([x for x in range(1940, datetime.date.today().year)])
+YEARS = reversed([x for x in range(1930, datetime.date.today().year)])
 
 
 class TimeInput(forms.TimeInput):
