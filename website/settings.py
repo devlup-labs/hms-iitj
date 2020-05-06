@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'bootstrap4',
     'rest_framework',
+    'crispy_forms',
+
 ]
 SITE_ID = 2
 
@@ -144,7 +146,7 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'main:home'
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # ck-editor config
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'

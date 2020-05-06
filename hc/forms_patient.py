@@ -1,7 +1,6 @@
 from django import forms
 from accounts.models import Patient, Doctor
 import datetime
-from django.forms.widgets import DateInput
 
 
 YEARS = reversed([x for x in range(1940, datetime.date.today().year)])
@@ -9,6 +8,10 @@ YEARS = reversed([x for x in range(1940, datetime.date.today().year)])
 
 class TimeInput(forms.TimeInput):
     input_type = 'time'
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 
 class CreateProfileForm(forms.ModelForm):    # only for iitj students
