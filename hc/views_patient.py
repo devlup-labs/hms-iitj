@@ -69,5 +69,6 @@ def updateProfileView(request):
     patient = get_object_or_404(Patient, user__username=request.user.username)
     form = CreateProfileForm(instance=patient)
     if(request.method == "POST"):
+        form = CreateProfileForm(request.POST, instance=patient)
         form.save()
     return render(request, "patient/update_profile.html", {'form': form})

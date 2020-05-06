@@ -49,7 +49,7 @@ class Patient(models.Model):
     emergency_phone = models.CharField(max_length=12)
     height = models.IntegerField()
     weight = models.IntegerField()
-    blood_group = models.CharField(max_length=3, choices=BLOODGROUP_CHOICES, default='O+')
+    blood_group = models.CharField(max_length=3, choices=BLOODGROUP_CHOICES, default='NA')
     past_diseases = models.CharField(max_length=2, choices=DISEASE_CHOICES, default='0')
     other_diseases = models.CharField(max_length=20, default="nil")
     allergies = models.CharField(max_length=20, null=True, default="nil")
