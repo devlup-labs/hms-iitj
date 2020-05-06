@@ -65,3 +65,10 @@ class Appointment(models.Model):
 
     def __str__(self):
         return self.doctor.user.first_name + ", " + self.patient
+
+
+class DoctorSpecialization(models.Model):
+    specialization = models.TextField(max_length=32)
+
+    def __str__(self):
+        return self.specialization

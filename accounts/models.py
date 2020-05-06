@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from hc.models import Prescription
+from hc.models import Prescription, DoctorSpecialization
 
 
 class Patient(models.Model):
@@ -10,6 +10,7 @@ class Patient(models.Model):
         ('T', 'Transgender'),
     )
     BLOODGROUP_CHOICES = (
+        ('NA', 'Don\'t Know'),
         ('O+', 'O Positive'),
         ('O-', 'O Negative'),
         ('A+', 'A Positive'),
@@ -18,10 +19,9 @@ class Patient(models.Model):
         ('B-', 'B Negative'),
         ('AB+', 'AB Positive'),
         ('AB-', 'AB Negative'),
-        ('NA', 'Don\'t Know'),
     )
     DISEASE_CHOICES = (
-        ('0', 'Nill'),
+        ('0', 'nil'),
         ('1', 'Asthma'),
         ('2', 'Kidney Disease'),
         ('3', 'Tuberculosis'),
@@ -60,18 +60,16 @@ class Patient(models.Model):
 
 
 class Doctor(models.Model):
-    SPECIALIZATION_CHOICES = (
-        ('1', 'General Physician'),
-    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=Patient.GENDER_CHOICES)
-    specialization = models.CharField(max_length=1, choices=SPECIALIZATION_CHOICES)
+    specialization = models.ForeignKey(DoctorSpecialization, related_name="specializations",
+                                       on_delete=models.SET_NULL, null=True)
     # shift_begin = models.TimeField(auto_now=False, auto_now_add=False)
     # shift_end = models.TimeField(auto_now=False, auto_now_add=False)
     available = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username  # first_name + " " + self.user.last_name
+        return self.user.username
 
 
 class Pharmacist(models.Model):

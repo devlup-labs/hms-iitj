@@ -50,6 +50,7 @@ def makeAppointment(request):
         form = takeAppointmentForm(request.POST)
         if form.is_valid():
             specialization = form['specialization'].value()
+            print(specialization)
             available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
             patient = get_object_or_404(Patient, user__email=request.user.email)
             time = form['time'].value()
