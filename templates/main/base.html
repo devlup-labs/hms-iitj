@@ -5,30 +5,33 @@
 <head>
   <title>IIT Jodhpur</title>
 
-  
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  
+
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  
+
   <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
 
-  
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
+
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <script src="{% static 'js/custom.js' %}"></script>
+
 </head>
 
 <body onload="resizeElementHeight()">
-  <div style="margin: 0;">    
+  <div style="margin: 0;">
     {% if messages %}
-        {% for message in messages %}
-            <div {% if message.tags == "success" %} class="d-flex justify-content-center alert alert-success" {% elif message.tags %} class="{{ message.tags }}" {% else %} class="d-flex justify-content-center alert alert-secondary" {% endif %} style="margin: 0;">{{ message }}</div>
-        {% endfor %}
+    {% for message in messages %}
+    <div {% if message.tags == "success" %} class="d-flex justify-content-center alert alert-success"
+      {% elif message.tags %} class="{{ message.tags }}" {% else %}
+      class="d-flex justify-content-center alert alert-secondary" {% endif %} style="margin: 0;">{{ message }}</div>
+    {% endfor %}
     {% endif %}
   </div>
   <header class="site-header">
@@ -68,7 +71,7 @@
                   <a rel="" typography="LinkAlpha" data-ux="Link" href="tel:+912912801183"
                     class="d-flex justify-content-center align-items-center"
                     data-tccl="ux2.HEADER.header9.Section.Default.Link.Default.55282.click,click"><img
-                      src="../../static/images/emergency-call.png">+91 291 280 1183</a>
+                      src="{% static 'images/emergency-call.png' %}">+91 291 280 1183</a>
                 </li>
               </ul>
             </nav>
@@ -95,7 +98,7 @@
         <div class="row">
           <div class="col-12 col-md-6 col-lg-4">
             <div class="foot-about">
-              <h2><a href="#"><img src="../../static/images/logo.png" alt=""></a></h2>
+              <h2><a href="#"><img src="{% static 'images/logo.png' %}" alt=""></a></h2>
 
               <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p> -->
 
@@ -128,11 +131,12 @@
 
               <ul class="p-0 m-0">
                 <li><a href="/">Home</a></li>
-                
+
                 <!-- <li><a href="#">Departments</a></li> -->
                 <!-- <li><a href="contact.html">Contact</a></li> -->
                 <li><a href="#">Developers</a></li>
-                <li><a href="http://iitj.ac.in/events/index.php?id=186&title=186&event=latest@iit_jodhpur">About us</a></li>
+                <li><a href="http://iitj.ac.in/events/index.php?id=186&title=186&event=latest@iit_jodhpur">About us</a>
+                </li>
                 <li><a href="/admin">Admin Portal</a></li>
               </ul>
             </div>
@@ -144,14 +148,12 @@
 
 
 
-  <script type='text/javascript' src='../../static/js/jquery.js'></script>
-  <script type='text/javascript' src='../../static/js/jquery.collapsible.min.js'></script>
-  <script type='text/javascript' src='../../static/js/swiper.min.js'></script>
-  <script type='text/javascript' src='../../static/js/jquery.countdown.min. js'></script>
-  <script type='text/javascript' src='../../static/js/circle-progress.min.js'></script>
-  <script type='text/javascript' src='../../static/js/jquery.countTo.min.js'></script>
-  <script type='text/javascript' src='../../static/js/jquery.barfiller.js'></script>
-  <script type='text/javascript' src='../../static/js/custom.js'></script>
+  <script type='text/javascript' src="{% static 'js/jquery.js' %}"></script>
+  <script type='text/javascript' src="{% static 'js/jquery.collapsible.min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'js/swiper.min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'js/jquery.countTo.min.js' %}"></script>
+  <script type='text/javascript' src="{% static 'js/jquery.barfiller.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
   <!-- </div> -->
 </body>
 <script>
