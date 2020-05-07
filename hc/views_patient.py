@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, CreateView
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import Group
@@ -77,4 +77,5 @@ def updateProfileView(request):
     if(request.method == "POST"):
         form = CreateProfileForm(request.POST, instance=patient)
         form.save()
+        return redirect("main:home")
     return render(request, "patient/update_profile.html", {'form': form})
