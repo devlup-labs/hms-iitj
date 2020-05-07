@@ -1,25 +1,28 @@
 {% extends 'main/base_forms.html' %}
 {% block body_block %}
-{% load socialaccount %}
 {% load bootstrap4 %}
 {% load static %}
 
 
 
+<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+	<form class="login100-form validate-form" method="POST">
+		<span class="login100-form-title p-b-33">
+			Update Profile
+		</span>
 
-<span class="login100-form-title p-b-33">
-	Update Profile
-</span>
-{% csrf_token %}
+		{% csrf_token %}
+		<!-- {{ form.as_p }} -->
+		{% bootstrap_form form %}
 
-<!-- {{ form.as_p }} -->
-{% bootstrap_form form %}
-
-<div class="container-login100-form-btn m-t-20">
-	<button class="login100-form-btn">
-		Update Profile
-	</button>
+		<div class="container-login100-form-btn m-t-20">
+			<button class="login100-form-btn">
+				Update Profile
+			</button>
+		</div>
+	</form>
+	<br>
+	<center><a href="{% url 'main:home' %}">Go Back</a></center>
 </div>
-
 
 {% endblock %}

@@ -18,14 +18,8 @@
 <body onload="resizeElementHeight()">
 	<div class="limiter">
 		<div class="container-login100">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form" method="POST">
-					{% block body_block %}
-					{% endblock %}
-				</form>
-				<br>
-
-			</div>
+			{% block body_block %}
+			{% endblock %}
 		</div>
 	</div>
 
@@ -34,7 +28,8 @@
 </body>
 <script>
 	function resizeElementHeight() {
-		document.getElementsByClassName("container-login100")[0].style.backgroungheight = window.innerHeight.toString() + "px"
+		document.getElementsByClassName("container-login100")[0].style.backgroungheight = window.innerHeight.toString() +
+			"px"
 	}
 </script>
 
