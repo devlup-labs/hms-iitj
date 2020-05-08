@@ -11,10 +11,10 @@
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">Appointments-IITJ</h2>
                     <p></p>
-                    <form method="POST" action="hc/viewAppointmentIITJ">
+                    <form method="POST">
                         {% csrf_token %}
                         <input type="email" name="email" placeholder="Patient's Email" style="margin-bottom: 5%;">
-                        <a href="{% url 'hc:view_appointment'}"><button class="button gradient-bg" type="submit">View Appointment</button></a>
+                        <a href="{url 'main:home_receptionist'}"><button class="button gradient-bg" type="submit">View Appointment</button></a>
                     </form>
                 </div>
             </div>

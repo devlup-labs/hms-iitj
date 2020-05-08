@@ -21,7 +21,7 @@ def IndexView(request):
             form = SearchPatientForm
             return render(request, 'doctor/index.html', {'form': form})
         elif hasattr(request.user, 'receptionist'):
-            return render(request, 'receptionist/index.html')
+            return redirect('main:home_receptionist')
         # add pharmacist and admin fields here
         appn = appn.filter(patient=request.user.email).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
