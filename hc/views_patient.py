@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import Patient, Doctor
 from .models import Appointment
 from .forms_patient import CreateProfileForm, takeAppointmentForm
@@ -20,7 +21,9 @@ class viewMedicalHistory(TemplateView):
         return context
 
 
-class CreateProfileView(CreateView):
+class CreateProfileView(LoginRequiredMixin, CreateView):
+    login_url = '/auth/google/login'
+    redirect_field_name = 'hc:createProfile'
     form_class = CreateProfileForm
     template_name = 'patient/create_profile.html'
     success_url = '/'
