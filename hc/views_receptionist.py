@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .forms_receptionsist import ViewAppointmentForm
+from django.shortcuts import render, redirect
+from .forms_receptionist import ViewAppointmentForm
 from .models import Appointment
 
 
@@ -15,13 +15,21 @@ def IndexViewReceptionist(request):
 def SearchAppointmentView(request, ldap):
     email = ldap + '@iitj.ac.in'
     if Appointment.objects.filter(patient=email).exists():
-        appn = get_object_or_404(Appointment, patient=email)
+        appn = Appointment.objects.filter(patient=email).order_by('date', 'time')[0]
         if request.method == "POST":
             form = ViewAppointmentForm(request.POST, instance=appn)
             form.save()
             return redirect("main:home")
         else:
             form = ViewAppointmentForm(instance=appn)
+            return render(request, 'receptionist/view_appointment.html', {'form': form, 'appointment': appn})
     else:
-        form = ViewAppointmentForm()
-    return render(request, 'receptionist/view_appointment.html', {'form': form, 'appointment': appn})
+        if request.method == "POST":
+            form = ViewAppointmentForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('main:home')
+        else:
+            form = ViewAppointmentForm(initial={'patient': email})
+            appn = None
+            return render(request, 'receptionist/view_appointment.html', {'form': form, 'appointment': appn})
