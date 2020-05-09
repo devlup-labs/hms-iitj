@@ -79,7 +79,7 @@
                     <!-- class="d-flex flex-wrap" -->
                     <form method="POST">
                         {% csrf_token %}
-                        {{form}}
+                        {{ form.as_p }}
                         <!-- {#% bootstrap_form form %#} -->
                         <!-- {% for field in form %}
                         {{field.label}}: {{field}}<br>
