@@ -20,6 +20,10 @@ def IndexViewPharmacist(request):
 def ViewPrescription(request, ldap):
     email = ldap + '@iitj.ac.in'
     patient = Patient.objects.filter(user__email=email)[0]
-    pres = patient.prescriptions.all().latest('created_at')
+    pres = patient.prescriptions.filter(utilised=False).latest('created_at')
+    if request.method == "POST":
+        form = ViewPrescriptionForm(request.POST, instance=pres)
+        form.save()
+        return redirect('main:home')
     form = ViewPrescriptionForm(instance=pres)
     return render(request, 'pharmacist/prescription.html', {'form': form})

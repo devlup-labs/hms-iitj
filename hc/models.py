@@ -29,6 +29,7 @@ class Prescription(models.Model):
     created_at = models.DateTimeField()
     remarks = models.TextField(max_length=240)
     doctor = models.ForeignKey(to='accounts.Doctor', on_delete=models.CASCADE, null=True)
+    utilised = models.BooleanField(default=False)
 
     def __str__(self):
         return self.prescription_id

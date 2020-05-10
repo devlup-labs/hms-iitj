@@ -13,8 +13,15 @@
                 
                 {% csrf_token %}
                 {%  bootstrap_form form %}
+
+                <div class="container-login100-form-btn m-t-20">
+                    <button class="login100-form-btn">
+                        Done
+                    </button>
+                </div>
                 
             </form>
+            <center><a href="{% url 'main:home' %}">Go Back</a></center>
         </div>
     </div>
 </div>
