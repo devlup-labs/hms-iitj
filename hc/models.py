@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.signals import pre_save
+from django.utils import timezone
 from .utils import unique_prescription_id
 
 
@@ -25,7 +26,7 @@ class Prescription(models.Model):
         # ('4', 'X Rays'),
     )
     prescription_id = models.CharField(unique=True, max_length=10)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField()
     remarks = models.TextField(max_length=240)
     doctor = models.ForeignKey(to='accounts.Doctor', on_delete=models.CASCADE, null=True)
 
@@ -35,6 +36,7 @@ class Prescription(models.Model):
 
 def pre_save_prescription(sender, instance, **kwargs):
     if instance._state.adding is True:
+        instance.created_at = timezone.now()
         instance.prescription_id = unique_prescription_id(instance)
 
 

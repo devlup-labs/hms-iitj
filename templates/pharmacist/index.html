@@ -1,0 +1,26 @@
+{% extends 'doctor/base.html' %}
+{% block body_block %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+<div class="homepage-boxes">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-5 mt-5 mt-lg-0">
+                <div class="appointment-box">
+                    <h2 class="d-flex align-items-center">Prescription</h2>
+                    <p></p>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="email" name="email" placeholder="Patient's Email" style="margin-bottom: 5%;">
+                        <a href="{url 'main:home_pharmacist'}"><button class="button gradient-bg" type="submit">View Prescription</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}

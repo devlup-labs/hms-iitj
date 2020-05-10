@@ -22,7 +22,8 @@ def IndexView(request):
             return render(request, 'doctor/index.html', {'form': form})
         elif hasattr(request.user, 'receptionist'):
             return redirect('main:home_receptionist')
-        # add pharmacist and admin fields here
+        elif hasattr(request.user, 'pharmacist'):
+            return redirect('main:home_pharmacist')
         appn = appn.filter(patient=request.user.email).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
             return redirect('hc:createProfile')

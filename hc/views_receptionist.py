@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms_receptionist import ViewAppointmentForm
 from .models import Appointment
 
 
+@login_required(login_url="/accounts/login/")
+@user_passes_test(lambda u: u.groups.filter(name='receptionist').exists())
 def IndexViewReceptionist(request):
     if request.method == "POST":
         email = request.POST.get('email', False)
@@ -12,6 +15,8 @@ def IndexViewReceptionist(request):
         return render(request, 'receptionist/index.html')
 
 
+@login_required(login_url="/accounts/login/")
+@user_passes_test(lambda u: u.groups.filter(name='receptionist').exists())
 def SearchAppointmentView(request, ldap):
     email = ldap + '@iitj.ac.in'
     if Appointment.objects.filter(patient=email).exists():
