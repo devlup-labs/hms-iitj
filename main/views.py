@@ -58,3 +58,7 @@ class AddBlogView(SuccessMessageMixin, UserPassesTestMixin, CreateView):
         if success_message:
             messages.success(self.request, success_message, extra_tags=self.extra_tags)
         return redirect('main:home')
+
+
+def DevelopersPage(request):
+    return render(request, 'main/developers.html')

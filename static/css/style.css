@@ -1620,3 +1620,12 @@ ul.tabs-nav .tab-nav.active {
 .foot-links ul li a {
     color: #828282;
 }
+
+/*--------------------------------------------------------------
+# developers page
+--------------------------------------------------------------*/
+
+.team-section{
+    position: relative;
+    padding-top: 60px;
+}
