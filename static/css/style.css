@@ -677,42 +677,6 @@ ul.tabs-nav .tab-nav.active {
     color: #fff;
 }
 
-/*
-# Subscribe Banner
---------------------------------*/
-.subscribe-banner {
-    padding: 80px 0;
-    background: url("../../static/images/subscribe-bg.png") no-repeat center;
-    background-size: cover;
-    text-align: center;
-}
-
-.subscribe-banner h2 {
-    font-size: 30px;
-    font-weight: 600;
-    color: #fff;
-}
-
-.subscribe-banner input[type="email"] {
-    width: 100%;
-    padding: 8px 24px;
-    border: 0;
-    margin-top: 24px;
-    font-size: 12px;
-    font-style: italic;
-    color: #404040;
-    background: #fff;
-    text-align: left;
-}
-
-.subscribe-banner input[type="submit"] {
-    margin-top: 32px;
-    margin-right: 0;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
 /*--------------------------------------------------------------
 # Homepage
 --------------------------------------------------------------*/
@@ -820,76 +784,6 @@ ul.tabs-nav .tab-nav.active {
 
 .appointment-box form input[type="submit"] {
     margin-top: 16px;
-}
-
-/*
-# Our Departments
---------------------------------*/
-.our-departments {
-    padding: 100px 0;
-    background: url('../images/departments-bg.jpg') no-repeat;
-    background-size: cover;
-}
-
-.our-departments-wrap {
-    padding: 60px 80px 80px;
-    background: -moz-linear-gradient(180deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* ff3.6+ */
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(50,200,250,1)), color-stop(100%, rgba(188,125,228,1))); /* safari4+,chrome */
-    background: -webkit-linear-gradient(180deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* safari5.1+,chrome10+ */
-    background: -o-linear-gradient(180deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* opera 11.10+ */
-    background: -ms-linear-gradient(180deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* ie10+ */
-    background: linear-gradient(270deg, rgba(50,200,250,1) 0%, rgba(88,125,228,1) 100%); /* w3c */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#18a3eb', endColorstr='#18a3eb',GradientType=1 ); /* ie6-9 */
-}
-
-@media screen and (max-width: 768px){
-    .our-departments-wrap {
-        padding-right: 30px;
-        padding-left: 30px;
-    }
-}
-
-.our-departments-wrap h2 {
-    margin-bottom: 80px;
-    font-size: 48px;
-    font-weight: 600;
-    text-align: center;
-    color: #fff;
-}
-
-.our-departments-cont {
-    margin-bottom: 64px;
-}
-
-.our-departments-cont .entry-header {
-    min-height: 48px;
-}
-
-.our-departments-cont .entry-header img {
-    margin-right: 16px;
-}
-
-.our-departments-cont h3 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.our-departments-cont .entry-content {
-    margin-top: 16px;
-}
-
-.our-departments-cont .entry-content p {
-    font-size: 14px;
-    color: #fff;
-}
-
-.our-departments-cont .entry-footer a {
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #fff;
 }
 
 /*
@@ -1026,23 +920,7 @@ ul.tabs-nav .tab-nav.active {
 }
 
 .testimonial-slider .swiper-pagination-bullet:nth-of-type(1) {
-    background: url("../images/user-1.jpg");
-}
-
-.testimonial-slider .swiper-pagination-bullet:nth-of-type(2) {
-    background: url("../images/user-2.jpg");
-}
-
-.testimonial-slider .swiper-pagination-bullet:nth-of-type(3) {
-    background: url("../images/user-3.jpg");
-}
-
-.testimonial-slider .swiper-pagination-bullet:nth-of-type(4) {
-    background: url("../images/user-4.jpg");
-}
-
-.testimonial-slider .swiper-pagination-bullet-active {
-    display: none;
+    background: url("");
 }
 
 /*
