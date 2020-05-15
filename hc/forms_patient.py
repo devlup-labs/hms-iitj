@@ -45,6 +45,10 @@ class CreateProfileForm(forms.ModelForm):    # only for iitj students
 class takeAppointmentForm(forms.Form):
 
     specialization = forms.ModelChoiceField(queryset=DoctorSpecialization.objects.all(), initial=0)
-    time = forms.TimeField(widget=TimeInput(), initial=(
-        datetime.datetime.now() + datetime.timedelta(minutes=5)).strftime('%H:%M'))
-    date = forms.DateField(widget=DateInput(), initial=datetime.date.today)
+    time = forms.TimeField(widget=TimeInput())
+    date = forms.DateField(widget=DateInput()) 
+    
+    def __init__(self, *args, **kwargs):
+        super(takeAppointmentForm, self).__init__(*args, **kwargs)
+        self.fields['time'].initial = (datetime.datetime.now() + datetime.timedelta(minutes=5)).strftime('%H:%M')
+        self.fields['date'].initial = datetime.date.today
