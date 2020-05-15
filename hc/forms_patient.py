@@ -46,8 +46,8 @@ class takeAppointmentForm(forms.Form):
 
     specialization = forms.ModelChoiceField(queryset=DoctorSpecialization.objects.all(), initial=0)
     time = forms.TimeField(widget=TimeInput())
-    date = forms.DateField(widget=DateInput()) 
-    
+    date = forms.DateField(widget=DateInput())
+
     def __init__(self, *args, **kwargs):
         super(takeAppointmentForm, self).__init__(*args, **kwargs)
         self.fields['time'].initial = (datetime.datetime.now() + datetime.timedelta(minutes=5)).strftime('%H:%M')
