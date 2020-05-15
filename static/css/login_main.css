@@ -162,6 +162,9 @@
     border-radius: 10px;
     overflow: hidden;
   
+    opacity: 0.92;
+    filter: alpha(opacity=92);
+
     box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
