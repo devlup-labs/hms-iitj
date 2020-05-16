@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .forms_receptionist import ViewAppointmentForm
-from .models import Appointment
+from hc.forms.forms_receptionist import ViewAppointmentForm
+from hc.models import Appointment
 
 
 @login_required(login_url="/accounts/login/")

@@ -2,5 +2,5 @@
 max-line-length = 125
 exclude = website/website/settings/*, env/, venv/ , */migrations/*
 per-file-ignores =
-  hc/views_patient.py: E722
+  hc/views/views_patient.py: E722
   
