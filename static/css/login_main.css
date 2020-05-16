@@ -157,13 +157,13 @@
   }
   
   .wrap-login100 {
-    width: 500px;
+    min-width: 500px;
     background: #fff;
     border-radius: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
   
-    opacity: 0.92;
-    filter: alpha(opacity=92);
+    opacity: 0.93;
+    filter: alpha(opacity=93);
 
     box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
