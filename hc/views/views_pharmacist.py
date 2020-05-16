@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from accounts.models import Patient
-from .forms_pharmacist import ViewPrescriptionForm
+from hc.forms.forms_pharmacist import ViewPrescriptionForm
 
 
 @login_required(login_url="/accounts/login/")

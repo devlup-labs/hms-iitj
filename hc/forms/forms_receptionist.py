@@ -1,6 +1,6 @@
 from django import forms
 from .forms_patient import TimeInput
-from .models import Appointment
+from hc.models import Appointment
 
 
 class ViewAppointmentForm(forms.ModelForm):

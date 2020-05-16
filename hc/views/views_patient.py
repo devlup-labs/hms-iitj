@@ -6,8 +6,8 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import Patient, Doctor
-from .models import Appointment
-from .forms_patient import CreateProfileForm, takeAppointmentForm
+from hc.models import Appointment
+from hc.forms.forms_patient import CreateProfileForm, takeAppointmentForm
 
 
 class viewMedicalHistory(TemplateView):

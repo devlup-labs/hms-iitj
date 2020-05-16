@@ -1,8 +1,8 @@
 from django.urls import path
-from .views_doctor import treatPatientView, patientHistoryView
-from .views_patient import makeAppointment, viewMedicalHistory, CreateProfileView, updateProfileView
-from .views_receptionist import SearchAppointmentView
-from .views_pharmacist import ViewPrescription
+from hc.views.views_doctor import treatPatientView, patientHistoryView
+from hc.views.views_patient import makeAppointment, viewMedicalHistory, CreateProfileView, updateProfileView
+from hc.views.views_receptionist import SearchAppointmentView
+from hc.views.views_pharmacist import ViewPrescription
 
 
 app_name = 'hc'

@@ -5,8 +5,8 @@ import datetime as dt
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from accounts.models import Patient
-from .forms_doctor import treatPatientForm
-from .models import Appointment
+from hc.forms.forms_doctor import treatPatientForm
+from hc.models import Appointment
 
 
 class patientHistoryView(UserPassesTestMixin, TemplateView):

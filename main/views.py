@@ -3,13 +3,13 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
-from .models import Blog
+from main.models import Blog
 from accounts.models import Doctor
 from hc.models import Appointment
-from hc.forms_patient import takeAppointmentForm
-from hc.forms_doctor import SearchPatientForm
+from hc.forms.forms_patient import takeAppointmentForm
+from hc.forms.forms_doctor import SearchPatientForm
 from main.forms import AddBlogForm
-from hc.views_patient import makeAppointment
+from hc.views.views_patient import makeAppointment
 
 
 def IndexView(request):

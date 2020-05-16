@@ -1,5 +1,5 @@
 from django import forms
-from .models import Prescription
+from hc.models import Prescription
 
 
 class treatPatientForm(forms.ModelForm):
