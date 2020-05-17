@@ -1,5 +1,5 @@
-Django~=3.0
 wheel
+Django~=3.0
 flake8
 django-ckeditor
 pillow
