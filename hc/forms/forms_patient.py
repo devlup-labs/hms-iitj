@@ -19,15 +19,13 @@ class CreateProfileForm(forms.ModelForm):    # only for iitj students
     class Meta:
         model = Patient
         exclude = ['user', 'prescriptions']
-        widgets = {
-            'birthday': forms.SelectDateWidget(years=YEARS),
-            }
+        widgets = {'birthday': forms.SelectDateWidget(years=YEARS)}
 
     def __init__(self, *args, **kwargs):
         super(CreateProfileForm, self).__init__(*args, **kwargs)
-        self.fields['num'].label = "Roll no. (or PF no.)"
-        self.fields['height'].label = "Height (in cm)"
-        self.fields['weight'].label = "Weight (in Kg)"
+        self.fields['num'].label = "Roll no. (or PF no.) "
+        self.fields['height'].label = "Height (in cm) "
+        self.fields['weight'].label = "Weight (in Kg) "
 
     def clean_phone_number(self):
         _dict = super(CreateProfileForm, self).clean()
@@ -47,6 +45,10 @@ class CreateProfileForm(forms.ModelForm):    # only for iitj students
 class takeAppointmentForm(forms.Form):
 
     specialization = forms.ModelChoiceField(queryset=DoctorSpecialization.objects.all(), initial=0)
-    time = forms.TimeField(widget=TimeInput(), initial=(
-        datetime.datetime.now() + datetime.timedelta(minutes=5)).strftime('%H:%M'))
-    date = forms.DateField(widget=DateInput(), initial=datetime.date.today)
+    time = forms.TimeField(widget=TimeInput())
+    date = forms.DateField(widget=DateInput())
+
+    def __init__(self, *args, **kwargs):
+        super(takeAppointmentForm, self).__init__(*args, **kwargs)
+        self.fields['time'].initial = (datetime.datetime.now() + datetime.timedelta(minutes=5)).strftime('%H:%M')
+        self.fields['date'].initial = datetime.date.today

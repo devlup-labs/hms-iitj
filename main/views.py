@@ -14,17 +14,17 @@ from hc.views.views_patient import makeAppointment
 
 def IndexView(request):
     blogs = Blog.objects.all()
-    appn = Appointment.objects.all()
+    appn = None
 
     if request.user.is_authenticated:
         if hasattr(request.user, 'doctor'):
-            form = SearchPatientForm
+            form = SearchPatientForm()
             return render(request, 'doctor/index.html', {'form': form})
         elif hasattr(request.user, 'receptionist'):
             return redirect('main:home_receptionist')
         elif hasattr(request.user, 'pharmacist'):
             return redirect('main:home_pharmacist')
-        appn = appn.filter(patient=request.user.email).order_by('date', 'time')
+        appn = Appointment.objects.all().filter(patient=request.user.email).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
             return redirect('hc:createProfile')
 
