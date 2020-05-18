@@ -11,7 +11,7 @@
                     <p></p>
 
                     Treat the next patient in the queue.<br><br>
-                    <a href="{% url 'hc:prescription' %}"><button class="button gradient-bg" type="submit">Treat
+                    <a href="{% url 'hc:prescription' %}"><button class="button bg" type="submit">Treat
                             Patient</button></a>
 
                 </div>
@@ -26,7 +26,7 @@
                         {% csrf_token %}
                         <!-- {{form}} -->
                         {% bootstrap_form form %}
-                        <a href="{% url 'hc:prescription' %}"><button class="button gradient-bg" type="submit">Treat
+                        <a href="{% url 'hc:prescription' %}"><button class="button bg" type="submit">Treat
                                 Patient</button></a>
                     </form>
 
@@ -36,7 +36,7 @@
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">Blogs</h2>
                     <p></p>
-                    <a href="{% url 'main:AddBlog' %}"><button class="button gradient-bg" type="submit">Write a
+                    <a href="{% url 'main:AddBlog' %}"><button class="button bg" type="submit">Write a
                             Blog</button></a>
                 </div>
             </div>
