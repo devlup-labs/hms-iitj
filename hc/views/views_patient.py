@@ -9,6 +9,7 @@ from accounts.models import Patient, Doctor
 from hc.models import Appointment
 from hc.forms.forms_patient import CreateProfileForm, takeAppointmentForm
 import subprocess
+from hc.event import create_event
 
 
 class viewMedicalHistory(TemplateView):
@@ -67,6 +68,9 @@ def makeAppointment(request):
                 time = form['time'].value()
                 date = form['date'].value()
                 Appointment.objects.create(patient=patient.user.email, doctor=available_doctors, time=time, date=date)
+
+                create_event(patient.user.email, date, time, available_doctors)
+
                 messages.success(
                     request,
                     "Appointment was successfully created.",

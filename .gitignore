@@ -123,3 +123,5 @@ GitHub.sublime-settings
 init.bat
 git.py
 .vscode
+*.pickle
+credentials.json
