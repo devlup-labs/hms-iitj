@@ -1,7 +1,3 @@
-
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -119,7 +115,7 @@
     font-family: OpenSans-Regular;
     font-size: 15px;
     line-height: 1.4;
-    color: #4272d7;
+    color: #007AAE;
   }
   
   .hov1:hover {
@@ -241,7 +237,7 @@
     position: absolute;
     width: 0;
     height: 1px;
-    background-color: #4272d7;
+    background-color: #007AAE;
   }
   
   .focus-input100-1::before {
@@ -261,7 +257,7 @@
     position: absolute;
     width: 1px;
     height: 0;
-    background-color: #4272d7;
+    background-color: #007AAE;
   }
   
   .focus-input100-1::after {
@@ -339,7 +335,7 @@
     padding: 0 20px;
     width: 100%;
     height: 60px;
-    background-color: #4272d7;
+    background-color: #007AAE;
   
     font-family: OpenSans-Regular;
     font-size: 14px;
@@ -424,7 +420,3 @@
       opacity: 1;
     }
   }
-  
-  
-  
-  
