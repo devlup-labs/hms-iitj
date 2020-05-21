@@ -47,7 +47,7 @@ class Patient(models.Model):
     height = models.PositiveIntegerField()
     weight = models.PositiveIntegerField()
     blood_group = models.CharField(max_length=3, choices=BLOODGROUP_CHOICES, default='NA')
-    past_diseases = models.CharField(max_length=2, choices=DISEASE_CHOICES, null=True)
+    past_diseases = models.CharField(max_length=2, choices=DISEASE_CHOICES, null=True, blank=True)
     other_diseases = models.CharField(max_length=20, default="nil")
     allergies = models.CharField(max_length=20, null=True, default="nil")
     prescriptions = models.ManyToManyField(Prescription, related_name="history", blank=True)
