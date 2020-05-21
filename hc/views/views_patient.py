@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, CreateView
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import Patient, Doctor
 from hc.models import Appointment
 from hc.forms.forms_patient import CreateProfileForm, takeAppointmentForm
+import subprocess
 
 
 class viewMedicalHistory(TemplateView):
@@ -36,6 +37,14 @@ class CreateProfileView(LoginRequiredMixin, CreateView):
         user.save()
         userprofile = form.save()
         userprofile.user = user
+
+        result = subprocess.check_output(['java', 'LDAP_API.java', user.username])  # request.user.username])
+        result = result.decode('utf-8')
+        if(result == "0"):
+            return HttpResponse("User {} does not exists.".format(user))
+        elif(result == "faculty" or result == "staff" or result == "project"):
+            userprofile.staff = True
+
         userprofile.save()
         messages.success(
             self.request,

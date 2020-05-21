@@ -18,7 +18,7 @@ class CreateProfileForm(forms.ModelForm):    # only for iitj students
 
     class Meta:
         model = Patient
-        exclude = ['user', 'prescriptions']
+        exclude = ['user', 'prescriptions', 'staff']
         widgets = {'birthday': forms.SelectDateWidget(years=YEARS)}
 
     def __init__(self, *args, **kwargs):

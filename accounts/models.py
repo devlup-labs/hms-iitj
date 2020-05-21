@@ -21,24 +21,21 @@ class Patient(models.Model):
         ('AB-', 'AB Negative'),
     )
     DISEASE_CHOICES = (
-        ('0', 'nil'),
-        ('1', 'Asthma'),
-        ('2', 'Kidney Disease'),
-        ('3', 'Tuberculosis'),
-        ('4', 'Irritable Bowel Syndrome'),
-        ('5', 'Psychiatric Diseases'),
-        ('6', 'Blood Diseases'),
-        ('7', 'Liver Diseases'),
-        ('8', 'Diabetes'),
-        ('9', 'Heart Disease'),
-        ('10', 'Osteoporosis'),
-        ('11', 'Hyper Tension'),
-        ('12', 'Cancer'),
-        ('13', 'Stroke and Ceribro Vascular diseases'),
-        ('14', 'Alzhemiers'),
-        ('15', 'Pnemonia and Influenza'),
-        ('16', 'Arthritis'),
-        ('17', 'Others'),
+        ('1', 'Alzheimer’s'),
+        ('2', 'Arthritis'),
+        ('3', 'Asthma'),
+        ('4', 'Blood Diseases'),
+        ('5', 'Cancer'),
+        ('6', 'Diabetes'),
+        ('7', 'Heart Disease'),
+        ('8', 'Hyper Tension'),
+        ('9', 'Kidney Disease'),
+        ('10', 'Liver Diseases'),
+        ('11', 'Osteoporosis'),
+        ('12', 'Pneumonia and Influenza'),
+        ('13', 'Psychiatric Diseases'),
+        ('14', 'Stroke and Cerebrovascular diseases'),
+        ('15', 'Tuberculosis'),
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
@@ -50,10 +47,11 @@ class Patient(models.Model):
     height = models.PositiveIntegerField()
     weight = models.PositiveIntegerField()
     blood_group = models.CharField(max_length=3, choices=BLOODGROUP_CHOICES, default='NA')
-    past_diseases = models.CharField(max_length=2, choices=DISEASE_CHOICES, default='0')
+    past_diseases = models.CharField(max_length=2, choices=DISEASE_CHOICES, null=True)
     other_diseases = models.CharField(max_length=20, default="nil")
     allergies = models.CharField(max_length=20, null=True, default="nil")
     prescriptions = models.ManyToManyField(Prescription, related_name="history", blank=True)
+    staff = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
