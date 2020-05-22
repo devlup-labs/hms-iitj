@@ -82,59 +82,63 @@
   {% block body_block %}
   {% endblock %}
 
-  <footer class="site-footer">
-    <div class="footer-widgets">
+  <footer class="footer">
+    <div class="footer_content">
       <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-6 col-lg-4">
-            <div class="foot-about">
-              <h2><a href="#"><img src="{% static 'images/logo.png' %}" alt=""></a></h2>
+        <div class="row footer_row">
 
-              <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</p> -->
-
-              <!-- <p class="copyright">
-                
-                Copyright &copy;<script>
-                  document.write(new Date().getFullYear());
-                </script> All rights reserved | This template is made with <i class="fa fa-heart"
-                  aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                
-              </p> -->
-            </div><!-- .foot-about -->
-          </div><!-- .col -->
-
-          <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
-            <div class="foot-contact">
-              <h2>Contact</h2>
-
-              <ul class="p-0 m-0">
-                <!-- <li><span>Addtress:</span>Mitlton Str. 26-27 London UK</li> -->
-                <li><span>Phone:</span>+91 291 280 1183</li>
-                <li><span>Email:</span>hc@iitj.ac.in</li>
-              </ul>
+          <div class="col-lg-4 footer_col">
+            <div class="footer_item text-center">
+              <div class="footer_title text-center">contact</div>
+              <div class="footer_list">
+                <ul>
+                  <li><span>Phone:</span><a href="tel:+912912801183" style="color: white;"> 291 280 1183</a></li>
+                  <li><span>Email:</span><a href="mailto:hc@itj.ac.in" style="color: white;"> hc@iitj.ac.in</a></li>
+                </ul>
+              </div>
             </div>
-          </div><!-- .col -->
+          </div>
 
-          <div class="col-12 col-md-6 col-lg-4 mt-5 mt-md-0">
-            <div class="foot-links">
-              <h2>Useful Links</h2>
+          <div class="col-lg-4 footer_col">
+            <div class="footer_item text-center">
+              <div class="footer_title">useful links</div>
+              <div class="footer_list">
+                <ul>
+                  <li><a href="/" style="color: white;">Home</a></li>
+                  <li><a href="{% url 'main:developers' %}" style="color: white;">Developers</a></li>
+                  <li><a href="http://iitj.ac.in/events/index.php?id=186&title=186&event=latest@iit_jodhpur" style="color: white;">About us</a></li>
+                  <li><a href="/admin" style="color: white;">Admin Portal</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-              <ul class="p-0 m-0">
-                <li><a href="/">Home</a></li>
-
-                <!-- <li><a href="#">Departments</a></li> -->
-                <!-- <li><a href="contact.html">Contact</a></li> -->
-                <li><a href="{% url 'main:developers' %}">Developers</a></li>
-                <li><a href="http://iitj.ac.in/events/index.php?id=186&title=186&event=latest@iit_jodhpur">About us</a>
-                </li>
-                <li><a href="/admin">Admin Portal</a></li>
+          <div class="col-lg-4 footer_col">
+            <div class="footer_item text-center">
+              <ul>
+                <div class="footer_title text-center">
+                  <h2><a href="#"><img src="{% static 'images/logo.png' %}" alt=""></a></h2>
+                </div>
               </ul>
             </div>
           </div>
+
         </div>
       </div>
     </div>
+
+    <div class="footer_bar d-flex flex-row align-items-center justify-content-center">
+      <div class="copyright">
+        Copyright &copy;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        All rights reserved
+      </div>
+    </div>
+
   </footer>
+  
 
 
 
