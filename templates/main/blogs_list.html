@@ -12,7 +12,7 @@
                             <figure class="post-thumbnail">
                                 <a href="{% url 'main:BlogDetails' blog.id %}">
                                     {% if blog.display_image %}
-                                    <img src= "{{ blog.display_image.url }}" alt="">
+                                    <img src= "{{ blog.display_image.url }}" alt="" height="256px">
                                     {% endif %}
                                 </a>
                             </figure>
