@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls import url
 from .views import IndexView
 from main.views import BlogDetailsView, AddBlogView, DevelopersPage
@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^blogs/(?P<slug>[\w-]+)/$', BlogDetailsView.as_view(), name='blog_details'),
     path('addblog/', AddBlogView.as_view(), name='AddBlog'),
     path('developers/', DevelopersPage, name='developers'),
+    path('hitcount/', include(('hitcount.urls', 'hitcount'), namespace='hitcount')),
 
 ]

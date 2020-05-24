@@ -2,6 +2,8 @@ from django.db import models
 from accounts.models import Doctor
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.text import slugify
+from hitcount.models import HitCount
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Blog(models.Model):
@@ -18,6 +20,8 @@ class Blog(models.Model):
     created_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True, blank=True)
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk',
+                                        related_query_name='hit_count_generic_relation')
 
     def __str__(self):
         return self.title

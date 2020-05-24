@@ -2,6 +2,7 @@
 {% block body_block %}
 {% load bootstrap4 %}
 {% load static %}
+{% load hitcount_tags %}
 
 <div class="content" style="padding-top: 7%;">
     <div class="section-inner clearfix">
@@ -11,6 +12,7 @@
             <span>Author: {{ blog.author }} |</span>
             <span>Created On: {{ blog.created_date }} |</span>
             <span>Published On: {{ blog.published_date }} |</span>
+            <span> <i class="fa fa-eye"></i> Views: {% get_hit_count for blog %} </span>
         </p>
         <p>
             {{ blog.content|safe }}

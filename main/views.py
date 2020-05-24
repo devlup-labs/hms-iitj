@@ -1,9 +1,10 @@
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse
+from hitcount.views import HitCountDetailView
 from main.models import Blog
 from accounts.models import Doctor
 from hc.models import Appointment
@@ -36,11 +37,12 @@ def IndexView(request):
     return render(request, 'main/index.html', {'form': form, 'blogs': blogs, 'user': request.user, 'appointments': appn})
 
 
-class BlogDetailsView(DetailView):
+class BlogDetailsView(HitCountDetailView):
     model = Blog
     template_name = 'main/blog_details.html'
     context_object_name = 'blog'
     slug_field = 'slug'
+    count_hit = True
 
     def get_context_data(self, **kwargs):
         context = super(BlogDetailsView, self).get_context_data(**kwargs)

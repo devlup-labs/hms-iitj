@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework',
     'crispy_forms',
+    'hitcount',
 
 ]
 SITE_ID = 2
