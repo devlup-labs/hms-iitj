@@ -10,7 +10,6 @@
         <h1>{{ blog.title|capfirst }}</h1>
         <p class="post-info">
             <span>Author: {{ blog.author }} |</span>
-            <span>Created On: {{ blog.created_date }} |</span>
             <span>Published On: {{ blog.published_date }} |</span>
             <span> <i class="fa fa-eye"></i> Views: {% get_hit_count for blog %} </span>
         </p>

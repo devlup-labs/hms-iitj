@@ -17,7 +17,6 @@ class Blog(models.Model):
         default='blog/default.png',
         help_text='This image will be displayed on the home page of website')
     content = RichTextUploadingField()
-    created_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True, blank=True)
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk',
