@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Doctor
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.utils.text import slugify
 
 
 class Blog(models.Model):
@@ -16,6 +17,16 @@ class Blog(models.Model):
     content = RichTextUploadingField()
     created_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            if Blog.objects.filter(title=(self.title)).exists():
+                count = Blog.objects.filter(title=(self.title)).count()
+                self.slug = "%s-%s" % (slugify(self.title), count+1)
+            else:
+                self.slug = slugify(self.title)
+            return super(Blog, self).save(*args, **kwargs)

@@ -1,8 +1,9 @@
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.urls import reverse
 from main.models import Blog
 from accounts.models import Doctor
 from hc.models import Appointment
@@ -35,10 +36,18 @@ def IndexView(request):
     return render(request, 'main/index.html', {'form': form, 'blogs': blogs, 'user': request.user, 'appointments': appn})
 
 
-def BlogDetails(request, pk):
-    blogs = Blog.objects.get(pk=pk)
+class BlogDetailsView(DetailView):
+    model = Blog
     template_name = 'main/blog_details.html'
-    return render(request, template_name, {'blog': blogs})
+    context_object_name = 'blog'
+    slug_field = 'slug'
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogDetailsView, self).get_context_data(**kwargs)
+        return context
+
+    def get_absolute_url(self):
+        return reverse('main:blog_details', kwargs={'slug': self.slug})
 
 
 class AddBlogView(SuccessMessageMixin, UserPassesTestMixin, CreateView):
