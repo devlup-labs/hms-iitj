@@ -5,18 +5,25 @@
 {% load hitcount_tags %}
 
 <div class="content" style="padding-top: 7%;">
-    <div class="section-inner clearfix">
- 
-        <h1>{{ blog.title|capfirst }}</h1>
-        <p class="post-info">
-            <span>Author: {{ blog.author }} |</span>
-            <span>Published On: {{ blog.published_date }} |</span>
-            <span> <i class="fa fa-eye"></i> Views: {% get_hit_count for blog %} </span>
-        </p>
-        <p>
-            {{ blog.content|safe }}
-        </p>
- 
+    <div class="container">
+        <div class="blog-wrap section-inner clearfix">
+            <h1 class="blog-title">{{ blog.title|capfirst }}</h1>
+            <div class="blog-info">
+                <div class="posted-by"><label>Author: </label>{{ blog.author.user.first_name|capfirst }} {{ blog.author.user.last_name|capfirst }}</div>
+                <div class="posted-date"><label>Published On: </label>{{ blog.published_date }}</div>
+                <div class="post-views"> <label><i class="fa fa-eye"></i>  Views: </label>{% get_hit_count for blog %} </div>
+            </div> 
+            <div class="blog-cover">
+                <figure>
+                    {% if blog.display_image %}
+                    <img src= "{{ blog.display_image.url }}" alt="" height="230px">
+                    {% endif %}
+                </figure>
+            </div>
+            <div class="blog-content">
+                {{ blog.content|safe }}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

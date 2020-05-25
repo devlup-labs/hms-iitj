@@ -746,7 +746,7 @@ ul.tabs-nav .tab-nav.active {
 }
 
 /*
-# News
+# News (Blogs section on Home Page)
 --------------------------------*/
 .the-news {
     padding: 100px 0 40px;
@@ -766,7 +766,10 @@ ul.tabs-nav .tab-nav.active {
 }
 
 .the-news-wrap {
-    margin-bottom: 60px;
+    margin: 20px 10px;
+    background-color: #f4f4f4;
+    height: 520px;
+    overflow: hidden;
 }
 
 .the-news-wrap figure {
@@ -804,14 +807,61 @@ ul.tabs-nav .tab-nav.active {
     color: #828282;
 }
 
+.the-news-wrap .entry-header{
+    margin: 10px 30px;
+}
+
+.the-news-wrap .entry-title{
+    text-transform: uppercase;
+}
+
 .the-news-wrap .entry-content {
-    margin-top: 32px;
+    margin-top: 16px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .the-news-wrap .entry-content p {
     font-size: 14px;
-    line-height: 2;
+    line-height: 1.5;
     color: #828282;
+}
+
+.the-news a:hover{
+    text-decoration: none;
+}
+
+/*--------------------------------------------------------------
+# Blog Content
+--------------------------------------------------------------*/
+.blog-wrap{
+    margin: 0 40px;
+}
+
+.blog-cover img{
+    padding-top: 20px;
+    margin: 0;
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+    max-height: 600px;
+}
+
+.blog-wrap .blog-title{
+    text-transform: uppercase;
+}
+
+.blog-wrap .blog-content p{
+    text-align: justify;
+    line-height: 1.5;
+}
+
+.blog-wrap .blog-info{
+    display: inline;
+}
+.blog-wrap .blog-info label{
+    margin: 0;
+    color: #00A8E0;
 }
 
 /*--------------------------------------------------------------
@@ -843,6 +893,7 @@ ul.tabs-nav .tab-nav.active {
 .pagination .active a {
     color: #00A8E0;
 }
+
 
 /*--------------------------------------------------------------
 # Footer
