@@ -3,10 +3,20 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib import messages
 import datetime as dt
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import login_required, user_passes_test
 from accounts.models import Patient
-from hc.forms.forms_doctor import treatPatientForm
+from hc.forms.forms_doctor import treatPatientForm, SearchPatientForm
 from hc.models import Appointment
+from main.models import Blog
+
+
+@login_required(login_url="/accounts/login/")
+@user_passes_test(lambda u: u.groups.filter(name='doctor').exists())
+def IndexViewDoctor(request):
+    form = SearchPatientForm()
+    blogs = Blog.objects.filter(author__user__email=request.user.email)
+    return render(request, 'doctor/index.html', {'form': form, 'blogs': blogs})
 
 
 class patientHistoryView(UserPassesTestMixin, TemplateView):

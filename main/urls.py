@@ -4,11 +4,13 @@ from .views import IndexView
 from main.views import BlogDetailsView, AddBlogView, DevelopersPage
 from hc.views.views_receptionist import IndexViewReceptionist
 from hc.views.views_pharmacist import IndexViewPharmacist
+from hc.views.views_doctor import IndexViewDoctor
 
 app_name = 'main'
 
 urlpatterns = [
     path('', IndexView, name='home'),
+    path('doctor/', IndexViewDoctor, name='home_doctor'),
     path('receptionist/', IndexViewReceptionist, name='home_receptionist'),
     path('pharmacist/', IndexViewPharmacist, name='home_pharmacist'),
     url(r'^blogs/(?P<slug>[\w-]+)/$', BlogDetailsView.as_view(), name='blog_details'),

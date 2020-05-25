@@ -5,13 +5,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse
 from hitcount.views import HitCountDetailView
-from main.models import Blog
 from accounts.models import Doctor
 from hc.models import Appointment
 from hc.forms.forms_patient import takeAppointmentForm
-from hc.forms.forms_doctor import SearchPatientForm
 from main.forms import AddBlogForm
 from hc.views.views_patient import makeAppointment
+from main.models import Blog
 
 
 def IndexView(request):
@@ -20,8 +19,7 @@ def IndexView(request):
 
     if request.user.is_authenticated:
         if hasattr(request.user, 'doctor'):
-            form = SearchPatientForm()
-            return render(request, 'doctor/index.html', {'form': form})
+            return redirect('main:home_doctor')
         elif hasattr(request.user, 'receptionist'):
             return redirect('main:home_receptionist')
         elif hasattr(request.user, 'pharmacist'):
