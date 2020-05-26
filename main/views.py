@@ -76,7 +76,7 @@ def EditBlogView(request, slug):
         form = AddBlogForm(request.POST, instance=blog)
         form.save()
         return redirect('main:home')
-    return reverse('main:edit_blog', kwargs={'form': form})
+    return render(request, 'main/edit_blog.html', {'form': form, 'blog': blog})
 
 
 def DevelopersPage(request):

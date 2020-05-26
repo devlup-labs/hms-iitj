@@ -29,7 +29,7 @@ class Blog(models.Model):
         if not self.slug:
             if Blog.objects.filter(title=(self.title)).exists():
                 count = Blog.objects.filter(title=(self.title)).count()
-                self.slug = "%s-%s" % (slugify(self.title), count+1)
+                self.slug = "%s-%s" % (slugify(kwargs.pop('title', self.title)), count+1)
             else:
-                self.slug = slugify(self.title)
-            return super(Blog, self).save(*args, **kwargs)
+                self.slug = slugify(kwargs.pop('title', self.title))
+        return super(Blog, self).save(*args, **kwargs)
