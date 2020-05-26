@@ -9,9 +9,11 @@
         <div class="blog-wrap section-inner clearfix">
             <h1 class="blog-title">{{ blog.title|capfirst }}</h1>
             <div class="blog-info">
-                <div class="posted-by"><label>Author: </label>{{ blog.author.user.first_name|capfirst }} {{ blog.author.user.last_name|capfirst }}</div>
-                <div class="posted-date"><label>Published On: </label>{{ blog.published_date }}</div>
-                <div class="post-views"> <label><i class="fa fa-eye"></i>  Views: </label>{% get_hit_count for blog %} </div>
+                <div class="posted-by">
+                    <label>Author: </label>{{ blog.author.user.first_name|capfirst }} {{ blog.author.user.last_name|capfirst }} |
+                                           {{ blog.published_date }} |
+                    <label><i class="fa fa-eye"></i></label> {% get_hit_count for blog %}
+                </div>
             </div> 
             <div class="blog-cover">
                 <figure>
