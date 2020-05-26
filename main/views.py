@@ -69,5 +69,15 @@ class AddBlogView(SuccessMessageMixin, UserPassesTestMixin, CreateView):
         return redirect('main:home')
 
 
+def EditBlogView(request, slug):
+    blog = Blog.objects.filter(slug=slug)[0]
+    form = AddBlogForm(instance=blog)
+    if (request.method == "POST"):
+        form = AddBlogForm(request.POST, instance=blog)
+        form.save()
+        return redirect('main:home')
+    return render(request, 'main/edit_blog.html', {'form': form, 'blog': blog})
+
+
 def DevelopersPage(request):
     return render(request, 'main/developers.html')
