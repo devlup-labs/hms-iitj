@@ -74,7 +74,7 @@ def makeAppointment(request):
                 messages.success(
                     request,
                     "Appointment was successfully created.",
-                    extra_tags='col-10 col-lg-12 d-flex justify-content-center alert\
+                    extra_tags='d-flex justify-content-center alert\
                                  alert-success alert-dismissible fade show')
             except:
                 messages.error(
