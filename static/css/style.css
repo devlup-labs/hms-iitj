@@ -926,6 +926,7 @@ ul.tabs-nav .tab-nav.active {
 	text-transform: uppercase;
     line-height: 1.2;
     padding-top: 40px;
+    list-style-type: none;
 }
 
 .footer_list{
@@ -957,6 +958,12 @@ ul.tabs-nav .tab-nav.active {
 	font-size: 11px;
 	font-weight: 700;
 	color: #2b2932;
+}
+
+.footer_item ul{
+    list-style-type: none !important;
+    margin: 0;
+    padding: 0;
 }
 
 /*--------------------------------------------------------------
