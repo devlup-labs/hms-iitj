@@ -2,27 +2,21 @@
 {% block body_block %}
 {% load bootstrap4 %}
 
-	<!-- <div class="limiter"> -->
-		<!-- <div class="container-login100"> -->
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form" enctype="multipart/form-data" method="POST">
-					<span class="login100-form-title p-b-33">
-						Add Blog
-					</span>
-					{% csrf_token %}
-					{{form.media}}
-					{% bootstrap_form form %}
+<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+	<form class="login100-form validate-form" enctype="multipart/form-data" method="POST">
+		<span class="login100-form-title p-b-33">
+			Add Blog
+		</span>
+		{% csrf_token %}
+		{{form.media}}
+		{% bootstrap_form form %}
 
-
-					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">
-							Add Blog
-						</button>
-					</div>
-					
-				</form>
-			</div>
-		<!-- </div> -->
-	<!-- </div> -->
-
+		<div class="container-login100-form-btn m-t-20">
+			<button class="login100-form-btn">
+				Add Blog
+			</button>
+		</div>
+		
+	</form>
+</div>
 {% endblock %}

@@ -73,17 +73,11 @@
             <div class="col-12 col-md-6 col-lg-5 mt-5 mt-lg-0">
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">Make an Appointment</h2>
-                    <!-- class="d-flex flex-wrap" -->
                     <form method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <!-- {#% bootstrap_form form %#} -->
-                        <!-- {% for field in form %}
-                        {{field.label}}: {{field}}<br>
-                        {% endfor %} -->
                         <br><br>
                         <button class="button bg" type="submit">Make Appointment</button>
-                        <!-- <input class="button bg" type="submit" value="Book Appoitnment"> -->
                     </form>
                 </div>
 

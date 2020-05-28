@@ -12,7 +12,7 @@
 
                     Treat the next patient in the queue.<br><br>
                     <a href="{% url 'hc:prescription' %}"><button class="button bg" type="submit">Treat
-                            Patient</button></a>
+                        Patient</button></a>
 
                 </div>
             </div>
@@ -22,12 +22,11 @@
                     <h2 class="d-flex align-items-center">Patients</h2>
                     <p></p>
 
-                    <form method="POST" action="hc/treatPatient/">
+                    <form method="POST" action="{% url 'hc:prescription' %}">
                         {% csrf_token %}
-                        <!-- {{form}} -->
                         {% bootstrap_form form %}
                         <a href="{% url 'hc:prescription' %}"><button class="button bg" type="submit">Treat
-                                Patient</button></a>
+                            Patient</button></a>
                     </form>
 
                 </div>
@@ -37,7 +36,7 @@
                     <h2 class="d-flex align-items-center">Blogs</h2>
                     <p></p>
                     <a href="{% url 'main:AddBlog' %}"><button class="button bg" type="submit">Write a
-                            Blog</button></a>
+                        Blog</button></a>
                 </div>
             </div>
 
