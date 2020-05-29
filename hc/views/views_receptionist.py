@@ -8,19 +8,17 @@ from hc.models import Appointment
 @user_passes_test(lambda u: u.groups.filter(name='receptionist').exists())
 def IndexViewReceptionist(request):
     if request.method == "POST":
-        email = request.POST.get('email', False)
-        ldap = email[:-len('@iitj.ac.in')]
-        return redirect('hc:appointment', ldap=ldap)
+        username = request.POST.get('username', False)
+        return redirect('hc:appointment', username=username)
     else:
         return render(request, 'receptionist/index.html')
 
 
 @login_required(login_url="/accounts/login/")
 @user_passes_test(lambda u: u.groups.filter(name='receptionist').exists())
-def SearchAppointmentView(request, ldap):
-    email = ldap + '@iitj.ac.in'
-    if Appointment.objects.filter(patient=email).exists():
-        appn = Appointment.objects.filter(patient=email).order_by('date', 'time')[0]
+def SearchAppointmentView(request, username):
+    if Appointment.objects.filter(patient=username).exists():
+        appn = Appointment.objects.filter(patient=username).order_by('date', 'time')[0]
         if request.method == "POST":
             form = ViewAppointmentForm(request.POST, instance=appn)
             form.save()
@@ -35,6 +33,6 @@ def SearchAppointmentView(request, ldap):
                 form.save()
                 return redirect('main:home')
         else:
-            form = ViewAppointmentForm(initial={'patient': email})
+            form = ViewAppointmentForm(initial={'patient': username})
             appn = None
             return render(request, 'receptionist/view_appointment.html', {'form': form, 'appointment': appn})

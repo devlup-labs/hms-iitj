@@ -14,8 +14,8 @@ urlpatterns = [
     path('create_profile/', CreateProfileView.as_view(), name='createProfile'),
     path('update_profile/', updateProfileView, name='updateProfile'),
     path('history/', viewMedicalHistory.as_view(), name='history'),
-    path('<str:ldap>/history/', patientHistoryView.as_view(), name='patient'),
-    path('<str:ldap>/appointment/', SearchAppointmentView, name='appointment'),
-    path('<str:ldap>/prescription/', ViewPrescription, name='prescription'),
+    path('<str:username>/history/', patientHistoryView.as_view(), name='patient'),
+    path('<str:username>/appointment/', SearchAppointmentView, name='appointment'),  # receptionist
+    path('<str:username>/prescription/', ViewPrescription, name='view_prescription'),  # pharmacist
 
 ]

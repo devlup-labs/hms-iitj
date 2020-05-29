@@ -11,4 +11,4 @@ class treatPatientForm(forms.ModelForm):
 
 class SearchPatientForm(forms.Form):
 
-    email = forms.EmailField(max_length=100, label="Patient's Email")
+    username = forms.CharField(max_length=50, label="Patient's Username")

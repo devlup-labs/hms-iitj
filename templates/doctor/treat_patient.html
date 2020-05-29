@@ -13,7 +13,7 @@
 			<div class="container-login100-form-btn m-t-20">
 				<a href="{% url 'main:home' %}">
 					<-Go Back to Home</a> </div> {% if appointment %} <a target="_blank"
-						href="{% url 'hc:patient' ldap=patient.user.username %}">Patient: {{patient.user.first_name}}
+						href="{% url 'hc:patient' username=patient.user.username %}">Patient: {{patient.user.first_name}}
 						{{patient.user.last_name}}
 				</a>
 

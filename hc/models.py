@@ -60,11 +60,10 @@ class PrescribedDrug(models.Model):
 class Appointment(models.Model):
     doctor = models.ForeignKey(to="accounts.Doctor", on_delete=models.CASCADE,
                                related_name="app_doctor", blank=True, null=True)
-    patient = models.EmailField()
+    patient = models.CharField(max_length=50)  # ldap for iitj / firstname__ldap for family members
     time = models.TimeField()  # time of appointment
     date = models.DateField()  # date of appointment
     temp = models.CharField(max_length=8, blank=True, null=True)   # temperature (to be put in by receptionist)
-    name_of_dep = models.CharField(max_length=16, null=True, blank=True)  # name of dependent (family of faculty)
 
     def __str__(self):
         return self.doctor.user.first_name + ", " + self.patient

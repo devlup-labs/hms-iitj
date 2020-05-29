@@ -13,7 +13,7 @@
                     <p></p>
                     <form method="POST">
                         {% csrf_token %}
-                        <input type="email" name="email" placeholder="Patient's Email" style="margin-bottom: 5%;">
+                        <input type="text" name="username" placeholder="Patient's Username" style="margin-bottom: 5%;">
                         <a href="{url 'main:home_pharmacist'}"><button class="button bg" type="submit">View Prescription</button></a>
                     </form>
                 </div>

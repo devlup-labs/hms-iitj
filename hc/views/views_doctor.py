@@ -27,7 +27,7 @@ class patientHistoryView(UserPassesTestMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(patientHistoryView, self).get_context_data(*args, **kwargs)
-        patient = get_object_or_404(Patient, user__username=kwargs['ldap'])
+        patient = get_object_or_404(Patient, user__username=kwargs['username'])
         context['patient'] = patient
         return context
 
@@ -61,10 +61,10 @@ class treatPatientView(UserPassesTestMixin, CreateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(treatPatientView, self).get_context_data(*args, **kwargs)
-        email = self.request.POST.get('email', False)
-        if email:
+        username = self.request.POST.get('username', False)
+        if username:
             try:
-                appointment = Appointment.objects.filter(patient=email).order_by('date', 'time')[0]
+                appointment = Appointment.objects.filter(patient=username).order_by('date', 'time')[0]
             except IndexError:
                 messages.error(
                     self.request,
@@ -75,19 +75,19 @@ class treatPatientView(UserPassesTestMixin, CreateView):
 
         else:
             appointment = Appointment.objects.filter().order_by('date', 'time')[0]
-        patient = get_object_or_404(Patient, user__email=appointment.patient)
+        patient = get_object_or_404(Patient, user__username=appointment.patient)
         context['appointment'] = appointment
         context['patient'] = patient
-        self.super_context['email'] = appointment.patient
+        self.super_context['username'] = appointment.patient
         return context
 
     def form_valid(self, form, **kwargs):
         context = self.super_context
-        email = context['email']
-        appointment = Appointment.objects.filter(patient=email).order_by('date', 'time')[0]
+        username = context['username']
+        appointment = Appointment.objects.filter(patient=username).order_by('date', 'time')[0]
         prescription = form.save()
         prescription.doctor = appointment.doctor
-        patient = get_object_or_404(Patient, user__email=appointment.patient)
+        patient = get_object_or_404(Patient, user__username=appointment.patient)
         patient.prescriptions.add(prescription)
         appointment.delete()
         return super(treatPatientView, self).form_valid(form)

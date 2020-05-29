@@ -64,10 +64,10 @@ def makeAppointment(request):
             specialization = form['specialization'].value()
             try:
                 available_doctors = list(Doctor.objects.all().filter(available=True, specialization=specialization))[0]
-                patient = get_object_or_404(Patient, user__email=request.user.email)
+                patient = get_object_or_404(Patient, user__username=request.user.username)
                 time = form['time'].value()
                 date = form['date'].value()
-                Appointment.objects.create(patient=patient.user.email, doctor=available_doctors, time=time, date=date)
+                Appointment.objects.create(patient=patient.user.username, doctor=available_doctors, time=time, date=date)
 
                 create_event(patient.user.email, date, time, available_doctors)
 
