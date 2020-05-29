@@ -929,6 +929,11 @@ ul.tabs-nav .tab-nav.active {
     list-style-type: none;
 }
 
+.footer_title img{
+    height: 210px;
+    width: 190px;
+}
+
 .footer_list{
     list-style-type: none;
     margin-top: 25px;
