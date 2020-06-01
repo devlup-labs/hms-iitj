@@ -7,9 +7,10 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import Patient, Doctor
 from hc.models import Appointment
-from hc.forms.forms_patient import CreateProfileForm, takeAppointmentForm
+from hc.forms.forms_patient import CreateProfileForm, takeAppointmentForm, AddFamilyMemberForm
 import subprocess
 from hc.event import create_event
+from django.contrib.auth.models import User
 
 
 class viewMedicalHistory(TemplateView):
@@ -95,3 +96,30 @@ def updateProfileView(request):
         form.save()
         return redirect("main:home")
     return render(request, "patient/update_profile.html", {'form': form})
+
+
+@login_required(login_url="/auth/google/login/")
+@user_passes_test(lambda u: Patient.objects.get(user__username=u.username).staff)
+def AddFamilyMemberView(request):
+    if request.method == "POST":
+        form = AddFamilyMemberForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['first_name'] + "__" + request.user.email.split("@")[0]
+            email = request.user.email
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            user = User.objects.create_user(username=username, email=email, first_name=first_name, last_name=last_name)
+            group = Group.objects.get(name="patient")
+            user.groups.add(group)
+            user.save()
+
+            form.save(user=user)
+            messages.success(
+                request,
+                "Dependant was successfully added.",
+                extra_tags='d-flex justify-content-center alert alert-success alert-dismissible fade show')
+            return redirect('main:home')
+    else:
+        form = AddFamilyMemberForm()
+
+    return render(request, 'patient/add_member.html', {'form': form})

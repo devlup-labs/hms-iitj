@@ -5,7 +5,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse
 from hitcount.views import HitCountDetailView
-from accounts.models import Doctor
+from accounts.models import Doctor, Patient
 from hc.models import Appointment
 from hc.forms.forms_patient import takeAppointmentForm
 from main.forms import AddBlogForm
@@ -14,8 +14,10 @@ from main.models import Blog
 
 
 def IndexView(request):
-    blogs = Blog.objects.all()
-    appn = None
+    args = {
+        'blogs': Blog.objects.all(),
+        'appn': None
+    }
 
     if request.user.is_authenticated:
         if hasattr(request.user, 'doctor'):
@@ -24,15 +26,20 @@ def IndexView(request):
             return redirect('main:home_receptionist')
         elif hasattr(request.user, 'pharmacist'):
             return redirect('main:home_pharmacist')
-        appn = Appointment.objects.all().filter(patient=request.user.username).order_by('date', 'time')
+        args['appn'] = Appointment.objects.all().filter(patient=request.user.username).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
             return redirect('hc:createProfile')
 
     if request.method == 'POST':
         return makeAppointment(request)
 
-    form = takeAppointmentForm()
-    return render(request, 'main/index.html', {'form': form, 'blogs': blogs, 'user': request.user, 'appointments': appn})
+    if request.user.is_authenticated and Patient.objects.get(user=request.user):
+        args['user'] = Patient.objects.get(user=request.user)
+    else:
+        args['user'] = request.user
+
+    args['form'] = takeAppointmentForm()
+    return render(request, 'main/index.html', args)
 
 
 class BlogDetailsView(HitCountDetailView):
