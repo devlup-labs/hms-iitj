@@ -26,7 +26,7 @@ def IndexView(request):
             return redirect('main:home_receptionist')
         elif hasattr(request.user, 'pharmacist'):
             return redirect('main:home_pharmacist')
-        args['appn'] = Appointment.objects.all().filter(patient=request.user.username).order_by('date', 'time')
+        args['appointments'] = Appointment.objects.all().filter(patient=request.user.username).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
             return redirect('hc:createProfile')
 

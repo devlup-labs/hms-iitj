@@ -11,11 +11,33 @@
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">Appointments-IITJ</h2>
                     <p></p>
-                    <form method="POST">
+                    <form method="POST" id="SearchPatientForm" action="{% url 'main:home_receptionist' %}" data-users-url="{% url 'hc:ajax_load_users' %}" novalidate>
                         {% csrf_token %}
-                        <input type="text" name="username" placeholder="Patient's Username" style="margin-bottom: 5%;">
-                        <a href="{url 'main:home_receptionist'}"><button class="button bg" type="submit">View Appointment</button></a>
+                        {% bootstrap_form form %}
+                        <a href="{% url 'main:home_receptionist' %}"><button class="button bg" type="submit">View Appointment</button></a>
                     </form>
+
+                    <!-- creating AJAX request using jquery for dependant dropdown list of users having same email -->
+                    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                    <script>
+                        $("#id_email").change(function () {
+                        var url = $("#SearchPatientForm").attr("data-users-url");  // get the url of the `load_users` view
+                        var EmailId = $(this).val();  // get the selected email ID of patient from the HTML input
+
+                            $.ajax({                       // initialize an AJAX request
+                                url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                                data: {
+                                'user_email': EmailId       // add the email id to the GET parameters
+                                },
+                                success: function (data) {   // `data` is the return of the `load_cities` view function
+                                $("#id_username").html(data);  // replace the contents of the city input with the data that came from the server
+                                }
+                            });
+
+                        });
+                    </script>
+                    <!-- jquery  -->
+                    
                 </div>
             </div>
         </div>

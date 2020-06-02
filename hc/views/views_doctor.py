@@ -91,3 +91,9 @@ class treatPatientView(UserPassesTestMixin, CreateView):
         patient.prescriptions.add(prescription)
         appointment.delete()
         return super(treatPatientView, self).form_valid(form)
+
+
+def load_users(request):
+    user_email = request.GET.get('user_email')
+    users = Patient.objects.filter(user__email=user_email).order_by('user__username')
+    return render(request, 'doctor/user_dropdown_options.html', {'users': users})

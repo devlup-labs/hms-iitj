@@ -1,17 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from hc.forms.forms_receptionist import ViewAppointmentForm
+from hc.forms.forms_doctor import SearchPatientForm
 from hc.models import Appointment
 
 
 @login_required(login_url="/accounts/login/")
 @user_passes_test(lambda u: u.groups.filter(name='receptionist').exists())
 def IndexViewReceptionist(request):
+    form = SearchPatientForm()
     if request.method == "POST":
         username = request.POST.get('username', False)
         return redirect('hc:appointment', username=username)
     else:
-        return render(request, 'receptionist/index.html')
+        return render(request, 'receptionist/index.html', {'form': form})
 
 
 @login_required(login_url="/accounts/login/")

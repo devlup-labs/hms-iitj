@@ -1,5 +1,6 @@
 from django import forms
 from hc.models import Prescription
+from accounts.models import Patient
 
 
 class treatPatientForm(forms.ModelForm):
@@ -11,4 +12,9 @@ class treatPatientForm(forms.ModelForm):
 
 class SearchPatientForm(forms.Form):
 
-    username = forms.CharField(max_length=50, label="Patient's Username")
+    email = forms.EmailField(label="Email")
+    username = forms.ChoiceField(label="Patient's Username")
+
+    def __init__(self, *args, **kwargs):
+        super(SearchPatientForm, self).__init__(*args, **kwargs)
+        self.fields['username'].queryset = Patient.objects.none()

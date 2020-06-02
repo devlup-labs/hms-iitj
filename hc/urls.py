@@ -1,5 +1,5 @@
 from django.urls import path
-from hc.views.views_doctor import treatPatientView, patientHistoryView
+from hc.views.views_doctor import treatPatientView, patientHistoryView, load_users
 from hc.views.views_patient import (
     makeAppointment, viewMedicalHistory, CreateProfileView,
     updateProfileView, AddFamilyMemberView
@@ -21,5 +21,7 @@ urlpatterns = [
     path('<str:username>/history/', patientHistoryView.as_view(), name='patient'),
     path('<str:username>/appointment/', SearchAppointmentView, name='appointment'),  # receptionist
     path('<str:username>/prescription/', ViewPrescription, name='view_prescription'),  # pharmacist
+
+    path('ajax/load_users/', load_users, name='ajax_load_users'),  # ajax load users(family members) from email id of ward
 
 ]
