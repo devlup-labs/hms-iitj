@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from hc.models import Prescription, DoctorSpecialization
+from django.db.models.signals import post_save
+from django.contrib.auth.models import Group
 
 
 class Patient(models.Model):
@@ -55,6 +57,17 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+def post_save_user(sender, instance, created, **kwargs):
+    if created:
+        instance.username = instance.email.split('@')[0]
+        group = Group.objects.get(name="patient")
+        instance.groups.add(group)
+        instance.save()
+
+
+post_save.connect(post_save_user, sender=User)
 
 
 class Doctor(models.Model):

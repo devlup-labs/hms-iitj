@@ -33,10 +33,6 @@ class CreateProfileView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         user = self.request.user
-        user.username = user.email.split("@")[0]
-        group = Group.objects.get(name="patient")
-        user.groups.add(group)
-        user.save()
         userprofile = form.save()
         userprofile.user = user
 
