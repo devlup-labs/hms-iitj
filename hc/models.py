@@ -11,19 +11,6 @@ class Prescription(models.Model):
         ('3', 'Malaria'),
         ('4', 'Random Blood Sugar'),
         ('5', 'Pregnancy'),
-        # ('1', 'Complete Blood Count'),
-        # ('4', 'Liver Function Test'),
-        # ('4', 'Renal Function Test'),
-        # ('4', 'Lipid Profile'),
-        # ('4', 'Urine Complete Examination'),
-        # ('4', 'Stool Roitine '),
-        # ('4', 'Rapid Test for Malaria'),
-        # ('4', 'Dengue Serology'),
-        # ('4', 'Blood Group and RH type'),
-        # ('4', 'HBs Ag'),
-        # ('4', 'HCV'),
-        # ('4', 'HIV I & II'),
-        # ('4', 'X Rays'),
     )
     prescription_id = models.CharField(unique=True, max_length=10)
     created_at = models.DateTimeField()
