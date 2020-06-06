@@ -1,5 +1,5 @@
 from django.views.generic import CreateView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -51,6 +51,7 @@ class BlogDetailsView(HitCountDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogDetailsView, self).get_context_data(**kwargs)
+        context['user'] = get_object_or_404(Patient, user__username=self.request.user)
         return context
 
     def get_absolute_url(self):
