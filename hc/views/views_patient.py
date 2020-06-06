@@ -107,7 +107,9 @@ def AddFamilyMemberView(request):
             user.email = email
             user.save()
 
-            form.save(user=user)
+            dependant = form.save(user=user)
+            dependant.num = get_object_or_404(Patient, user__username=request.user).num
+            dependant.save()
             messages.success(
                 request,
                 "Dependant was successfully added.",

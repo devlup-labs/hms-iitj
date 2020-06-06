@@ -10,13 +10,16 @@
             <div class="col-12">
                 <div class="services-tabs">
                     <div class="tabs">
+                        {% if user.staff %}
                         <ul class="tabs-nav d-flex flex-wrap">
                             {% for patient in patients %}
-                            <li class="tab-nav d-flex justify-content-center align-items-center" data-target="#tab_{{ forloop.counter }}">
+                            <li class="tab-nav d-flex justify-content-center align-items-center"
+                                data-target="#tab_{{ forloop.counter }}">
                                 {{patient.user.first_name}} {{patient.user.last_name}}
                             </li>
                             {% endfor %}
                         </ul>
+                        {% endif %}
 
                         <div class="tabs-container">
                             {% for patient in patients %}
