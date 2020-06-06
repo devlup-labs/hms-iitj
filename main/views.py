@@ -2,7 +2,7 @@ from django.views.generic import CreateView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.urls import reverse
 from hitcount.views import HitCountDetailView
 from accounts.models import Doctor, Patient
@@ -42,7 +42,8 @@ def IndexView(request):
     return render(request, 'main/index.html', args)
 
 
-class BlogDetailsView(HitCountDetailView):
+class BlogDetailsView(LoginRequiredMixin, HitCountDetailView):
+    login_url = '/auth/google/login'
     model = Blog
     template_name = 'main/blog_details.html'
     context_object_name = 'blog'
