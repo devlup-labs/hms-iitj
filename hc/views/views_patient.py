@@ -17,9 +17,8 @@ class viewMedicalHistory(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(viewMedicalHistory, self).get_context_data(**kwargs)
-        patient = get_object_or_404(Patient, user=self.request.user)
-        context['patient'] = patient
-        context['history'] = patient.prescriptions.all()
+        patients = Patient.objects.all().filter(user__email=self.request.user.email)
+        context['patients'] = patients
         return context
 
 
