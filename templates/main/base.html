@@ -45,7 +45,7 @@
 
             <nav class="site-navigation d-flex justify-content-end align-items-center">
               <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-items-center">
-                <li class="current-menu-item"><a href="{% url 'main:home' %}">Home</a></li>
+                <li class="menu-item"><a href="{% url 'main:home' %}">Home</a></li>
                 {% if request.user.is_authenticated %}
 
                 <li>
@@ -55,7 +55,7 @@
                       <a href="{% url 'hc:updateProfile' %}">My Profile</a>
                       <a href="{% url 'hc:history' %}">History</a>
                       {% if user.staff %}
-                        <a href="{% url 'hc:add_member' %}">Add Family Member</a>
+                        <a href="{% url 'hc:add_member' %}">Add Dependant</a>
                       {% endif %}
                       <a href="{% url 'accounts:logout' %}">Logout</a>
                     </div>

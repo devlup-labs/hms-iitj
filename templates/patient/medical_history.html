@@ -21,7 +21,7 @@
                         <div class="tabs-container">
                             {% for patient in patients %}
                             <div id="tab_{{ forloop.counter }}" class="tab-content">
-                                <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" height="330px">
+                                <img src="{{ user.user.socialaccount_set.all.0.get_avatar_url }}" height="330px">
                                 <h4>{{patient.user.first_name}} {{patient.user.last_name}} ({{patient.gender}})</h4>
                                 <div class="row">
                                     <p>Height: {{patient.height}} feet</p>
