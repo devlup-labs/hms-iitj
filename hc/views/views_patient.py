@@ -2,7 +2,6 @@ from django.views.generic import TemplateView, CreateView
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
-from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import Patient, Doctor
@@ -36,7 +35,7 @@ class CreateProfileView(LoginRequiredMixin, CreateView):
         userprofile = form.save()
         userprofile.user = user
 
-        result = subprocess.check_output(['java', 'LDAP_API.java', user.username])  # request.user.username])
+        result = subprocess.check_output(['java', 'LDAP_API.java', user.username])
         result = result.decode('utf-8')
         if(result == "0"):
             return HttpResponse("User {} does not exists.".format(user))
@@ -100,13 +99,12 @@ def AddFamilyMemberView(request):
     if request.method == "POST":
         form = AddFamilyMemberForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['first_name'] + "__" + request.user.email.split("@")[0]
             email = request.user.email
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
-            user = User.objects.create_user(username=username, email=email, first_name=first_name, last_name=last_name)
-            group = Group.objects.get(name="patient")
-            user.groups.add(group)
+            username = first_name.lower() + "__" + email
+            user = User.objects.create_user(username=username, email=username, first_name=first_name, last_name=last_name)
+            user.email = email
             user.save()
 
             form.save(user=user)
