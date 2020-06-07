@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="services-tabs">
                     <div class="tabs">
-                        {% if user.staff %}
+                        {% if staff %}
                         <ul class="tabs-nav d-flex flex-wrap">
                             {% for patient in patients %}
                             <li class="tab-nav d-flex justify-content-center align-items-center"
@@ -24,7 +24,7 @@
                         <div class="tabs-container">
                             {% for patient in patients %}
                             <div id="tab_{{ forloop.counter }}" class="tab-content">
-                                <img src="{{ user.user.socialaccount_set.all.0.get_avatar_url }}" height="330px">
+                                <img src="{{ patient.user.socialaccount_set.all.0.get_avatar_url }}" alt="Patient Image" height="330px">
                                 <h4>{{patient.user.first_name}} {{patient.user.last_name}} ({{patient.gender}})</h4>
                                 <div class="row">
                                     <p>Height: {{patient.height}} feet</p>

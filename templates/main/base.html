@@ -50,11 +50,11 @@
 
                 <li>
                   <div class="dropdown">
-                    <button class="dropbtn">{{user.user.first_name}} <i class="fa fa-caret-down"></i></button>
+                    <button class="dropbtn">{{request.user.first_name}} <i class="fa fa-caret-down"></i></button>
                     <div class="dropdown-content">
                       <a href="{% url 'hc:updateProfile' %}">My Profile</a>
                       <a href="{% url 'hc:history' %}">History</a>
-                      {% if user.staff %}
+                      {% if staff %}
                         <a href="{% url 'hc:add_member' %}">Add Dependant</a>
                       {% endif %}
                       <a href="{% url 'accounts:logout' %}">Logout</a>

@@ -1,8 +1,8 @@
 from django.views.generic import CreateView
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse
 from hitcount.views import HitCountDetailView
 from accounts.models import Doctor, Patient
@@ -29,21 +29,16 @@ def IndexView(request):
         args['appointments'] = Appointment.objects.all().filter(patient=request.user.username).order_by('date', 'time')
         if not hasattr(request.user, 'patient'):
             return redirect('hc:createProfile')
+        args['staff'] = Patient.objects.get(user=request.user).staff
 
     if request.method == 'POST':
         return makeAppointment(request)
-
-    if request.user.is_authenticated and Patient.objects.get(user=request.user):
-        args['user'] = Patient.objects.get(user=request.user)
-    else:
-        args['user'] = request.user
 
     args['form'] = takeAppointmentForm()
     return render(request, 'main/index.html', args)
 
 
-class BlogDetailsView(LoginRequiredMixin, HitCountDetailView):
-    login_url = '/auth/google/login'
+class BlogDetailsView(HitCountDetailView):
     model = Blog
     template_name = 'main/blog_details.html'
     context_object_name = 'blog'
@@ -52,7 +47,6 @@ class BlogDetailsView(LoginRequiredMixin, HitCountDetailView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogDetailsView, self).get_context_data(**kwargs)
-        context['user'] = get_object_or_404(Patient, user__username=self.request.user)
         return context
 
     def get_absolute_url(self):
