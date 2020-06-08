@@ -89,6 +89,12 @@ def updateProfileView(request):
     if(request.method == "POST"):
         form = CreateProfileForm(request.POST, instance=patient)
         form.save()
+        if form.is_valid():
+            messages.success(
+                    request,
+                    "Profile was successfully updated.",
+                    extra_tags='d-flex justify-content-center alert\
+                                 alert-success alert-dismissible fade show')
         return redirect("main:home")
     return render(request, "patient/update_profile.html", {'form': form})
 
