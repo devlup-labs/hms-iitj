@@ -11,6 +11,7 @@ import subprocess
 from hc.event import create_event
 from django.contrib.auth.models import User
 import datetime as dt
+from django.utils.timezone import make_aware
 
 
 class viewMedicalHistory(TemplateView):
@@ -79,6 +80,7 @@ def makeAppointment(request):
                         "Time slot is not available.",
                         extra_tags='d-flex justify-content-center alert alert-danger alert-dismissible fade show')
                 else:
+                    appn_dt_obj = make_aware(appn_dt_obj)  # to convert naive date time to aware datetime
                     Appointment.objects.create(patient=patient.user.username, doctor=available_doctors, time=appn_dt_obj)
                     create_event(patient.user.email, date, time, available_doctors)
                     messages.success(

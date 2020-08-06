@@ -10,12 +10,13 @@
 	{% endif %}
 	<div class="container-login100">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-			<div class="container-login100-form-btn m-t-20">
-				<a href="{% url 'main:home' %}">
-					<-Go Back to Home</a> </div> {% if appointment %} <a target="_blank"
+			 {% if appointment %} <a target="_blank"
 						href="{% url 'hc:patient' username=patient.user.username %}">Patient: {{patient.user.first_name}}
 						{{patient.user.last_name}}
 				</a>
+				{% if appointment.temp %}
+					<div>Temp: {{appointment.temp}}</div>
+				{% endif %}
 
 
 				<form class="login100-form validate-form" enctype="multipart/form-data" method="POST">
@@ -29,6 +30,8 @@
 							Submit
 						</button>
 					</div>
+					<br>
+					<center><a href="{% url 'main:home' %}">Go Back</a></center>
 
 				</form>
 

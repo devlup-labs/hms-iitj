@@ -9,6 +9,7 @@ from accounts.models import Patient
 from hc.forms.forms_doctor import treatPatientForm, SearchPatientForm
 from hc.models import Appointment
 from main.models import Blog
+from django.utils.timezone import make_aware
 
 
 @login_required(login_url="/accounts/login/")
@@ -43,8 +44,9 @@ class treatPatientView(UserPassesTestMixin, CreateView):
 
     def get(self, request, *args, **kwargs):
         min_dt = dt.datetime.now()-dt.timedelta(minutes=30)
+        min_dt = make_aware(min_dt)  # to convert naive date time to aware datetime
         for appointment in Appointment.objects.filter().order_by('time'):    # sorted by time
-            if(appointment.time < min_dt.time()):
+            if(appointment.time < min_dt):
                 appointment.delete()
             else:
                 break
