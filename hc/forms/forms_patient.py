@@ -1,5 +1,5 @@
 from django import forms
-from accounts.models import Patient, DoctorSpecialization
+from accounts.models import Patient, Doctor
 import datetime
 
 
@@ -44,7 +44,11 @@ class CreateProfileForm(forms.ModelForm):    # only for iitj students
 
 class takeAppointmentForm(forms.Form):
 
-    specialization = forms.ModelChoiceField(queryset=DoctorSpecialization.objects.all(), initial=0)
+    class DoctorChoiceField(forms.ModelChoiceField):
+        def label_from_instance(self, obj):
+            return obj.user.username + ", " + str(obj.specialization)
+
+    doctor = DoctorChoiceField(queryset=Doctor.objects.all())
     time = forms.TimeField(widget=TimeInput())
     date = forms.DateField(widget=DateInput())
 
