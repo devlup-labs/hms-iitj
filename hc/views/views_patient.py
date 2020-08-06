@@ -10,6 +10,7 @@ from hc.forms.forms_patient import CreateProfileForm, takeAppointmentForm, AddFa
 import subprocess
 from hc.event import create_event
 from django.contrib.auth.models import User
+import datetime as dt
 
 
 class viewMedicalHistory(TemplateView):
@@ -63,15 +64,28 @@ def makeAppointment(request):
                 patient = get_object_or_404(Patient, user__username=request.user.username)
                 time = form['time'].value()
                 date = form['date'].value()
-                Appointment.objects.create(patient=patient.user.username, doctor=available_doctors, time=time, date=date)
 
-                create_event(patient.user.email, date, time, available_doctors)
+                # checking for the conflicts in appn time
+                appn_dt_str = date + " " + time
+                appn_dt_obj = dt.datetime.strptime(appn_dt_str, "%Y-%m-%d %H:%M")
+                block_time_start = appn_dt_obj - dt.timedelta(minutes=19)
+                block_time_end = appn_dt_obj + dt.timedelta(minutes=20)
 
-                messages.success(
-                    request,
-                    "Appointment was successfully created.",
-                    extra_tags='d-flex justify-content-center alert\
-                                 alert-success alert-dismissible fade show')
+                conflict = Appointment.objects.filter(time__range=(block_time_start, block_time_end))
+
+                if conflict:
+                    messages.error(
+                        request,
+                        "Time slot is not available.",
+                        extra_tags='d-flex justify-content-center alert alert-danger alert-dismissible fade show')
+                else:
+                    Appointment.objects.create(patient=patient.user.username, doctor=available_doctors, time=appn_dt_obj)
+                    create_event(patient.user.email, date, time, available_doctors)
+                    messages.success(
+                        request,
+                        "Appointment was successfully created.",
+                        extra_tags='d-flex justify-content-center alert\
+                                        alert-success alert-dismissible fade show')
             except:
                 messages.error(
                     request,

@@ -43,10 +43,8 @@ class treatPatientView(UserPassesTestMixin, CreateView):
 
     def get(self, request, *args, **kwargs):
         min_dt = dt.datetime.now()-dt.timedelta(minutes=30)
-        for appointment in Appointment.objects.filter().order_by('date', 'time'):    # first sorted by date and then time
-            if(appointment.date < min_dt.date()):
-                appointment.delete()
-            elif(appointment.date == min_dt.date() and appointment.time < min_dt.time()):
+        for appointment in Appointment.objects.filter().order_by('time'):    # sorted by time
+            if(appointment.time < min_dt.time()):
                 appointment.delete()
             else:
                 break
@@ -64,7 +62,7 @@ class treatPatientView(UserPassesTestMixin, CreateView):
         username = self.request.POST.get('username', False)
         if username:
             try:
-                appointment = Appointment.objects.filter(patient=username).order_by('date', 'time')[0]
+                appointment = Appointment.objects.filter(patient=username).order_by('time')[0]
             except IndexError:
                 messages.error(
                     self.request,
@@ -74,7 +72,7 @@ class treatPatientView(UserPassesTestMixin, CreateView):
                 return context
 
         else:
-            appointment = Appointment.objects.filter().order_by('date', 'time')[0]
+            appointment = Appointment.objects.filter().order_by('time')[0]
         patient = get_object_or_404(Patient, user__username=appointment.patient)
         context['appointment'] = appointment
         context['patient'] = patient
@@ -84,7 +82,7 @@ class treatPatientView(UserPassesTestMixin, CreateView):
     def form_valid(self, form, **kwargs):
         context = self.super_context
         username = context['username']
-        appointment = Appointment.objects.filter(patient=username).order_by('date', 'time')[0]
+        appointment = Appointment.objects.filter(patient=username).order_by('time')[0]
         prescription = form.save()
         prescription.doctor = appointment.doctor
         patient = get_object_or_404(Patient, user__username=appointment.patient)

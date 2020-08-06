@@ -20,7 +20,7 @@ def IndexViewReceptionist(request):
 @user_passes_test(lambda u: u.groups.filter(name='receptionist').exists())
 def SearchAppointmentView(request, username):
     if Appointment.objects.filter(patient=username).exists():
-        appn = Appointment.objects.filter(patient=username).order_by('date', 'time')[0]
+        appn = Appointment.objects.filter(patient=username).order_by('time')[0]
         if request.method == "POST":
             form = ViewAppointmentForm(request.POST, instance=appn)
             form.save()
