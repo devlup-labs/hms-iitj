@@ -18,7 +18,8 @@ def IndexView(request):
     args = {
         'blogs': Blog.objects.all(),
         'appn': None,
-        'patientsInHc': len(Appointment.objects.filter(time__time__lte=(dt.datetime.now() + dt.timedelta(minutes=30)).time()))
+        'patientsInHc':
+            len(Appointment.objects.filter(time__time__lte=(dt.datetime.now() + dt.timedelta(minutes=30)).time()))
     }
 
     if request.user.is_authenticated:

@@ -72,7 +72,7 @@ def makeAppointment(request):
         if form.is_valid():
             doctor = form['doctor'].value()
             try:
-                available_doctors = list(Doctor.objects.all().filter(available=True, id=doctor))[0]
+                available_doctors = Doctor.objects.filter(available=True, id=doctor)
                 patient = get_object_or_404(Patient, user__username=request.user.username)
                 time = form['time'].value()
                 date = form['date'].value()
