@@ -21,7 +21,14 @@
       height: 100%;
       font-family: OpenSans-Regular, sans-serif;
   }
-  
+  body{
+    background-image: url('../images/testimonial-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-attachment:fixed;
+  }
   /*---------------------------------------------*/
   a {
       font-family: OpenSans-Regular;
@@ -134,13 +141,6 @@
   
   .container-login100 {
     height: 100%;
-    background-image: url('../images/testimonial-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    background-attachment:fixed;
-
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;

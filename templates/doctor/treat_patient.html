@@ -30,15 +30,15 @@
 							Submit
 						</button>
 					</div>
-					<br>
-					<center><a href="{% url 'main:home' %}">Go Back</a></center>
-
 				</form>
 
 				{% else %}
 				<p>It seems that the patient has not taken the appointment</p>
 
 				{% endif %}
+				
+				<br>
+				<center><a href="{% url 'main:home' %}">Go Back</a></center>
 			</div>
 		</div>
 	</div>
