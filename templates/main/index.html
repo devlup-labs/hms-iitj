@@ -76,11 +76,12 @@
                     <form method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <br><br>
+                        <br>  
                         <button class="button bg" type="submit">Make Appointment</button>
                     </form>
+                    <div class="pull-right"><p style="font-size: small;padding-top: 5px;">~ {{patientsInHc}} people expected in Health Center currently</p></div>
+                    <br>
                 </div>
-
             </div>
         </div>
     </div>

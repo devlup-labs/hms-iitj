@@ -11,12 +11,14 @@ from hc.forms.forms_patient import takeAppointmentForm
 from main.forms import AddBlogForm
 from hc.views.views_patient import makeAppointment
 from main.models import Blog
+import datetime as dt
 
 
 def IndexView(request):
     args = {
         'blogs': Blog.objects.all(),
-        'appn': None
+        'appn': None,
+        'patientsInHc': len(Appointment.objects.filter(time__lte=dt.datetime.now() + dt.timedelta(minutes=30)))
     }
 
     if request.user.is_authenticated:
