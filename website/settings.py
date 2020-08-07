@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'hitcount',
-
 ]
 SITE_ID = 2
 

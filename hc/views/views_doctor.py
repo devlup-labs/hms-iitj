@@ -29,6 +29,12 @@ class patientHistoryView(UserPassesTestMixin, TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(patientHistoryView, self).get_context_data(*args, **kwargs)
         patient = get_object_or_404(Patient, user__username=kwargs['username'])
+        readablePres = []
+        for prescription in patient.prescriptions.all():
+            prescription.remarks = prescription.ENCRYPTER.decrypt(prescription.remarks.encode('utf-8')).decode('utf-8')
+            readablePres.append(prescription)
+
+        context['prescriptions'] = readablePres
         context['patient'] = patient
         return context
 
@@ -86,6 +92,10 @@ class treatPatientView(UserPassesTestMixin, CreateView):
         username = context['username']
         appointment = Appointment.objects.filter(patient=username).order_by('time')[0]
         prescription = form.save()
+
+        # encrypting data
+        prescription.remarks = prescription.ENCRYPTER.encrypt(prescription.remarks.encode('utf-8')).decode("utf-8")
+
         prescription.doctor = appointment.doctor
         patient = get_object_or_404(Patient, user__username=appointment.patient)
         patient.prescriptions.add(prescription)

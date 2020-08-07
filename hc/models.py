@@ -2,9 +2,12 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.utils import timezone
 from .utils import unique_prescription_id
+from cryptography.fernet import Fernet
 
 
 class Prescription(models.Model):
+    KEY = Fernet.generate_key()
+    ENCRYPTER = Fernet(KEY)
     TEST_CHOICES = (
         ('1', 'CBC'),
         ('2', 'Dengue'),

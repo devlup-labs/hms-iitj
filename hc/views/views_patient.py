@@ -20,8 +20,19 @@ class viewMedicalHistory(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(viewMedicalHistory, self).get_context_data(**kwargs)
         patients = Patient.objects.all().filter(user__email=self.request.user.email)
-        context['patients'] = patients
+
+        patientData = []
+
+        for i in range(len(patients)):
+            readablePres = []
+            for prescription in patients[i].prescriptions.all():
+                prescription.remarks = prescription.ENCRYPTER.decrypt(prescription.remarks.encode('utf-8')).decode('utf-8')
+                readablePres.append(prescription)
+            patientData.append([patients[i], readablePres])
+
+        context['patientData'] = patientData
         context['staff'] = Patient.objects.get(user=self.request.user).staff
+
         return context
 
 
