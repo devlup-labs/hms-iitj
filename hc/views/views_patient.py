@@ -72,7 +72,7 @@ def makeAppointment(request):
         if form.is_valid():
             doctor = form['doctor'].value()
             try:
-                available_doctors = Doctor.objects.filter(available=True, id=doctor)
+                available_doctor = Doctor.objects.filter(available=True, id=doctor)[0]
                 patient = get_object_or_404(Patient, user__username=request.user.username)
                 time = form['time'].value()
                 date = form['date'].value()
@@ -92,8 +92,8 @@ def makeAppointment(request):
                         extra_tags='d-flex justify-content-center alert alert-danger alert-dismissible fade show')
                 else:
                     appn_dt_obj = make_aware(appn_dt_obj)  # to convert naive date time to aware datetime
-                    Appointment.objects.create(patient=patient.user.username, doctor=available_doctors, time=appn_dt_obj)
-                    create_event(patient.user.email, date, time, available_doctors)
+                    Appointment.objects.create(patient=patient.user.username, doctor=available_doctor, time=appn_dt_obj)
+                    create_event(patient.user.email, date, time, available_doctor)
                     messages.success(
                         request,
                         "Appointment was successfully created.",
