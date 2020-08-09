@@ -21,6 +21,7 @@ def IndexViewPharmacist(request):
 def ViewPrescription(request, username):
     patient = Patient.objects.filter(user__username=username)[0]
     pres = patient.prescriptions.filter(utilised=False).latest('created_at')
+    pres.remarks = pres.ENCRYPTER.decrypt(pres.remarks.encode('utf-8')).decode('utf-8')
     if request.method == "POST":
         form = ViewPrescriptionForm(request.POST, instance=pres)
         form.save()
