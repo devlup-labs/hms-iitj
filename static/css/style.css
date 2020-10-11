@@ -979,3 +979,15 @@ ul.tabs-nav .tab-nav.active {
     position: relative;
     padding: 90px 100px;
 }
+
+@media only screen and (max-width: 480px) {
+
+    .testimonial-section::before {
+        width: 100%;
+    }
+
+    .testimonial-section h2 {
+        color: white;
+    }
+
+}
