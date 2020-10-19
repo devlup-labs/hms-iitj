@@ -666,7 +666,7 @@ ul.tabs-nav .tab-nav.active {
 }
 
 .testimonial-bg-shape::before {
-    content: '';
+    /*content: '';*/
     position: absolute;
     top: 20px;
     left: 28px;
@@ -795,7 +795,7 @@ ul.tabs-nav .tab-nav.active {
     height: 31px;
     width: 100%;
     background-color: #f4f4f4;
-    background-image: linear-gradient(rgba(255, 255, 255, 0),#f4f4f4 50%);
+    /*background-image: linear-gradient(rgba(255, 255, 255, 0),#f4f4f4 50%);*/ /*this adds a fadeout effect to the bottom of the container */
 }
 
 .the-news-wrap figure {
