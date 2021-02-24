@@ -56,12 +56,13 @@ class Patient(models.Model):
     staff = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        return self.user
 
 
 def post_save_user(sender, instance, created, **kwargs):
     if created:
-        instance.username = instance.email.split('@')[0]
+        if instance.email != '':
+            instance.username = instance.email.split('@')[0]
         group = Group.objects.get(name="patient")
         instance.groups.add(group)
         instance.save()

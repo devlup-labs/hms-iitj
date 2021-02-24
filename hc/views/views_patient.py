@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import Patient, Doctor
 from hc.models import Appointment
 from hc.forms.forms_patient import CreateProfileForm, takeAppointmentForm, AddFamilyMemberForm
-import subprocess
 from hc.event import create_event
 from django.contrib.auth.models import User
 import datetime as dt
@@ -44,12 +43,13 @@ class CreateProfileView(LoginRequiredMixin, CreateView):
     success_url = '/'
 
     def form_valid(self, form):
+        result = 0
         user = self.request.user
         userprofile = form.save()
         userprofile.user = user
 
-        result = subprocess.check_output(['java', 'LDAP_API.java', user.username])
-        result = result.decode('utf-8')
+#        result = subprocess.check_output(['java', 'LDAP_API.java', user.username])
+#        result = result.decode('utf-8')
         if(result == "0"):
             return HttpResponse("User {} does not exists.".format(user))
         elif(result == "faculty" or result == "staff" or result == "project"):
