@@ -7,9 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from accounts.models import Patient, Doctor
 from hc.models import Appointment
 from hc.forms.forms_patient import CreateProfileForm, takeAppointmentForm, AddFamilyMemberForm
-import subprocess
 from hc.event import create_event
 from django.contrib.auth.models import User
+import subprocess
 import datetime as dt
 from django.utils.timezone import make_aware
 
