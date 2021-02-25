@@ -9,6 +9,7 @@ from hc.models import Appointment
 from hc.forms.forms_patient import CreateProfileForm, takeAppointmentForm, AddFamilyMemberForm
 from hc.event import create_event
 from django.contrib.auth.models import User
+import subprocess
 import datetime as dt
 from django.utils.timezone import make_aware
 
@@ -48,8 +49,8 @@ class CreateProfileView(LoginRequiredMixin, CreateView):
         userprofile = form.save()
         userprofile.user = user
 
-#        result = subprocess.check_output(['java', 'LDAP_API.java', user.username])
-#        result = result.decode('utf-8')
+        result = subprocess.check_output(['java', 'LDAP_API.java', user.username])
+        result = result.decode('utf-8')
         if(result == "0"):
             return HttpResponse("User {} does not exists.".format(user))
         elif(result == "faculty" or result == "staff" or result == "project"):

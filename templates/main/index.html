@@ -44,7 +44,8 @@
                     </ul>
                     {% elif appointments.count == 0 %}
                     <ul class="p-0 m-0">
-                        <li>No Appointments!</li>
+                        <li>No Appointments!<button type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button></li>
                     </ul>
                     {% else %}
                     <ul class="p-0 m-0">
@@ -77,8 +78,9 @@
                         {% csrf_token %}
                         {{ form.as_p }}
                         <br>  
-                        <button class="button bg" type="submit">Make Appointment</button>
+                        <button class="button bg" type="submit" onclick="MyAppointment()">Make Appointment</button>
                     </form>
+                    <script>function MyAppointment(){appointments.count+=1}</script>
                     <div class="pull-right"><p style="font-size: small;padding-top: 5px;">~ {{patientsInHc}} people expected in Health Center currently</p></div>
                     <br>
                 </div>
