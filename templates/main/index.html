@@ -77,9 +77,8 @@
                         {% csrf_token %}
                         {{ form.as_p }}
                         <br>  
-                        <button class="button bg" type="submit" onclick="MyAppointment()">Make Appointment</button>
+                        <button class="button bg" type="submit">Make Appointment</button>
                     </form>
-                    <script>function MyAppointment(){appointments.count+=1}</script>
                     <div class="pull-right"><p style="font-size: small;padding-top: 5px;">~ {{patientsInHc}} people expected in Health Center currently</p></div>
                     <br>
                 </div>
