@@ -44,7 +44,6 @@ class CreateProfileView(LoginRequiredMixin, CreateView):
     success_url = '/'
 
     def form_valid(self, form):
-        result = 0
         user = self.request.user
         userprofile = form.save()
         userprofile.user = user
