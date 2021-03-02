@@ -38,3 +38,4 @@ def SearchAppointmentView(request, username):
             form = ViewAppointmentForm(initial={'patient': username})
             appn = None
             return render(request, 'receptionist/view_appointment.html', {'form': form, 'appointment': appn})
+ 

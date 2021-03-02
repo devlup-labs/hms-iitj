@@ -592,6 +592,7 @@ ul.tabs-nav .tab-nav.active {
     margin: 24px auto !important;
 }
 
+
 /*
 # Make an Appointment
 --------------------------------*/
@@ -622,7 +623,6 @@ ul.tabs-nav .tab-nav.active {
 .appointment-box form input[type="submit"] {
     margin-top: 16px;
 }
-
 /*
 # Section: Testimonial
 --------------------------------*/

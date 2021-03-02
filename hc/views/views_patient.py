@@ -152,3 +152,16 @@ def AddFamilyMemberView(request):
         form = AddFamilyMemberForm()
 
     return render(request, 'patient/add_member.html', {'form': form})
+
+
+def cancelAppointment(request, pk):
+    appointment_id = get_object_or_404(Appointment, pk=pk)  # Get your current appointment id
+
+    if request.method == 'POST':                    # If method is POST,
+        appointment_id.delete()                     # delete the appointment.
+        messages.success(request, "Appointment was deleted.", extra_tags='d-flex justify-content-center alert\
+                        alert-success alert-dismissible fade show')      # show a message
+        return redirect('/')                        # Finally, redirect to the homepage.
+
+    return render(request, 'main/index.html', {'appointment_id': appointment_id})
+    
