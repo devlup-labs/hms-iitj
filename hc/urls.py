@@ -1,7 +1,7 @@
 from django.urls import path, re_path
 from hc.views.views_doctor import treatPatientView, patientHistoryView, load_users
 from hc.views.views_patient import (
-    makeAppointment, viewMedicalHistory, CreateProfileView, 
+    makeAppointment, viewMedicalHistory, CreateProfileView,
     updateProfileView, AddFamilyMemberView, cancelAppointment
 )
 from hc.views.views_receptionist import SearchAppointmentView

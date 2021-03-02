@@ -164,4 +164,3 @@ def cancelAppointment(request, pk):
         return redirect('/')                        # Finally, redirect to the homepage.
 
     return render(request, 'main/index.html', {'appointment_id': appointment_id})
-    
