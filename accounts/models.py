@@ -56,7 +56,7 @@ class Patient(models.Model):
     staff = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        return self.user
 
 
 def post_save_user(sender, instance, created, **kwargs):
