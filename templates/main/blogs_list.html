@@ -15,7 +15,7 @@
                         <div class="col-12 col-md-6 col-lg-4">
                                 <div class="the-news-wrap">
                                     {% if attr == 'doctor' %}
-                                        <a href="{% url 'main:edit_blog' blog.slug %}" style="text-decoration: underline;">edit</a>
+                                        <a href="{% url 'main:edit_blog' blog.slug %}" style="text-decoration: underline;padding: 3px;">edit</a>
                                         <a href="{% url 'main:blog_details' blog.slug %}" style="text-decoration: underline;">view</a>
                                     {% endif %}
                                     <a href="{% url 'main:blog_details' blog.slug %}">

@@ -786,6 +786,7 @@ ul.tabs-nav .tab-nav.active {
     height: 520px;
     overflow: hidden;
     position: relative;
+    border-radius: 20px;
 }
 
 .the-news-wrap::after {
