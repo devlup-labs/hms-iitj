@@ -1,4 +1,4 @@
-from django.urls import path, re_path
+from django.urls import path
 from hc.views.views_doctor import treatPatientView, patientHistoryView, load_users
 from hc.views.views_patient import (
     makeAppointment, viewMedicalHistory, CreateProfileView,
@@ -14,7 +14,7 @@ urlpatterns = [
     path('treatPatient/', treatPatientView.as_view(template_name="doctor/treat_patient.html"),
          name='prescription'),
     path('makeAppointment/', makeAppointment, name='makeAppointment'),
-    re_path(r'^cancelAppointment/(?P<pk>[0-9]+)/$', cancelAppointment, name='cancelAppointment'),
+    path('cancelAppointment/<int:ap_id>', cancelAppointment, name='cancelAppointment'),
     path('create_profile/', CreateProfileView.as_view(), name='createProfile'),
     path('update_profile/', updateProfileView, name='updateProfile'),
     path('add_member/', AddFamilyMemberView, name='add_member'),
