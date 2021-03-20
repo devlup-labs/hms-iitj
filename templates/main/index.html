@@ -49,7 +49,10 @@
                     {% else %}
                     <ul class="p-0 m-0">
                         {% for appointment in appointments %}
-                        <li>Dr. {{appointment.doctor.user.first_name}} <span>{{appointment.time}}</span></li>
+                        <li>Dr.{{appointment.doctor.user.first_name}}<span>{{appointment.time}}</span><form action="{% url 'hc:cancelAppointment' appointment.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </form></li>
                         {% endfor %}
                     </ul>
                     {% endif %}
