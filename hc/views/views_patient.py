@@ -154,8 +154,8 @@ def AddFamilyMemberView(request):
     return render(request, 'patient/add_member.html', {'form': form})
 
 
-def cancelAppointment(request, pk):
-    appointment_id = get_object_or_404(Appointment, pk=pk)  # Get your current appointment id
+def cancelAppointment(request, ap_id):
+    appointment_id = get_object_or_404(Appointment, pk=ap_id)  # Get your current appointment id
 
     if request.method == 'POST':                    # If method is POST,
         appointment_id.delete()                     # delete the appointment.
