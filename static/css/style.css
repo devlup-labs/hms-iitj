@@ -275,7 +275,7 @@ a:active {
 # Hero Section
 --------------------------------------------------------------*/
 .hero-slider {
-    max-height: 950px;
+    max-height: 3840px;
 }
 
 .hero-content-wrap {
@@ -785,6 +785,7 @@ ul.tabs-nav .tab-nav.active {
     height: 520px;
     overflow: hidden;
     position: relative;
+    border-radius: 21px;
 }
 
 .the-news-wrap::after {
@@ -1003,5 +1004,5 @@ ul.tabs-nav .tab-nav.active {
 
 .team-section {
     position: relative;
-    padding: 90px 100px;
+    padding: 90px 53px;
 }
