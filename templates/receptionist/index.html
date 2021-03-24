@@ -36,8 +36,19 @@
 
                         });
                     </script>
+                </div>
+            </div>
                     <!-- jquery  -->
-
+                <div class="col-12 col-md-6 col-lg-5 mt-5 mt-lg-0">
+                    <div class="appointment-box">
+                        <h2 class="d-flex align-items-center">Doctor's Appointments</h2>
+                        <form action =""method="POST">
+                            {% csrf_token %}
+                            {{ doc_form.as_p }}
+                            <br>  
+                            <button class="button bg" type="submit">View Appointments</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
