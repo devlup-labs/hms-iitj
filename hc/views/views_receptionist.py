@@ -26,7 +26,11 @@ def IndexViewReceptionist(request):
 
         return redirect('hc:appointment', username=username)
     else:
-        return render(request, 'receptionist/index.html', {'form': form, 'doc_form': doc_form})
+        args={}
+        args['appointments'] = Appointment.objects.all().order_by('time')[:5]
+        args['form'] = form
+        args['doc_form'] = doc_form
+        return render(request, 'receptionist/index.html', args)
 
 
 @login_required(login_url="/accounts/login/")

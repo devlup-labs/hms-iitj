@@ -7,7 +7,7 @@
     <span class="login100-form-title p-b-33">
         Appointments:
     </span>
-    <ul class="p-0 m-0">
+    <ul>
         {% for appointment in appointments %}
         <form action="{% url 'hc:cancelAppointment' appointment.id %}" method="post">
             {% csrf_token %}
@@ -15,10 +15,10 @@
         </form>
         <li><b>Patient: </b><span>{{appointment.patient}}</span></li>
         <li>
-            <b> Date and Time: </b>{{appointment.time}}<a href="{% url 'hc:appointment' appointment.patient %}">
-            <button type="button" class="btn btn-default btn-sm ">
+            <b> Date and Time: </b>{{appointment.time}}  <a href="{% url 'hc:appointment' appointment.patient %}">
+            <button type="button" class="btn btn-default btn-sm float-right">
             <span class="glyphicon glyphicon-pencil"></span>Edit</button></a><br>
-            <span>-----------------------------------------------------------------------</span>
+            <span>--------------------------------------------------------------------</span>
         </li>
         {% endfor %}
     </ul>

@@ -7,7 +7,7 @@
 <div class="homepage-boxes">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-5 mt-5 mt-lg-0">
+            <div class="col-12 col-md-4 col-lg-4 mt-5 mt-lg-0">
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">Appointments-IITJ</h2>
                     <p></p>
@@ -39,7 +39,7 @@
                 </div>
             </div>
                     <!-- jquery  -->
-                <div class="col-12 col-md-6 col-lg-5 mt-5 mt-lg-0">
+                <div class="col-12 col-md-4 col-lg-4 mt-5 mt-lg-0">
                     <div class="appointment-box">
                         <h2 class="d-flex align-items-center">Doctor's Appointments</h2>
                         <form action =""method="POST">
@@ -49,6 +49,25 @@
                             <button class="button bg" type="submit">View Appointments</button>
                         </form>
                     </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 mt-5 mt-lg-0">
+                    <div class="opening-hours">
+                        <h2 class="d-flex align-items-center">Recent Appointments</h2> 
+                        {% if appointments.count == 0 %}
+                    <ul class="p-0 m-0">
+                        <li>No Appointments!</li>
+                    </ul>
+                    {% else %}
+                    <ul class="p-0 m-0">
+                        {% for appointment in appointments %}
+                        <li> Dr.{{appointment.doctor.user.first_name}}<span>{{appointment.time}}</span><form action="{% url 'hc:cancelAppointment' appointment.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </form></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                  </div>
                 </div>
             </div>
         </div>
