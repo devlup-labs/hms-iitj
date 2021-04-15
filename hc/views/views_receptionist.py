@@ -26,7 +26,7 @@ def IndexViewReceptionist(request):
 
         return redirect('hc:appointment', username=username)
     else:
-        args={}
+        args = {}
         args['appointments'] = Appointment.objects.all().order_by('time')[:5]
         args['form'] = form
         args['doc_form'] = doc_form
