@@ -39,13 +39,12 @@
                 </div>
             </div>
                     <!-- jquery  -->
-<<<<<<< HEAD
             <div class="col-12 col-md-4 col-lg-4 mt-5 mt-lg-0">
                 <div class="appointment-box">
                     <h2 class="d-flex align-items-center">Doctor's Appointments</h2>
                     <form action =""method="POST">
                         {% csrf_token %}
-                        {{ doc_form.as_p }}
+                        {{ appn_doc_form.as_p }}
                         <br>  
                         <button class="button bg" type="submit">View Appointments</button>
                     </form>
@@ -53,7 +52,7 @@
             </div>
             <div class="col-12 col-md-4 col-lg-4 mt-5 mt-lg-0">
                 <div class="opening-hours">
-                    <h2 class="d-flex align-items-center">Recent Appointments</h2> 
+                    <h2 class="d-flex align-items-center">Upcoming Appointments</h2> 
                     {% if appointments.count == 0 %}
                 <ul class="p-0 m-0">
                     <li>No Appointments!</li>
@@ -68,9 +67,6 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-=======
-
->>>>>>> 5bd9d42d85a538e45475302e457bf8d61a760c98
                 </div>
             </div>
         </div>

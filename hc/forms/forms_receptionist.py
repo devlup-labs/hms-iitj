@@ -17,10 +17,10 @@ class ViewAppointmentForm(forms.ModelForm):
         }
 
 
-class Doctor_Select(forms.Form):
+class SelectDoctor(forms.Form):
 
     class DoctorChoiceField(forms.ModelChoiceField):
         def label_from_instance(self, obj):
-            return obj.user.username + ", " + str(obj.specialization)
+            return obj.user.first_name + " " + obj.user.last_name + str(obj.specialization)
 
     doctor = DoctorChoiceField(queryset=Doctor.objects.all())

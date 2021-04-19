@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
-from hc.forms.forms_receptionist import ViewAppointmentForm, Doctor_Select
+from hc.forms.forms_receptionist import ViewAppointmentForm, SelectDoctor
 from hc.forms.forms_doctor import SearchPatientForm
 from hc.models import Appointment
 
@@ -9,12 +9,12 @@ from hc.models import Appointment
 @user_passes_test(lambda u: u.groups.filter(name='receptionist').exists())
 def IndexViewReceptionist(request):
     form = SearchPatientForm()
-    doc_form = Doctor_Select()
+    appn_doc_form = SelectDoctor()
     if request.method == "POST":
         username = request.POST.get('username', False)
-        doc_form = Doctor_Select(request.POST)
-        if doc_form.is_valid():
-            data = doc_form.cleaned_data
+        appn_doc_form = SelectDoctor(request.POST)
+        if appn_doc_form.is_valid():
+            data = appn_doc_form.cleaned_data
             field = data['doctor']
             args = {'field': field}
             args['appointments'] = Appointment.objects.all().filter(doctor=field).order_by('time')
@@ -29,7 +29,7 @@ def IndexViewReceptionist(request):
         args = {}
         args['appointments'] = Appointment.objects.all().order_by('time')[:5]
         args['form'] = form
-        args['doc_form'] = doc_form
+        args['appn_doc_form'] = appn_doc_form
         return render(request, 'receptionist/index.html', args)
 
 
@@ -57,9 +57,8 @@ def SearchAppointmentView(request, username):
             return render(request, 'receptionist/view_appointment.html', {'form': form, 'appointment': appn})
 
 
-def Recep_Appointments(request):
+def AppointmentsOfDoctor(request):
     data = val()
     field = data['doctor']
-    args = {'field': field}
-    args['appointments'] = Appointment.objects.all().filter(doctor=field).order_by('time')
+    args = {'field': field, 'appointments': Appointment.objects.all().filter(doctor=field).order_by('time')}
     return render(request, 'receptionist/testform_result.html', args)

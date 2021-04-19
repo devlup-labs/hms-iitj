@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.conf.urls import url
 from .views import IndexView
 from main.views import BlogDetailsView, AddBlogView, DevelopersPage, EditBlogView
-from hc.views.views_receptionist import IndexViewReceptionist, Recep_Appointments
+from hc.views.views_receptionist import IndexViewReceptionist, AppointmentsOfDoctor
 from hc.views.views_pharmacist import IndexViewPharmacist
 from hc.views.views_doctor import IndexViewDoctor
 
@@ -12,7 +12,7 @@ urlpatterns = [
     path('', IndexView, name='home'),
     path('doctor/', IndexViewDoctor, name='home_doctor'),
     path('receptionist/', IndexViewReceptionist, name='home_receptionist'),
-    path('receptionist/appointments/', Recep_Appointments, name='recep_appointments'),
+    path('receptionist/appointments/', AppointmentsOfDoctor, name='recep_appointments'),
     path('pharmacist/', IndexViewPharmacist, name='home_pharmacist'),
     url(r'^blogs/(?P<slug>[\w-]+)/$', BlogDetailsView.as_view(), name='blog_details'),
     url(r'^blogs/edit/(?P<slug>[\w-]+)/$', EditBlogView, name='edit_blog'),
