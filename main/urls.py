@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.conf.urls import url
 from .views import IndexView
 from main.views import BlogDetailsView, AddBlogView, DevelopersPage, EditBlogView
-from hc.views.views_receptionist import IndexViewReceptionist, AppointmentsOfDoctor
+from hc.views.views_receptionist import IndexViewReceptionist
 from hc.views.views_pharmacist import IndexViewPharmacist
 from hc.views.views_doctor import IndexViewDoctor
 
