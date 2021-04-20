@@ -18,7 +18,7 @@ def IndexViewReceptionist(request):
         if appn_doc_form.is_valid():
             data = appn_doc_form.cleaned_data
             doc_name = data['doctor']
-            return redirect('main:recep_appointments', doc_name)
+            return redirect('hc:doctorAppointments', doc_name)
 
         return redirect('hc:appointment', username=username)
     else:
