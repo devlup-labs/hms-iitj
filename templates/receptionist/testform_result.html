@@ -1,0 +1,29 @@
+{% extends 'main/base_forms.html' %}
+{% block body_block %}
+{% load bootstrap4 %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+    <span class="login100-form-title p-b-33">
+        Appointments:
+    </span>
+    <ul>
+        {% for appointment in appointments %}
+        <form action="{% url 'hc:cancelAppointment' appointment.id %}" method="post">
+            {% csrf_token %}
+        <button type="submit" class="close text-right" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </form>
+        <li><b>Patient: </b><span>{{appointment.patient}}</span></li>
+        <li>
+            <b> Date and Time: </b>{{appointment.time}}  <a href="{% url 'hc:appointment' appointment.patient %}">
+            <button type="button" class="btn btn-default btn-sm float-right">
+            <span class="glyphicon glyphicon-pencil"></span>Edit</button></a><br>
+            <span>--------------------------------------------------------------------</span>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="container-login100-form-btn m-t-20">
+    </div>
+    <center><a href="{% url 'main:home' %}">Go Back</a></center>
+</div>
+{% endblock %}

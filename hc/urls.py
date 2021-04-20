@@ -4,7 +4,7 @@ from hc.views.views_patient import (
     makeAppointment, viewMedicalHistory, CreateProfileView,
     updateProfileView, AddFamilyMemberView, cancelAppointment
 )
-from hc.views.views_receptionist import SearchAppointmentView
+from hc.views.views_receptionist import SearchAppointmentView, AppointmentsOfDoctor
 from hc.views.views_pharmacist import ViewPrescription
 
 
@@ -15,6 +15,7 @@ urlpatterns = [
          name='prescription'),
     path('makeAppointment/', makeAppointment, name='makeAppointment'),
     path('cancelAppointment/<int:ap_id>', cancelAppointment, name='cancelAppointment'),
+    path('appointments/<str:doc_name>', AppointmentsOfDoctor, name='doctorAppointments'),
     path('create_profile/', CreateProfileView.as_view(), name='createProfile'),
     path('update_profile/', updateProfileView, name='updateProfile'),
     path('add_member/', AddFamilyMemberView, name='add_member'),

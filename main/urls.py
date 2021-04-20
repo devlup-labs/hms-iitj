@@ -18,5 +18,4 @@ urlpatterns = [
     path('addblog/', AddBlogView.as_view(), name='AddBlog'),
     path('developers/', DevelopersPage, name='developers'),
     path('hitcount/', include(('hitcount.urls', 'hitcount'), namespace='hitcount')),
-
 ]
