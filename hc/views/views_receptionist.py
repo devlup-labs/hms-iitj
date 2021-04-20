@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from hc.forms.forms_receptionist import ViewAppointmentForm, SelectDoctor
 from hc.forms.forms_doctor import SearchPatientForm
 from hc.models import Appointment
+from accounts.models import Doctor
+from django.contrib.auth.models import User
 
 
 @login_required(login_url="/accounts/login/")
@@ -15,14 +17,8 @@ def IndexViewReceptionist(request):
         appn_doc_form = SelectDoctor(request.POST)
         if appn_doc_form.is_valid():
             data = appn_doc_form.cleaned_data
-            field = data['doctor']
-            args = {'field': field}
-            args['appointments'] = Appointment.objects.all().filter(doctor=field).order_by('time')
-            global val
-
-            def val():
-                return data
-            return redirect('main:recep_appointments')
+            doc_name = data['doctor']
+            return redirect('main:recep_appointments', doc_name)
 
         return redirect('hc:appointment', username=username)
     else:
@@ -57,8 +53,8 @@ def SearchAppointmentView(request, username):
             return render(request, 'receptionist/view_appointment.html', {'form': form, 'appointment': appn})
 
 
-def AppointmentsOfDoctor(request):
-    data = val()
-    field = data['doctor']
-    args = {'field': field, 'appointments': Appointment.objects.all().filter(doctor=field).order_by('time')}
+def AppointmentsOfDoctor(request, doc_name):
+    doc_user = get_object_or_404(User, username=doc_name)
+    doctor_username = get_object_or_404(Doctor, user=doc_user)
+    args = {'appointments': Appointment.objects.all().filter(doctor=doctor_username).order_by('time')}
     return render(request, 'receptionist/testform_result.html', args)
